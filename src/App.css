@@ -1,0 +1,45 @@
+.App{
+    max-width: 1170px;
+    margin: 0 auto;
+  display: grid;
+  padding: 15px;
+  height: 100vh;
+  /*grid-template-rows: 100px 400px 100px;*/
+  /*grid-template-columns: 1fr 1fr 1fr 1fr ;*/
+  grid:0.5fr 4fr 0.5fr / 1.2fr 2fr 2fr 2fr ;
+  grid-template-areas:
+          'header header header header'
+          'nav profile profile profile'
+          'footer footer footer footer';
+  align-items: stretch;
+  grid-gap: 10px;
+}
+.App-wrapper-content {
+    grid-area:profile;
+    position: relative;
+    height: 100%;
+    z-index: 0;
+}
+.App-wrapper-content:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(346deg, #686872,pink)
+}
+.App-wrapper-content:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(315deg, #2be2c3, #f8ffc0);
+    filter: blur(30px);
+    z-index: 1;
+}
+
+
+

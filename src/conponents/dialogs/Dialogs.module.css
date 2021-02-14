@@ -1,0 +1,40 @@
+.dialogs {
+    display: grid;
+    grid-template-rows: 40px 2fr;
+    grid-template-columns: 4fr 10fr;
+    grid-column-gap: 10px;
+
+}
+.dialogsHeader{
+    grid-area: 1/1/1/3;
+    z-index: 20;
+}
+.dialogItems {
+    border-right: 2px solid black;
+    z-index: 20;
+    text-decoration: none;
+}
+.dialogItems a{
+    z-index: 20;
+    text-decoration: none;
+}
+.dialogItems a:hover{
+    z-index: 20;
+    text-decoration: none;
+    color: #9f12fe;
+}
+.dialogItems a.active{
+    z-index: 20;
+    color: #9f12fe;
+}
+
+.dialog{
+    padding: 15px;
+    z-index: 20;
+}
+.messages {
+    z-index: 20;
+}
+.message{
+    padding: 15px;
+}

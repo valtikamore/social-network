@@ -1,0 +1,21 @@
+.post {
+    display: grid;
+    grid-template-rows: 55px 1fr 20px;
+    grid-template-columns:550px;
+    grid-gap: 5px;
+    margin: 10px 0px;
+}
+
+.avatar{
+    display: block;
+    vertical-align: bottom;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.message{
+
+}
+.like{
+
+}

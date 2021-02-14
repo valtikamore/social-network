@@ -1,0 +1,14 @@
+
+.header{
+    background:linear-gradient(-334deg, pink, #a5c0bd);
+    box-shadow: -206px 14px 155px 32px #ec91e7;
+    grid-area:header;
+    padding: 10px;
+    align-self: center;
+}
+
+.header img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
