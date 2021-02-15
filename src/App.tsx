@@ -9,23 +9,25 @@ import Music from './conponents/Music/Music';
 import Settings from "./conponents/Settings/Settings";
 import Profile from "./conponents/profile/Profile";
 import Dialogs from "./conponents/dialogs/Dialogs";
-import { dialogType, messageType, postType} from "./index";
+import { stateType} from "./conponents/redux/state";
 
-export type AppPropsType = {
-    postsData: postType[]
-    dialogsData: dialogType[]
-    messagesData: messageType[]
+type AppType = {
+    state:stateType
 }
-function App(props: AppPropsType) {
+
+function App(props: AppType) {
     return (
         <BrowserRouter>
             <div className="App">
                 <Header/>
-                <Navbar/>
+                <Navbar state={props.state.navbarPage}/>
                 <div className="App-wrapper-content">
-                    <Route path='/profile' render={() => <Profile  postsData={props.postsData}/>}/>
+                    <Route path='/profile'
+                           render={() => <Profile
+                               state={props.state.profilePage}/>}/>
                     <Route path='/dialogs'
-                           render={() => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData}/>}/>
+                           render={() => <Dialogs
+                               state={props.state.dialogsPage}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>

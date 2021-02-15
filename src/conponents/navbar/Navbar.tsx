@@ -1,9 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import {navbarPage,} from "../redux/state";
 import classes from "./Navbar.module.css"
+import Friends from "./friends/friends";
 
-const Navbar = () => {
+
+type navbarType = {
+   state:navbarPage
+}
+const Navbar = (props:navbarType) => {
+    let sidebarMap = props.state.friends.map(f => <Friends id={f.id} name={f.name} img={f.img}/>)
     return (
         <nav className={classes.nav}>
             <div className={classes.item}>
@@ -25,6 +31,10 @@ const Navbar = () => {
             <div className={classes.item}>
                 <NavLink to='/settings'
                          activeClassName={classes.active}>Settings</NavLink>
+            </div>
+            <div >
+                <NavLink to='/friends' className={classes.friendName}>Friends</NavLink>
+                <div className={classes.grid}>{sidebarMap}</div>
             </div>
         </nav>
     )

@@ -1,13 +1,13 @@
 import React from "react";
+import { postType } from "../../../redux/state";
 import classes from "./Post.module.css"
 
-type postType = {
-    message: string
-    likeCount: number
-}
+
+
+
 const Post = (props: postType) => {
     return (
-        <div className={classes.post}>
+        <div className={classes.post} key={props.id}>
                 <img className={classes.avatar}
                      src="https://image.freepik.com/free-vector/cute-avocado-cartoon-icon_138676-1820.jpg" alt="ss"/>
             <div className={classes.message}>
