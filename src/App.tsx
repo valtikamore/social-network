@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import './App.css';
 import Header from "./conponents/header/Header";
 import Navbar from "./conponents/navbar/Navbar";
 import Footer from "./conponents/footer/Footer";
-import {BrowserRouter, Route} from 'react-router-dom';
+import { Route} from 'react-router-dom';
 import News from "./conponents/News/News";
 import Music from './conponents/Music/Music';
 import Settings from "./conponents/Settings/Settings";
@@ -13,9 +13,10 @@ import { stateType} from "./conponents/redux/state";
 
 type AppType = {
     state:stateType
+    addPost:(postMessage:string) => void
 }
 
-function App(props: AppType) {
+const App: React.FC<AppType> = (props)  => {
     return (
             <div className="App">
                 <Header/>
@@ -23,7 +24,8 @@ function App(props: AppType) {
                 <div className="App-wrapper-content">
                     <Route path='/profile'
                            render={() => <Profile
-                               state={props.state.profilePage}/>}/>
+                               state={props.state.profilePage}
+                               addPost={props.addPost}/>}/>
                     <Route path='/dialogs'
                            render={() => <Dialogs
                                state={props.state.dialogsPage}/>}/>

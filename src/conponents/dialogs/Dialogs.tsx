@@ -10,7 +10,7 @@ type DialogPropsType = {
 }
 
 
-const Dialogs = (props: DialogPropsType) => {
+const Dialogs: React.FC<DialogPropsType> = (props) => {
 
     let dialogsElements = props.state.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>)

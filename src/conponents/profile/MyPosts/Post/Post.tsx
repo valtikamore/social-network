@@ -5,7 +5,7 @@ import classes from "./Post.module.css"
 
 
 
-const Post = (props: postType) => {
+const Post : React.FC<postType> = (props) => {
     return (
         <div className={classes.post} key={props.id}>
                 <img className={classes.avatar}

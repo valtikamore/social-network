@@ -5,7 +5,7 @@ import {dialogType} from "../../redux/state";
 import classes from "./DialogItem.module.css";
 
 
-const DialogItem = (props: dialogType) => {
+const DialogItem: React.FC<dialogType> = (props) => {
     let path = '/dialogs/' + props.id
     return (
         <div className={`${classes.dialog} ${classes.active} ${classes.grid}`} >
