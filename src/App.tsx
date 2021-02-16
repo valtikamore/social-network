@@ -17,7 +17,6 @@ type AppType = {
 
 function App(props: AppType) {
     return (
-        <BrowserRouter>
             <div className="App">
                 <Header/>
                 <Navbar state={props.state.navbarPage}/>
@@ -34,7 +33,6 @@ function App(props: AppType) {
                 </div>
                 <Footer/>
             </div>
-        </BrowserRouter>
     );
 }
 
