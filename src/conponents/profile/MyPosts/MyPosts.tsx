@@ -1,5 +1,5 @@
-import React, {ChangeEvent, RefObject} from "react";
-import {postType, profilePageType} from "../../redux/state";
+import React, { RefObject} from "react";
+import {postType} from "../../redux/state";
 import classes from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
@@ -9,16 +9,21 @@ type myPostsType = {
 }
 
 const MyPosts : React.FC<myPostsType>= (props)=> {
+    let newPostElement:RefObject<HTMLTextAreaElement> = React.createRef()
+
+    let addPost = () => {
+        if(newPostElement.current) {
+            let text = newPostElement.current.value
+            props.addPost(text)
+        }
+    }
 
     let postsElement =
         props.postsData.map(p => <Post id={p.id} message={p.message} likeCount={p.likeCount}/>)
 
-    let newPostElement= React.createRef()
 
-    let addPost = () => {
-        let text = newPostElement.current.value
-        props.addPost(text)
-    }
+
+
 
     return (
         <div className={classes.posts}>
