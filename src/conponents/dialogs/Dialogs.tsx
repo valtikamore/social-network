@@ -2,7 +2,7 @@ import React from 'react'
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {dialogsPage,} from "../redux/state";
+import {dialogsPage,} from "../../redux/state";
 
 
 type DialogPropsType = {

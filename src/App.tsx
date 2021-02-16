@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React from 'react';
 import './App.css';
 import Header from "./conponents/header/Header";
 import Navbar from "./conponents/navbar/Navbar";
@@ -9,7 +9,7 @@ import Music from './conponents/Music/Music';
 import Settings from "./conponents/Settings/Settings";
 import Profile from "./conponents/profile/Profile";
 import Dialogs from "./conponents/dialogs/Dialogs";
-import { stateType} from "./conponents/redux/state";
+import { stateType} from "./redux/state";
 
 type AppType = {
     state:stateType

@@ -1,5 +1,5 @@
 import React, { RefObject} from "react";
-import {postType} from "../../redux/state";
+import {postType} from "../../../redux/state";
 import classes from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
@@ -15,6 +15,7 @@ const MyPosts : React.FC<myPostsType>= (props)=> {
         if(newPostElement.current) {
             let text = newPostElement.current.value
             props.addPost(text)
+            newPostElement.current.value = ' '
         }
     }
 
@@ -29,7 +30,7 @@ const MyPosts : React.FC<myPostsType>= (props)=> {
         <div className={classes.posts}>
             <div className={classes.createPost}>
                 <div className={classes.createPostTitle}>My posts</div>
-                <textarea className={classes.createPostArea} ref={newPostElement} ></textarea>
+                <textarea className={classes.createPostArea} ref={newPostElement}> </textarea>
                 <button className={classes.createPostBtn} onClick={addPost}>Create new Post</button>
             </div>
             {postsElement}

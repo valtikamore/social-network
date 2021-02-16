@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {navbarPage,} from "../redux/state";
+import {navbarPage,} from "../../redux/state";
 import classes from "./Navbar.module.css"
 import Friends from "./friends/friends";
 
