@@ -8,6 +8,8 @@ import {profilePageType} from "../../redux/state";
 type profileType = {
     state:profilePageType
     addPost:(postMessage:string) => void
+    message:string
+    changeNewText:(newText:string) => void
 }
 
 
@@ -18,7 +20,9 @@ const Profile: React.FC<profileType> = (props) => {
         <div className={classes.profile}>
             <ProfileInfo/>
             <MyPosts postsData={props.state.posts}
-                    addPost={props.addPost}/>
+                     addPost={props.addPost}
+                     message={props.state.newPostText}
+                     changeNewText={props.changeNewText}/>
         </div>
     )
 }

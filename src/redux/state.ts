@@ -20,6 +20,7 @@ export type friendsType = {
     img:string
 }
 export type profilePageType = {
+    newPostText:string
     posts : postType[]
 }
 export type dialogsPage = {
@@ -39,10 +40,9 @@ export type stateType = {
 
  let state:stateType = {
     profilePage : {
+        newPostText: '',
         posts: [
             {id:1,message:'Hello bro',likeCount:0},
-            {id:2,message:'Hello bro',likeCount:1},
-            {id:3,message:'Hello bro',likeCount:2},
         ],
     },
     dialogsPage: {
@@ -65,6 +65,7 @@ export type stateType = {
         ]
      }
 }
+
 export let addPost = (postMessage:string) => {
     let newPost:postType = {
         id:5,
@@ -72,6 +73,10 @@ export let addPost = (postMessage:string) => {
         likeCount:0
     }
     state.profilePage.posts.push(newPost)
-    rerenderEntireTree()
+    rerenderEntireTree(state)
+}
+export const changeNewText = (newText:string) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
 }
 export default state
