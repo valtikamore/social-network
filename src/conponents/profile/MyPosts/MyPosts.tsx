@@ -5,18 +5,15 @@ import Post from "./Post/Post";
 
 type myPostsType = {
     postsData: postType[]
-    message: string
-    addPost: (postMessage: string) => void
+    newPostText:string
+    addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
 const MyPosts: React.FC<myPostsType> = (props) => {
 
     let addPost = () => {
-        if(props.message.trim() !== '') {
-            props.addPost(props.message)
-
-        }
+            props.addPost()
     }
     let newChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updateNewPostText(e.currentTarget.value)
@@ -28,7 +25,7 @@ const MyPosts: React.FC<myPostsType> = (props) => {
             <div className={classes.createPost}>
                 <div className={classes.createPostTitle}>My posts</div>
                 <textarea className={classes.createPostArea}
-                          value={props.message}
+                          value={props.newPostText}
                           onChange={newChangeTextHandler}> </textarea>
                 <button className={classes.createPostBtn} onClick={addPost}>Create new Post</button>
             </div>
