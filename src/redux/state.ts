@@ -51,7 +51,7 @@
 
 export type postType = {
     id: number
-    message: string
+    message: string|undefined
     likeCount: number
 }
 export type dialogType = {
@@ -69,7 +69,7 @@ export type friendsType = {
     img: string
 }
 export type profilePageType = {
-    newPostText: string
+    newPostText: string|undefined
     posts: postType[]
 }
 export type dialogsPage = {
@@ -84,14 +84,16 @@ export type stateType = {
     dialogsPage: dialogsPage
     navbarPage: navbarPage
 }
-
+export type dispatchActionType = {
+    type : string|undefined
+    newText?:string|undefined
+}
 export type storeType = {
     _state:stateType
     _callSubscriber:(_state:stateType)=>void
     getState:() => stateType
-    addPost:() => void
-    updateNewPostText:(newText:string) => void
     subscribe:(observer: (state: stateType) => void) => void
+    dispatch:(action:dispatchActionType) => void
 }
 
 export let store :storeType= {
@@ -152,23 +154,24 @@ export let store :storeType= {
     getState() {
         return this._state
     },
-    addPost() {
-        let newPost: postType = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likeCount: 0
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
     subscribe(observer)  {
         this._callSubscriber = observer
-    }
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: postType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likeCount: 0
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
 
+    }
 }
 export default store
