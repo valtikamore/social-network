@@ -7,19 +7,19 @@ type myPostsType = {
     postsData: postType[]
     message: string
     addPost: (postMessage: string) => void
-    changeNewText: (newText: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 const MyPosts: React.FC<myPostsType> = (props) => {
 
     let addPost = () => {
-        if(props.message !== '') {
+        if(props.message.trim() !== '') {
             props.addPost(props.message)
-            props.changeNewText('')
+
         }
     }
     let newChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewText(e.currentTarget.value)
+        props.updateNewPostText(e.currentTarget.value)
     }
     let postsElement =
         props.postsData.map(p => <Post id={p.id} message={p.message} likeCount={p.likeCount}/>)

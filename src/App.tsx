@@ -9,13 +9,13 @@ import Music from './conponents/Music/Music';
 import Settings from "./conponents/Settings/Settings";
 import Profile from "./conponents/profile/Profile";
 import Dialogs from "./conponents/dialogs/Dialogs";
-import {changeNewText, stateType} from "./redux/state";
+import {updateNewPostText, stateType} from "./redux/state";
 import {addPost} from "./redux/state";
 
 type AppType = {
     state:stateType
     addPost:(postMessage:string) => void
-    changeNewText:(newText:string) => void
+    updateNewPostText:(newText:string) => void
 }
 
 const App: React.FC<AppType> = (props)  => {
@@ -30,7 +30,7 @@ const App: React.FC<AppType> = (props)  => {
                                addPost={addPost}
                                message={props.state.profilePage
                                    .newPostText}
-                               changeNewText={changeNewText}/>}/>
+                               updateNewPostText={updateNewPostText}/>}/>
                     <Route path='/dialogs'
                            render={() => <Dialogs
                                state={props.state.dialogsPage}/>}/>

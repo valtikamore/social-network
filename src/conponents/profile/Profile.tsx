@@ -9,7 +9,7 @@ type profileType = {
     state:profilePageType
     addPost:(postMessage:string) => void
     message:string
-    changeNewText:(newText:string) => void
+    updateNewPostText:(newText:string) => void
 }
 
 
@@ -22,7 +22,7 @@ const Profile: React.FC<profileType> = (props) => {
             <MyPosts postsData={props.state.posts}
                      addPost={props.addPost}
                      message={props.state.newPostText}
-                     changeNewText={props.changeNewText}/>
+                     updateNewPostText={props.updateNewPostText}/>
         </div>
     )
 }

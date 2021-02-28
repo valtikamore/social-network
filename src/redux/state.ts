@@ -66,16 +66,17 @@ export type stateType = {
      }
 }
 
-export let addPost = (postMessage:string) => {
+export let addPost = () => {
     let newPost:postType = {
         id:5,
-        message:postMessage,
+        message:state.profilePage.newPostText,
         likeCount:0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state)
 }
-export const changeNewText = (newText:string) => {
+export const updateNewPostText = (newText:string) => {
     state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
