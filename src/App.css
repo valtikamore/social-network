@@ -20,27 +20,6 @@
     height: 100%;
     z-index: 0;
 }
-.App-wrapper-content:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(346deg, #686872,pink);
-    z-index: 1;
-}
-.App-wrapper-content:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(315deg, #2be2c3, #f8ffc0);
-    filter: blur(30px);
-    z-index: 2;
-}
 
 
 

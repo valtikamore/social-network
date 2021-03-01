@@ -4,7 +4,7 @@ import classes from '../Dialogs.module.css';
 
 type messageType = {
     id:number
-    message:string
+    message:string|undefined
 }
 
 const Message : React.FC<messageType>= (props) => {

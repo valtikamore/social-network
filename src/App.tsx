@@ -15,6 +15,7 @@ import store, {dispatchActionType, stateType, storeType} from "./redux/state";
 type AppType = {
     state:stateType
     dispatch:(action:dispatchActionType) => void
+    store:storeType
 }
 
 const App: React.FC<AppType> = (props)  => {
@@ -30,7 +31,7 @@ const App: React.FC<AppType> = (props)  => {
                                />}/>
                     <Route path='/dialogs'
                            render={() => <Dialogs
-                               state={props.state.dialogsPage}/>}/>
+                              store={props.store}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>

@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+
 
 // let state: stateType = {
 //     profilePage: {
@@ -61,7 +64,7 @@ export type dialogType = {
 }
 export type messageType = {
     id: number
-    message: string
+    message: string|undefined
 }
 export type friendsType = {
     id: number
@@ -75,6 +78,7 @@ export type profilePageType = {
 export type dialogsPage = {
     dialogs: dialogType[]
     messages: messageType[]
+    newMessageBody:string|undefined
 }
 export type navbarPage = {
     friends: friendsType[]
@@ -87,6 +91,7 @@ export type stateType = {
 export type dispatchActionType = {
     type : string|undefined
     newText?:string|undefined
+    body?:string|undefined
 }
 export type storeType = {
     _state:stateType
@@ -127,6 +132,7 @@ export let store :storeType= {
                 {id: 2, message: 'How is your s ds'},
                 {id: 3, message: 'Hihihihih'},
             ],
+            newMessageBody:''
         },
         navbarPage: {
             friends: [
@@ -158,20 +164,13 @@ export let store :storeType= {
         this._callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost: postType = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likeCount: 0
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        }
-
+        this._state.profilePage = profileReducer(this._state.profilePage , action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage , action)
+        this._callSubscriber(this._state)
     }
 }
+
+
+
+
 export default store
