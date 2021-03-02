@@ -11,11 +11,10 @@ import Profile from "./conponents/profile/Profile";
 import Dialogs from "./conponents/dialogs/Dialogs";
 import  {dispatchActionType, stateType, storeType} from "./redux/store";
 import store from './redux/redux-store'
+import DialogsCountainer from "./conponents/dialogs/DialogsCountainer";
 
 
 type AppType = {
-    state:stateType
-    dispatch:(action:dispatchActionType) => void
     store:storeType
 }
 
@@ -23,15 +22,14 @@ const App: React.FC<AppType> = (props)  => {
     return (
             <div className="App">
                 <Header/>
-                <Navbar state={props.state.navbarPage}/>
+                <Navbar store={props.store}/>
                 <div className="App-wrapper-content">
                     <Route path='/profile'
                            render={() => <Profile
-                               state={props.state.profilePage}
-                               dispatch={props.dispatch}
+                              store={props.store}
                                />}/>
                     <Route path='/dialogs'
-                           render={() => <Dialogs
+                           render={() => <DialogsCountainer
                               store={props.store}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
