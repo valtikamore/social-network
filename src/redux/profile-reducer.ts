@@ -1,4 +1,4 @@
-import {dispatchActionType, messageType, postType, profilePageType, stateType} from "./state";
+import {dispatchActionType, messageType, postType, profilePageType, stateType} from "./store";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -15,9 +15,14 @@ export const updateNewPostTextActionCreator = (text:string) => {
         newText:text
     }
 }
+let initialState = {
+    newPostText: '',
+    posts: [
+        {id: 1, message: 'Hello bro', likeCount: 0},
+    ],
+}
 
-
- const profileReducer = (state:profilePageType,action:dispatchActionType) => {
+ const profileReducer = (state:profilePageType = initialState,action:dispatchActionType) => {
 
      switch(action.type) {
          case ADD_POST :

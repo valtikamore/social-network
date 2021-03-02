@@ -9,7 +9,8 @@ import Music from './conponents/Music/Music';
 import Settings from "./conponents/Settings/Settings";
 import Profile from "./conponents/profile/Profile";
 import Dialogs from "./conponents/dialogs/Dialogs";
-import store, {dispatchActionType, stateType, storeType} from "./redux/state";
+import  {dispatchActionType, stateType, storeType} from "./redux/store";
+import store from './redux/redux-store'
 
 
 type AppType = {
