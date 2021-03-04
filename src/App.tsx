@@ -8,9 +8,9 @@ import News from "./conponents/News/News";
 import Music from './conponents/Music/Music';
 import Settings from "./conponents/Settings/Settings";
 import Profile from "./conponents/profile/Profile";
-import Dialogs from "./conponents/dialogs/Dialogs";
-import  {dispatchActionType, stateType, storeType} from "./redux/store";
-import store from './redux/redux-store'
+
+import  {storeType} from "./redux/store";
+
 import DialogsCountainer from "./conponents/dialogs/DialogsCountainer";
 
 

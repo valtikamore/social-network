@@ -1,6 +1,5 @@
-import React, {ChangeEvent, RefObject} from "react";
-import {dispatchActionType, postType, storeType} from "../../../redux/store";
-import Post from "./Post/Post";
+import React from "react";
+import { storeType} from "../../../redux/store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 

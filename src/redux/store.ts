@@ -1,5 +1,5 @@
-import dialogsReducer from "./dialogs-reducer";
-import profileReducer from "./profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
 
 
 // let state: stateType = {
@@ -88,17 +88,20 @@ export type stateType = {
     dialogsPage: dialogsPage
     navbarPage: navbarPage
 }
-export type dispatchActionType = {
-    type : string|undefined
-    newText?:string|undefined
-    body?:string|undefined
-}
+
+
+export type dispatchActionTypes =
+    ReturnType<typeof addPostActionCreator>
+    |ReturnType<typeof updateNewPostTextActionCreator>
+    |ReturnType<typeof sendMessageCreator>
+    |ReturnType<typeof updateNewMessageBodyCreator>
+
 export type storeType = {
     _state:stateType
     _callSubscriber:(_state:stateType)=>void
     getState:() => stateType
-    subscribe:(observer: (state: stateType) => void) => void
-    dispatch:(action:dispatchActionType) => void
+    subscribe:(observer: () => void) => void
+    dispatch:(action:dispatchActionTypes) => void
 }
 
 export let store :storeType= {
@@ -154,7 +157,7 @@ export let store :storeType= {
             ]
         },
     },
-     _callSubscriber : (_state:stateType) => {
+     _callSubscriber : () => {
         console.log('state was changed')
     },
     getState() {

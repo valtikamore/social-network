@@ -1,19 +1,18 @@
-import {dialogsPage, dispatchActionType, messageType, postType, profilePageType, stateType} from "./store";
-import ProfileReducer from "./profile-reducer";
+import {dialogsPage, dispatchActionTypes, messageType} from "./store";
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
-const SEND_MESSAGE = 'SEND_MESSAGE';
+
+
 export const sendMessageCreator = () => {
     return {
-        type: SEND_MESSAGE
-    }
+        type: 'SEND_MESSAGE'
+    } as const
 }
 export const updateNewMessageBodyCreator = (body:string) => {
 
     return {
-        type: UPDATE_NEW_MESSAGE_BODY,
+        type: 'UPDATE_NEW_MESSAGE_BODY',
         body:body
-    }
+    } as const
 }
 let initialState = {
     dialogs: [
@@ -40,12 +39,12 @@ let initialState = {
     ],
     newMessageBody:''
 }
- const dialogsReducer = (state:dialogsPage = initialState,action:dispatchActionType) => {
+ const dialogsReducer = (state:dialogsPage = initialState,action:dispatchActionTypes) => {
      switch (action.type) {
-         case UPDATE_NEW_MESSAGE_BODY :
+         case 'UPDATE_NEW_MESSAGE_BODY' :
              state.newMessageBody = action.body
              return state
-         case SEND_MESSAGE:
+         case 'SEND_MESSAGE':
              let body = state.newMessageBody
              if (body !== '') {
                  state.newMessageBody = ''

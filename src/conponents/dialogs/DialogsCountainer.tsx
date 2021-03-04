@@ -1,17 +1,16 @@
 import React from 'react'
-import classes from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogsItem";
-import Message from "./Message/Message";
-import {dialogsPage, storeType,} from "../../redux/store";
+
+import { storeType,} from "../../redux/store";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import Dialogs from "./Dialogs";
 
 
-type DialogPropsType = {
+type DialogComponentPropsType = {
     store:storeType
 }
 
 
-const Dialogs: React.FC<DialogPropsType> = (props) => {
+const DialogsCountainer: React.FC<DialogComponentPropsType> = (props) => {
     let state = props.store.getState().dialogsPage
 
 
@@ -30,4 +29,4 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                     dialogsPage={state}/>
     )
 }
-export default Dialogs
+export default DialogsCountainer

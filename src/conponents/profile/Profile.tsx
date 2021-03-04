@@ -1,8 +1,8 @@
-import React, {RefObject} from "react";
+import React from "react";
 import classes from "./Profile.module.css"
-import MyPosts from "./MyPosts/MyPosts";
+
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import store, {dispatchActionType, profilePageType, stateType, storeType} from "../../redux/store";
+import  { storeType} from "../../redux/store";
 import MyPostsCountainer from "./MyPosts/MyPostsCountainer";
 
 

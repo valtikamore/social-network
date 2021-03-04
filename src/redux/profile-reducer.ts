@@ -1,19 +1,18 @@
-import {dispatchActionType, messageType, postType, profilePageType, stateType} from "./store";
+import { dispatchActionTypes, postType, profilePageType} from "./store";
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-export const addPostActionCreator = () => {
+
+export const addPostActionCreator = ()=> {
     return {
-        type: ADD_POST
-    }
+        type: 'ADD-POST'
+    } as const
 }
 export const updateNewPostTextActionCreator = (text:string) => {
 
     return {
-        type: UPDATE_NEW_POST_TEXT,
+        type: 'UPDATE-NEW-POST-TEXT',
         newText:text
-    }
+    } as const
 }
 let initialState = {
     newPostText: '',
@@ -22,10 +21,10 @@ let initialState = {
     ],
 }
 
- const profileReducer = (state:profilePageType = initialState,action:dispatchActionType) => {
+ const profileReducer = (state:profilePageType = initialState,action:dispatchActionTypes) => {
 
      switch(action.type) {
-         case ADD_POST :
+         case 'ADD-POST' :
              if(state.newPostText !== '') {
                  let newPost: postType = {
                      id: 5,
@@ -36,7 +35,7 @@ let initialState = {
                  state.newPostText = '';
              }
              return state
-         case UPDATE_NEW_POST_TEXT :
+         case 'UPDATE-NEW-POST-TEXT' :
              state.newPostText = action.newText
              return state
          default :

@@ -2,8 +2,8 @@ import React, { ChangeEvent } from 'react'
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {dialogsPage, dialogType, storeType,} from "../../redux/store";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {dialogsPage} from "../../redux/store";
+
 
 
 type DialogPropsType = {
@@ -42,7 +42,7 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                 <textarea
                     placeholder='ddddd'
                     value={newMessageBody}
-                    onChange={onNewMessageChange}></textarea>
+                    onChange={onNewMessageChange}> </textarea>
                 <button onClick={onSendMessageClick}>send</button>
             </div>
         </div>
