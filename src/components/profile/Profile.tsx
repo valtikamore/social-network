@@ -2,22 +2,21 @@ import React from "react";
 import classes from "./Profile.module.css"
 
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import  { storeType} from "../../redux/store";
 import MyPostsCountainer from "./MyPosts/MyPostsCountainer";
 
 
 type profileType = {
-    store:storeType
+
 }
 
 
 
-const Profile: React.FC<profileType> = (props) => {
+const Profile: React.FC<profileType> = () => {
 
     return (
         <div className={classes.profile}>
             <ProfileInfo/>
-            <MyPostsCountainer store={props.store}/>
+            <MyPostsCountainer />
         </div>
     )
 }

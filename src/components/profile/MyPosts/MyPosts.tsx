@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import { postType} from "../../../redux/store";
 import classes from "./MyPosts.module.css"
+import { MyPostPropsType } from "./MyPostsCountainer";
 import Post from "./Post/Post";
 
 
@@ -8,14 +9,9 @@ import Post from "./Post/Post";
 
 
 
-type myPostsType = {
-    updateNewPostText:(text:string) => void
-    addPost:() =>void
-    newPostText:string|undefined
-    posts: postType[]
-}
 
-const MyPosts: React.FC<myPostsType> = (props) => {
+
+const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
     let onAddPost = () => {
         props.addPost()

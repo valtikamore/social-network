@@ -1,36 +1,30 @@
 import React from 'react';
 import './App.css';
-import Header from "./conponents/header/Header";
-import Navbar from "./conponents/navbar/Navbar";
-import Footer from "./conponents/footer/Footer";
+import Header from "./components/header/Header";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 import { Route} from 'react-router-dom';
-import News from "./conponents/News/News";
-import Music from './conponents/Music/Music';
-import Settings from "./conponents/Settings/Settings";
-import Profile from "./conponents/profile/Profile";
-
-import  {storeType} from "./redux/store";
-
-import DialogsCountainer from "./conponents/dialogs/DialogsCountainer";
+import News from "./components/News/News";
+import Music from './components/Music/Music';
+import Settings from "./components/Settings/Settings";
+import Profile from "./components/profile/Profile";
 
 
-type AppType = {
-    store:storeType
-}
 
-const App: React.FC<AppType> = (props)  => {
+import DialogsContainer from "./components/dialogs/DialogsContainer";
+
+
+
+const App: React.FC = ()  => {
     return (
             <div className="App">
                 <Header/>
-                <Navbar store={props.store}/>
+                <Navbar/>
                 <div className="App-wrapper-content">
                     <Route path='/profile'
-                           render={() => <Profile
-                              store={props.store}
-                               />}/>
+                           render={() => <Profile/>}/>
                     <Route path='/dialogs'
-                           render={() => <DialogsCountainer
-                              store={props.store}/>}/>
+                           render={() => <DialogsContainer/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>

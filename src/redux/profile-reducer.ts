@@ -1,4 +1,4 @@
-import { dispatchActionTypes, postType, profilePageType} from "./store";
+import { AllActionTypes, postType, profilePageType} from "./store";
 
 
 
@@ -21,7 +21,7 @@ let initialState = {
     ],
 }
 
- const profileReducer = (state:profilePageType = initialState,action:dispatchActionTypes) => {
+ const profileReducer = (state:profilePageType = initialState,action:AllActionTypes) => {
 
      switch(action.type) {
          case 'ADD-POST' :
