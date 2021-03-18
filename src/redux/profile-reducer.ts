@@ -1,17 +1,16 @@
-import { AllActionTypes, postType, profilePageType} from "./store";
+import {AllActionTypes, postType, profilePageType} from "./store";
 
 
-
-export const addPostActionCreator = ()=> {
+export const addPostActionCreator = () => {
     return {
         type: 'ADD-POST'
     } as const
 }
-export const updateNewPostTextActionCreator = (text:string) => {
+export const updateNewPostTextActionCreator = (text: string) => {
 
     return {
         type: 'UPDATE-NEW-POST-TEXT',
-        newText:text
+        newText: text
     } as const
 }
 let initialState = {
@@ -21,25 +20,31 @@ let initialState = {
     ],
 }
 
- const profileReducer = (state:profilePageType = initialState,action:AllActionTypes) => {
+const profileReducer = (state: profilePageType = initialState, action: AllActionTypes) => {
 
-     switch(action.type) {
-         case 'ADD-POST' :
-             if(state.newPostText !== '') {
-                 let newPost: postType = {
-                     id: 5,
-                     message: state.newPostText,
-                     likeCount: 0
-                 }
-                 state.posts.push(newPost);
-                 state.newPostText = '';
-             }
-             return state
-         case 'UPDATE-NEW-POST-TEXT' :
-             state.newPostText = action.newText
-             return state
-         default :
-             return state
-     }
+    switch (action.type) {
+        case 'ADD-POST' : {
+            if (state.newPostText !== '') {
+                let newPost: postType = {
+                    id: 5,
+                    message: state.newPostText,
+                    likeCount: 0
+                }
+                let stateCopy = {...state}
+                stateCopy.posts = [...state.posts, newPost]
+                stateCopy.newPostText = '';
+                return stateCopy
+            }
+            return state
+        }
+        case 'UPDATE-NEW-POST-TEXT' : {
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newText
+            return stateCopy
+        }
+
+        default :
+            return state
+    }
 }
 export default profileReducer

@@ -5,27 +5,20 @@ import Message from "./Message/Message";
 
 import {DialogsPropsType} from "./DialogsContainer";
 
-
-
-
-
-
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    let state = props.dialogsPage
-
-    let dialogsElements = state.dialogs
+const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNewMessageBody}) => {
+    let dialogsElements = dialogsPage.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>)
-    let messagesElements = state.messages
+    let messagesElements = dialogsPage.messages
         .map(message => <Message message={message.message} id={message.id}/>)
 
-    const newMessageBody = state.newMessageBody
+    const newMessageBody = dialogsPage.newMessageBody
 
     const onSendMessageClick = () => {
-        props.updateNewMessageBody()
+        updateNewMessageBody()
     }
     const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
        let body =  e.currentTarget.value
-        props.sendMessage(body)
+        sendMessage(body)
     }
 
     return (
@@ -37,7 +30,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             <div className={classes.messages}>
                 <div>{messagesElements}</div>
                 <textarea
-                    placeholder='ddddd'
+                    placeholder='enter message...'
                     value={newMessageBody}
                     onChange={onNewMessageChange}> </textarea>
                 <button onClick={onSendMessageClick}>send</button>
