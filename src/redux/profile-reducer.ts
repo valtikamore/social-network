@@ -24,27 +24,36 @@ const profileReducer = (state: profilePageType = initialState, action: AllAction
 
     switch (action.type) {
         case 'ADD-POST' : {
-            if (state.newPostText !== '') {
-                let newPost: postType = {
-                    id: 5,
-                    message: state.newPostText,
-                    likeCount: 0
-                }
-                let stateCopy = {...state}
-                stateCopy.posts = [...state.posts, newPost]
-                stateCopy.newPostText = '';
-                return stateCopy
+            let newPost: postType = {
+                id: 5,
+                message: state.newPostText,
+                likeCount: 0
             }
-            return state
+           return {
+            ...state,
+               posts:[...state.posts,newPost],
+               newPostText:''
+           }
         }
         case 'UPDATE-NEW-POST-TEXT' : {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newText
-            return stateCopy
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         }
-
         default :
             return state
     }
 }
 export default profileReducer
+// if (state.newPostText !== '') {
+//     let newPost: postType = {
+//         id: 5,
+//         message: state.newPostText,
+//         likeCount: 0
+//     }
+//     stateCopy.posts = [...state.posts, newPost]
+//     stateCopy.newPostText = '';
+//     return stateCopy
+// }
+// return state

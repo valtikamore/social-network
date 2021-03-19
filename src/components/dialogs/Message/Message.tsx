@@ -9,7 +9,7 @@ type messageType = {
 
 const Message : React.FC<messageType>= (props) => {
     return (
-        <div className={classes.message} key={props.id}>{props.message}</div>
+        <div className={classes.message} >{props.message}</div>
     )
 }
 

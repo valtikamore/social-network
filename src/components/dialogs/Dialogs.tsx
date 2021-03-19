@@ -7,9 +7,9 @@ import {DialogsPropsType} from "./DialogsContainer";
 
 const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNewMessageBody}) => {
     let dialogsElements = dialogsPage.dialogs
-        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>)
+        .map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} img={dialog.img}/>)
     let messagesElements = dialogsPage.messages
-        .map(message => <Message message={message.message} id={message.id}/>)
+        .map(message => <Message key={message.id} message={message.message} id={message.id}/>)
 
     const newMessageBody = dialogsPage.newMessageBody
 

@@ -23,7 +23,7 @@ const MyPosts: React.FC<MyPostPropsType> = (props) => {
     }
 
     let postsElement =
-        props.posts.map(p => <Post id={p.id} message={p.message} likeCount={p.likeCount}/>)
+        props.posts.map(p => <Post id={p.id} message={p.message} likeCount={p.likeCount} key={p.id}/>)
     return (
         <div className={classes.posts}>
             <div className={classes.createPost}>

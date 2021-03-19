@@ -7,7 +7,7 @@ import classes from "./Post.module.css"
 
 const Post : React.FC<postType> = (props) => {
     return (
-        <div className={classes.post} key={props.id}>
+        <div className={classes.post}>
                 <img className={classes.avatar}
                      src="https://image.freepik.com/free-vector/cute-avocado-cartoon-icon_138676-1820.jpg" alt="ss"/>
             <div className={classes.message}>
