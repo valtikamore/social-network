@@ -1,4 +1,4 @@
-import {AllActionTypes} from "./store";
+import {AllActionTypes} from "./redux-store";
 
 export type dialogType = { id: number, name: string, img: string }
 export type messageType = { id: number, message: string }
@@ -53,11 +53,15 @@ const dialogsReducer = (state: InitialStateType = initialState, action: AllActio
         case 'SEND_MESSAGE':
             let body = state.newMessageBody
             let newMessage: messageType = {id: 6, message: body,}
-                return  {
+            if (body !== '') {
+                return {
                     ...state,
                     newMessageBody: '',
                     messages: [...state.messages, newMessage]
                 }
+            }
+            return state
+
         default :
             return state
         // if (body !== '') {

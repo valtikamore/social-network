@@ -1,4 +1,5 @@
-import {AllActionTypes, postType, profilePageType} from "./store";
+import {postType, profilePageType} from "./store";
+import {AllActionTypes} from './redux-store'
 
 
 export const addPostActionCreator = () => {
@@ -29,11 +30,14 @@ const profileReducer = (state: profilePageType = initialState, action: AllAction
                 message: state.newPostText,
                 likeCount: 0
             }
-           return {
-            ...state,
-               posts:[...state.posts,newPost],
-               newPostText:''
-           }
+            if (state.newPostText !== '') {
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: ''
+                }
+            }
+            return state
         }
         case 'UPDATE-NEW-POST-TEXT' : {
             return {
@@ -46,14 +50,4 @@ const profileReducer = (state: profilePageType = initialState, action: AllAction
     }
 }
 export default profileReducer
-// if (state.newPostText !== '') {
-//     let newPost: postType = {
-//         id: 5,
-//         message: state.newPostText,
-//         likeCount: 0
-//     }
-//     stateCopy.posts = [...state.posts, newPost]
-//     stateCopy.newPostText = '';
-//     return stateCopy
-// }
-// return state
+
