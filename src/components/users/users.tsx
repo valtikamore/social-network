@@ -5,17 +5,20 @@ import axios from "axios";
 import userWithoutPhoto from '../../assets/imagies/userWithoutPhoto.png'
 
 
-export const Users: FC<UsersPropsType> = ({users, follow, setUsers, unFollow,}) => {
-    if (users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(resp => {
-            setUsers(resp.data.items)
-        })
-
+export const Users: FC<UsersPropsType> = ({users, follow, setUsers, unFollow, children}) => {
+    debugger
+    const getUsers = () => {
+        if (users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(resp => {
+                setUsers(resp.data.items)
+            })
+        }
     }
+
     const usersMap = users.map(user => {
         return (
             <div key={user.id} className={s.grid}>
-                <img className={s.photo} src={user.photos.small !== null ?user.photos.small : userWithoutPhoto} alt='photo'/>
+                <img className={s.photo} src={userWithoutPhoto} alt='photo'/>
                 <div className={s.follow}>
                     {user.follow
                         ? <button onClick={() => follow(user.id)}>Follow</button>
@@ -29,7 +32,11 @@ export const Users: FC<UsersPropsType> = ({users, follow, setUsers, unFollow,}) 
         )
     })
     return (
+        <div>
+            <button onClick={getUsers}> Get users</button>
             {usersMap}
+        </div>
+
     );
 };
 
