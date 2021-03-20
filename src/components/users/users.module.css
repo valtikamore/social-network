@@ -47,3 +47,6 @@
 .city {
     grid-area: city;
 }
+.selected {
+    color: red;
+}
