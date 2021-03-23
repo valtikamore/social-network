@@ -1,6 +1,6 @@
 import s from "./users.module.css";
 import userWithoutPhoto from "../../assets/imagies/userWithoutPhoto.png";
-import React from "react";
+import React, { FC } from "react";
 import {userType} from "../../redux/users-reducer";
 
 
@@ -13,8 +13,8 @@ type usersPropsType = {
     unFollow:(userId:number) => void
     pageSize:number
 }
-export const Users = (props:usersPropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+export const Users:FC<usersPropsType> = ({users,currentPage,pageSize,totalUsersCount,unFollow,follow,onPageChanged}) => {
+    let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
@@ -24,21 +24,21 @@ export const Users = (props:usersPropsType) => {
             <div>
                 {pages.map(page => {
                     return <span
-                        className={props.currentPage === page ? s.selected : ''}
+                        className={currentPage === page ? s.selected : ''}
                         onClick={() => {
-                            props.onPageChanged(page)
+                            onPageChanged(page)
                         }}
                     >{page}</span>
                 })}
             </div>
-            {props.users.map(user => {
+            {users.map(user => {
                 return (
                     <div key={user.id} className={s.grid}>
                         <img className={s.photo} src={userWithoutPhoto} alt='photo'/>
                         <div className={s.follow}>
                             {user.follow
-                                ? <button onClick={() => props.follow(user.id)}>Follow</button>
-                                : <button onClick={() => props.unFollow(user.id)}>Unfollow</button>}
+                                ? <button onClick={() =>follow(user.id)}>Follow</button>
+                                : <button onClick={() => unFollow(user.id)}>Unfollow</button>}
                         </div>
                         <div className={s.name}>{user.name}</div>
                         <div className={s.status}>{user.status}</div>
