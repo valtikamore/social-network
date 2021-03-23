@@ -52,11 +52,11 @@ const usersReducer = (state: InitialStateType = initialState, action: AllActionT
             return state
     }
 }
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId}) as const
-export const UnfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
-export const SetUsersAC = (users: userType[]) => ({type: 'SET_USERS', users}) as const
-export const SetCurrentPageAC = (currentPage:number) => ({type: 'SET_CURRENT_PAGE',currentPage}) as const
-export const setTotalUsersCountAC = (totalUsersCount:number) =>  ({type: 'SET_TOTAL_USERS_COUNT', count:totalUsersCount}) as const
-export const toggleIsFetchingAC = (isFetching:boolean) =>  ({type: 'TOGGLE_IS_FETCHING', isFetching:isFetching}) as const
+export const follow = (userId: number) => ({type: 'FOLLOW', userId}) as const
+export const unFollow = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
+export const setUsers = (users: userType[]) => ({type: 'SET_USERS', users}) as const
+export const setCurrentPage = (currentPage:number) => ({type: 'SET_CURRENT_PAGE',currentPage}) as const
+export const setTotalUsersCount = (totalUsersCount:number) =>  ({type: 'SET_TOTAL_USERS_COUNT', count:totalUsersCount}) as const
+export const toggleIsFetching = (isFetching:boolean) =>  ({type: 'TOGGLE_IS_FETCHING', isFetching:isFetching}) as const
 
 export default usersReducer
