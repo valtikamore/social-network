@@ -2,8 +2,7 @@ import s from "./users.module.css";
 import userWithoutPhoto from "../../assets/imagies/userWithoutPhoto.png";
 import React, { FC } from "react";
 import {userType} from "../../redux/users-reducer";
-
-
+import { NavLink } from "react-router-dom";
 type usersPropsType = {
     totalUsersCount:number
     currentPage:number
@@ -21,7 +20,7 @@ export const Users:FC<usersPropsType> = ({users,currentPage,pageSize,totalUsersC
     }
     return(
         <div>
-            <div>
+            <div style={{marginBottom: '20px'}}>
                 {pages.map(page => {
                     return <span
                         className={currentPage === page ? s.selected : ''}
@@ -34,10 +33,17 @@ export const Users:FC<usersPropsType> = ({users,currentPage,pageSize,totalUsersC
             {users.map(user => {
                 return (
                     <div key={user.id} className={s.grid}>
-                        <img className={s.photo} src={userWithoutPhoto} alt='photo'/>
+                        <NavLink to={`/profile/${user.id} `}>
+                            <img className={s.photo}
+                                 src={user.photos.small !== null
+                                     ? user.photos.small
+                                     : userWithoutPhoto}
+                                 alt='photo'/>
+                        </NavLink>
+
                         <div className={s.follow}>
-                            {user.follow
-                                ? <button onClick={() =>follow(user.id)}>Follow</button>
+                            {user.followed
+                                ? <button onClick={() => follow(user.id)}>Follow</button>
                                 : <button onClick={() => unFollow(user.id)}>Unfollow</button>}
                         </div>
                         <div className={s.name}>{user.name}</div>

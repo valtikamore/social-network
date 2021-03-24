@@ -1,16 +1,15 @@
 import {AllActionTypes} from "./redux-store"
 
 
-export  type UserLocationType = { city: string, country: string }
-export type userType = { id: number, follow: boolean, name: string, status: string, location: UserLocationType, imgUrl: string }
-export type InitialStateType = typeof initialState
+export type userType = { id: number, name: string, status: string, photos: { small?: string, large?: string }, followed: boolean }
+type InitialStateType = typeof initialState
 
 
 let initialState = {
     users: [] as userType[],
-    pageSize: 5,
-    totalUsersCount:0,
-    currentPage:2,
+    pageSize: 20,
+    totalUsersCount: 0,
+    currentPage: 2,
     isFetching: false
 }
 

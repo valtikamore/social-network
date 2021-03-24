@@ -1,6 +1,6 @@
 import dialogsReducer, {dialogType, messageType} from "./dialogs-reducer";
-import profileReducer from "./profile-reducer";
 import {AllActionTypes} from "./redux-store";
+import profileReducer from "./profile-reducer";
 
 
 export type postType = {
@@ -17,6 +17,7 @@ export type friendsType = {
 export type profilePageType = {
     newPostText: string
     posts: postType[]
+    profile:null|any
 }
 export type dialogsPage = {
     dialogs: dialogType[]
@@ -49,6 +50,7 @@ export let store :storeType= {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
+            profile:[]
         },
         dialogsPage: {
             dialogs: [

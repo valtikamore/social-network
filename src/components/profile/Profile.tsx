@@ -3,20 +3,18 @@ import classes from "./Profile.module.css"
 
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsCountainer from "./MyPosts/MyPostsCountainer";
+import {ProfileServerType} from "../../redux/profile-reducer";
 
 
-type profileType = {
-
+export type ProfilePropsType = {
+    profile: null | ProfileServerType
 }
 
-
-
-const Profile: React.FC<profileType> = () => {
-
+const Profile: React.FC<ProfilePropsType> = ({profile}) => {
     return (
         <div className={classes.profile}>
-            <ProfileInfo/>
-            <MyPostsCountainer />
+            <ProfileInfo profile={profile} />
+            <MyPostsCountainer  />
         </div>
     )
 }
