@@ -13,7 +13,7 @@ const ProfileInfo: FC<ProfilePropsType> = ({profile}) => {
             <div>
                 <div className={classes.content}>
                     <img src={ profile.photos.small} alt=""/>
-                    ava + description
+                    <div> description </div>
                 </div>
             </div>
         )
