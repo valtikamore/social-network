@@ -5,18 +5,9 @@ export type dialogType = { id: number , name: string ,img: string }
 export type messageType = { id: number , message: string  }
 export type InitialStateType = typeof initialState
 
-export const sendMessageCreator = () => {
-    return {
-        type: 'SEND_MESSAGE'
-    } as const
-}
-export const updateNewMessageBodyCreator = (body:string) => {
+export const sendMessageCreator = () => ({type: 'SEND_MESSAGE'}as const)
 
-    return {
-        type: 'UPDATE_NEW_MESSAGE_BODY',
-        body:body
-    } as const
-}
+export const updateNewMessageBodyCreator = (body:string) =>  ({type: 'UPDATE_NEW_MESSAGE_BODY', body:body}as const)
 
 let initialState = {
     dialogs: [
@@ -45,26 +36,25 @@ let initialState = {
 }
 
  const dialogsReducer = (state:InitialStateType = initialState,action:AllActionTypes):InitialStateType => {
-    let stateCopy = {
-        ...state,
-        messages:[...state.messages]
-    }
-
-
      switch (action.type) {
          case 'UPDATE_NEW_MESSAGE_BODY' :
-             state.newMessageBody = action.body
-             return state
+             return {...state , newMessageBody : action.body}
+
+
          case 'SEND_MESSAGE':
              let body = state.newMessageBody
-             if (body !== '') {
-                 state.newMessageBody = ''
-                 let newMessage: messageType = {
-                     id: 6, message: body,
-                 }
-                 state.messages.push(newMessage)
+             let newMessage: messageType = {
+             id: 6, message: body,
+         }
+         if(body !== '') {
+             return {
+                 ...state,
+                 newMessageBody: '',
+                 messages: [...state.messages,newMessage]
              }
-             return state
+         }
+         return state
+
          default :
              return state
      }

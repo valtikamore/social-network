@@ -14,18 +14,18 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let state = props.dialogsPage
 
     let dialogsElements = state.dialogs
-        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>)
+        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} key={dialog.id}/>)
     let messagesElements = state.messages
-        .map(message => <Message message={message.message} id={message.id}/>)
+        .map(message => <Message message={message.message} id={message.id} key={message.id}/>)
 
     const newMessageBody = state.newMessageBody
 
     const onSendMessageClick = () => {
-        props.updateNewMessageBody()
+        props.sendMessage()
     }
     const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
        let body =  e.currentTarget.value
-        props.sendMessage(body)
+        props.updateNewMessageBody(body)
     }
 
     return (
