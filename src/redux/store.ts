@@ -1,5 +1,6 @@
-import dialogsReducer, {dialogType, messageType, sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
-import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
+import dialogsReducer, {dialogType, messageType} from "./dialogs-reducer";
+import { AllActionTypes } from "./redux-store";
+import profileReducer from "./profile-reducer";
 
 
 

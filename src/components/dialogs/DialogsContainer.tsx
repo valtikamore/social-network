@@ -1,9 +1,9 @@
 import React from 'react'
-import {AllActionTypes, dialogsPage} from "../../redux/store";
+import { dialogsPage} from "../../redux/store";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {AllActionTypes, AppStateType} from "../../redux/redux-store";
 import { Dispatch } from 'redux';
 
 type MapStatePropsType = {
