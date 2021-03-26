@@ -1,7 +1,14 @@
 import { combineReducers } from "redux";
 import { createStore } from "redux";
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+
+export type AllActionTypes =
+    ReturnType<typeof addPostActionCreator>
+    |ReturnType<typeof updateNewPostTextActionCreator>
+    |ReturnType<typeof sendMessageCreator>
+    |ReturnType<typeof updateNewMessageBodyCreator>
+
 
 let rootReducer = combineReducers({
     profilePage:profileReducer,

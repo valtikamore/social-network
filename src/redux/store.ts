@@ -33,11 +33,6 @@ export type stateType = {
 }
 
 
-export type AllActionTypes =
-    ReturnType<typeof addPostActionCreator>
-    |ReturnType<typeof updateNewPostTextActionCreator>
-    |ReturnType<typeof sendMessageCreator>
-    |ReturnType<typeof updateNewMessageBodyCreator>
 
 export type storeType = {
     _state:stateType
