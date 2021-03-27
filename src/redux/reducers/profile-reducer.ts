@@ -1,5 +1,5 @@
-import {postType, profilePageType} from "./store";
-import {AllActionTypes} from "./redux-store";
+import {postType, profilePageType} from "../store";
+import {AllActionTypes} from "../redux-store";
 
 
 export const addPostActionCreator = () => {

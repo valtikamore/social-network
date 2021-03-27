@@ -1,4 +1,4 @@
-import {AllActionTypes} from "./redux-store";
+import {AllActionTypes} from "../redux-store";
 
 
 export type dialogType = { id: number , name: string ,img: string }
