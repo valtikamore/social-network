@@ -10,10 +10,11 @@ import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from './components/users/usersContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
+import HeaderContainer from "./components/header/HeaderContainer";
 const App: React.FC = ()  => {
     return (
             <div className="App">
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className="App-wrapper-content">
                     <Route path='/profile/:userId?'

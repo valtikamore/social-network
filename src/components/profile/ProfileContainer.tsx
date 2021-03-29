@@ -4,7 +4,7 @@ import axios from "axios";
 import {connect} from 'react-redux';
 import {AppStateType} from "../../redux/redux-store";
 import {ProfileServerType, setUsersProfile} from "../../redux/profile-reducer";
-import {RouteComponentProps, withRouter } from 'react-router-dom';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToProps
@@ -15,9 +15,10 @@ type MapStatePropsType = {
     profile: null | ProfileServerType
 }
 type PathParamsType = {
-    userId : string
+    userId: string
 }
 type propsType = ProfileContainerPropsType & RouteComponentProps<PathParamsType>
+
 export class ProfileContainer extends React.Component<propsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
@@ -25,10 +26,11 @@ export class ProfileContainer extends React.Component<propsType> {
             this.props.setUsersProfile(resp.data)
         })
     }
+
     render() {
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile  {...this.props}  profile={this.props.profile}/>
             </div>
         );
     }
