@@ -13,7 +13,8 @@ type MapDispatchToProps = {
     setUserData: (userId:number,login:string,email:string) => void
 }
 type MapStatePropsType = {
-
+    isAuth: boolean
+    login: string | null
 }
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
@@ -23,8 +24,8 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
         })
             .then(resp => {
                 if(resp.data.resultCode === 0) {
-                    let {userId,login,email} = resp.data.data
-                    this.props.setUserData(userId,login,email)
+                    let {id, email, login} = resp.data.data
+                    this.props.setUserData(id, email, login)
                 }
         })
     }
@@ -36,7 +37,8 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     }
 
 };
-const mapStateToProps = (state:AppStateType) => {
-
-}
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+    isAuth: state.auth.isAuth,
+    login: state.auth.login
+})
 export default connect(mapStateToProps,{setUserData}) (HeaderContainer)
