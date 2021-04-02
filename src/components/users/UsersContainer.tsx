@@ -1,17 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followAc, setUsersAc, unFollowAc, userType} from "../../redux/reducers/user-reducer/users-reducer";
+import {followAc, setUsersAc, unFollowAc, userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
 import {AllActionTypes, AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Dispatch} from "redux";
 
 type MapStatePropsType = {
-    users: userType[]
+    users: userFromServer[]
 }
 type MapDispatchPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-    setUsers: (users: userType[]) => void
+    setUsers: (users: userFromServer[]) => void
 }
 export type usersPropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -28,7 +28,7 @@ let mapDispatchToProps = (dispatch: Dispatch<AllActionTypes>): MapDispatchPropsT
         unFollow: (userId: number) => {
             dispatch(unFollowAc(userId))
         },
-        setUsers: (users: userType[]) => {
+        setUsers: (users: userFromServer[]) => {
             dispatch(setUsersAc(users))
         }
     }

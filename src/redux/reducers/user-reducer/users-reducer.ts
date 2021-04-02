@@ -1,21 +1,33 @@
 import {AllActionTypes} from "../../redux-store";
 
-export type userType = {
+// export type userType = {
+//     id:number
+//     followed:boolean
+//     fullName:string
+//     status:string
+//     location:{city:string,country:string}
+// }
+export type userFromServer = {
+    name:null
     id:number
-    followed:boolean
-    fullName:string
+    photos:{small:string,large:string}
     status:string
-    location:{city:string,country:string}
+    followed:boolean
+}
+type usersFromServer = {
+    items:userFromServer[]
+    totalCount:number
+    error:string
 }
 type initialStateType = typeof initialState
 let initialState = {
     users: [
 
-    ] as userType[]
+    ] as userFromServer[]
 }
 export const followAc = (userId:number) => ({type:'FOLLOW',userId}as const )
 export const unFollowAc = (userId:number) => ({type:'UN_FOLLOW',userId}as const )
-export const setUsersAc = (users:userType[]) => ({type:'SET_USERS',users}as const )
+export const setUsersAc = (users:userFromServer[]) => ({type:'SET_USERS',users}as const )
 
 export const usersReducer = (state:initialStateType = initialState,action:AllActionTypes):initialStateType => {
     switch (action.type) {
@@ -42,7 +54,7 @@ export const usersReducer = (state:initialStateType = initialState,action:AllAct
         case 'SET_USERS' :
             return  {
                 ...state,
-                users:[...state.users,...action.users]
+                users:[...action.users]
             }
         default: return state
     }
