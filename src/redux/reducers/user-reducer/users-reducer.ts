@@ -8,10 +8,10 @@ import {AllActionTypes} from "../../redux-store";
 //     location:{city:string,country:string}
 // }
 export type userFromServer = {
-    name:null
+    name:string
     id:number
-    photos:{small:string,large:string}
-    status:string
+    photos:{small:string | null,large:string | null}
+    status:string | null
     followed:boolean
 }
 type usersFromServer = {
