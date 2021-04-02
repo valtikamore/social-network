@@ -6,32 +6,32 @@ import {Users} from "./Users";
 import {Dispatch} from "redux";
 
 type MapStatePropsType = {
-    users:userType[]
+    users: userType[]
 }
 type MapDispatchPropsType = {
-    follow:(userId:number) => void
-    unFollow:(userId:number) => void
-    setUsers:(users:userType[]) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
+    setUsers: (users: userType[]) => void
 }
 export type usersPropsType = MapStatePropsType & MapDispatchPropsType
 
-let mapStateToProps = (state:AppStateType):MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        users:state.usersPage.users
+        users: state.usersPage.users
     }
 }
-let mapDispatchToProps =(dispatch:Dispatch<AllActionTypes>):MapDispatchPropsType => {
+let mapDispatchToProps = (dispatch: Dispatch<AllActionTypes>): MapDispatchPropsType => {
     return {
-        follow:(userId:number) => {
+        follow: (userId: number) => {
             dispatch(followAc(userId))
         },
-        unFollow:(userId:number) => {
+        unFollow: (userId: number) => {
             dispatch(unFollowAc(userId))
         },
-        setUsers:(users:userType[]) => {
+        setUsers: (users: userType[]) => {
             dispatch(setUsersAc(users))
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)
 
