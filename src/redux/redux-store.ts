@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { createStore } from "redux";
-import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./reducers/profile-reducer";
-import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./reducers/dialogs-reducer";
-import {followAc, setUsersAc, unFollowAc, usersReducer} from "./reducers/users-reducer";
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./reducers/profile-reducer/profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./reducers/dialog-reducer/dialogs-reducer";
+import {followAc, setUsersAc, unFollowAc, usersReducer} from "./reducers/user-reducer/users-reducer";
 
 export type AllActionTypes =
     ReturnType<typeof addPostActionCreator>

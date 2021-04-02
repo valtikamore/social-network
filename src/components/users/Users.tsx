@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {usersPropsType} from "./UsersContainer";
 import classes from './Users.module.css'
-import {followAc} from "../../redux/reducers/users-reducer";
+import {followAc} from "../../redux/reducers/user-reducer/users-reducer";
 
 
 export const Users: FC<usersPropsType> = ({users, follow, unFollow, setUsers}) => {

@@ -1,19 +1,10 @@
-import {postType, profilePageType} from "../store";
-import {AllActionTypes} from "../redux-store";
+import {postType, profilePageType} from "../../store";
+import {AllActionTypes} from "../../redux-store";
 
 
-export const addPostActionCreator = () => {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
-export const updateNewPostTextActionCreator = (text: string) => {
+export const addPostActionCreator = () => ({type: 'ADD-POST' }as const)
+export const updateNewPostTextActionCreator = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text }as const)
 
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    } as const
-}
 let initialState = {
     newPostText: '',
     posts: [

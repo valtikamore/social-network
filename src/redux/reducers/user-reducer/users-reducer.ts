@@ -1,4 +1,4 @@
-import {AllActionTypes} from "../redux-store";
+import {AllActionTypes} from "../../redux-store";
 
 export type userType = {
     id:number
@@ -13,6 +13,9 @@ let initialState = {
 
     ] as userType[]
 }
+export const followAc = (userId:number) => ({type:'FOLLOW',userId}as const )
+export const unFollowAc = (userId:number) => ({type:'UN_FOLLOW',userId}as const )
+export const setUsersAc = (users:userType[]) => ({type:'SET_USERS',users}as const )
 
 export const usersReducer = (state:initialStateType = initialState,action:AllActionTypes):initialStateType => {
     switch (action.type) {
@@ -44,6 +47,4 @@ export const usersReducer = (state:initialStateType = initialState,action:AllAct
         default: return state
     }
 }
-export const followAc = (userId:number) => ({type:'FOLLOW',userId}as const )
-export const unFollowAc = (userId:number) => ({type:'UN_FOLLOW',userId}as const )
-export const setUsersAc = (users:userType[]) => ({type:'SET_USERS',users}as const )
+

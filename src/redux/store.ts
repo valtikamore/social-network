@@ -1,6 +1,6 @@
-import dialogsReducer, {dialogType, messageType} from "./reducers/dialogs-reducer";
+import dialogsReducer, {dialogType, messageType} from "./reducers/dialog-reducer/dialogs-reducer";
 import { AllActionTypes } from "./redux-store";
-import profileReducer from "./reducers/profile-reducer";
+import profileReducer from "./reducers/profile-reducer/profile-reducer";
 
 
 
