@@ -1,15 +1,11 @@
-import React from "react";
+import React, {FC} from "react";
 import { NavLink } from "react-router-dom";
-import { storeType,} from "../../redux/store";
 import classes from "./Navbar.module.css"
-import Friends from "./friends/friends";
-
 
 type navbarType = {
 
 }
-const Navbar = (props:navbarType) => {
-    // let sidebarMap = props.store.getState().navbarPage.friends.map(f => <Friends id={f.id} name={f.name} img={f.img}/>)
+const Navbar:FC<navbarType> = () => {
     return (
         <nav className={classes.nav}>
             <div className={classes.item}>
@@ -19,6 +15,9 @@ const Navbar = (props:navbarType) => {
             <div className={`${classes.item} ${classes.active}`}>
                 <NavLink to='/dialogs'
                          activeClassName={classes.active}> Dialogs</NavLink>
+            </div>
+            <div className={classes.item}>
+                <NavLink to='/users' activeClassName={classes.active}>Users</NavLink>
             </div>
             <div className={classes.item}>
                 <NavLink to='/news'

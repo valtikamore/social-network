@@ -4,12 +4,6 @@ import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 
 import {DialogsPropsType} from "./DialogsContainer";
-
-
-
-
-
-
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let state = props.dialogsPage
 
