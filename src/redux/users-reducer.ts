@@ -1,10 +1,16 @@
 import {AllActionTypes} from "./redux-store"
 
+export enum USERS_ACTIONS_TYPE {
+    FOLLOW='FOLLOW',
+    UNFOLLOW='UNFOLLOW',
+    SET_USERS='SET_USERS',
+    SET_CURRENT_PAGE='SET_CURRENT_PAGE',
+    SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT',
+    TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING'
+}
 
 export type userType = { id: number, name: string, status: string, photos: { small?: string, large?: string }, followed: boolean }
 type InitialStateType = typeof initialState
-
-
 let initialState = {
     users: [] as userType[],
     pageSize: 20,
@@ -12,10 +18,9 @@ let initialState = {
     currentPage: 2,
     isFetching: false
 }
-
 const usersReducer = (state: InitialStateType = initialState, action: AllActionTypes): InitialStateType => {
     switch (action.type) {
-        case 'FOLLOW' :
+        case USERS_ACTIONS_TYPE.FOLLOW :
             return {
                 ...state,
                 users: state.users.map(user => {
@@ -25,7 +30,7 @@ const usersReducer = (state: InitialStateType = initialState, action: AllActionT
                     return user
                 })
             }
-        case 'UNFOLLOW':
+        case USERS_ACTIONS_TYPE.UNFOLLOW:
             return {
                 ...state,
                 users: state.users.map(user => {
@@ -35,16 +40,16 @@ const usersReducer = (state: InitialStateType = initialState, action: AllActionT
                     return user
                 })
             }
-        case 'SET_USERS' : {
+        case USERS_ACTIONS_TYPE.SET_USERS : {
             return {...state, users: action.users}
         }
-        case 'SET_CURRENT_PAGE' : {
+        case  USERS_ACTIONS_TYPE.SET_CURRENT_PAGE: {
             return {...state, currentPage: action.currentPage}
         }
-        case 'SET_TOTAL_USERS_COUNT' : {
+        case USERS_ACTIONS_TYPE.SET_TOTAL_USERS_COUNT : {
             return {...state, totalUsersCount: action.count}
         }
-        case 'TOGGLE_IS_FETCHING' : {
+        case USERS_ACTIONS_TYPE.TOGGLE_IS_FETCHING : {
             return {...state, isFetching: action.isFetching}
         }
         default :

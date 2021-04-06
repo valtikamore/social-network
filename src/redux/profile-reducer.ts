@@ -1,7 +1,11 @@
 import {postType} from "./store";
 import {AllActionTypes} from './redux-store'
 
-
+export enum PROFILE_ACTIONS_TYPE {
+    ADD_POST = 'ADD_POST' ,
+    UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT',
+    SET_USERS_PROFILE = 'SET_USERS_PROFILE'
+}
 
 export type ProfileServerType = {
     aboutMe: string
@@ -38,7 +42,7 @@ let initialState = {
 }
 const profileReducer = (state: InitialStateType = initialState, action: AllActionTypes):InitialStateType => {
     switch (action.type) {
-        case 'ADD_POST' : {
+        case PROFILE_ACTIONS_TYPE.ADD_POST : {
             let newPost: postType = {
                 id: 5,
                 message: state.newPostText,
@@ -53,13 +57,13 @@ const profileReducer = (state: InitialStateType = initialState, action: AllActio
             }
             return state
         }
-        case 'UPDATE_NEW_POST_TEXT' : {
+        case PROFILE_ACTIONS_TYPE.UPDATE_NEW_POST_TEXT : {
             return {
                 ...state,
                 newPostText: action.newText
             }
         }
-        case 'SET_USERS_PROFILE' : {
+        case PROFILE_ACTIONS_TYPE.SET_USERS_PROFILE : {
             return {
                 ...state,
                 profile: action.profile

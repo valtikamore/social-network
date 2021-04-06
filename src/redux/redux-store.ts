@@ -12,7 +12,7 @@ import usersReducer, {
 } from "./users-reducer";
 import {authReducer} from "./auth-reducer";
 type setUserData = {
-    type:'SET_USER_DATA'
+    type:'SET_USER_DATA'             /*support*/
     data:{userId:number,email:string,login:string}
 }
 export type AllActionTypes =

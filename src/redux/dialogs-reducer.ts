@@ -1,20 +1,12 @@
 import {AllActionTypes} from "./redux-store";
+export enum DIALOGS_ACTIONS_TYPE{
+    SEND_MESSAGE = 'SEND_MESSAGE',
+    UPDATE_NEW_MESSAGE_BODY='UPDATE_NEW_MESSAGE_BODY',
+}
 
 export type dialogType = { id: number, name: string, img: string }
 export type messageType = { id: number, message: string }
 export type InitialStateType = typeof initialState
-
-export const sendMessageCreator = () => {
-    return {
-        type: 'SEND_MESSAGE'
-    } as const
-}
-export const updateNewMessageBodyCreator = (body: string) => {
-    return {
-        type: 'UPDATE_NEW_MESSAGE_BODY',
-        body: body
-    } as const
-}
 let initialState = {
     dialogs: [
         {
@@ -40,17 +32,16 @@ let initialState = {
     ] as messageType[],
     newMessageBody: ''
 }
-
 const dialogsReducer = (state: InitialStateType = initialState, action: AllActionTypes): InitialStateType => {
 
     switch (action.type) {
-        case 'UPDATE_NEW_MESSAGE_BODY' :
+        case DIALOGS_ACTIONS_TYPE.UPDATE_NEW_MESSAGE_BODY :
             return  {
                 ...state,
                 newMessageBody: action.body
             }
 
-        case 'SEND_MESSAGE':
+        case DIALOGS_ACTIONS_TYPE.SEND_MESSAGE:
             let body = state.newMessageBody
             let newMessage: messageType = {id: 6, message: body,}
             if (body !== '') {
@@ -64,13 +55,8 @@ const dialogsReducer = (state: InitialStateType = initialState, action: AllActio
 
         default :
             return state
-        // if (body !== '') {
-        //     copyState.newMessageBody = ''
-        //     copyState.messages = [...state.messages, newMessage]
-        //     return copyState
-        // }
-
-
     }
 }
+export const sendMessageCreator = () => ({type: 'SEND_MESSAGE'}as const )
+export const updateNewMessageBodyCreator = (body: string) => ({type: 'UPDATE_NEW_MESSAGE_BODY', body}as const)
 export default dialogsReducer
