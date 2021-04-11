@@ -4,11 +4,11 @@ import profileReducer, {addPostActionCreator, setUsersProfile, updateNewPostText
 import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 import usersReducer, {
     follow,
-     setCurrentPage,
-     setTotalUsersCount,
-     setUsers,
-     toggleIsFetching,
-     unFollow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toggleFollowingProgress,
+    toggleIsFetching,
+    unFollow,
 } from "./users-reducer";
 import {authReducer} from "./auth-reducer";
 type setUserData = {
@@ -28,6 +28,7 @@ export type AllActionTypes =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUsersProfile>
     | setUserData
+    | ReturnType<typeof toggleFollowingProgress>
 
 
 let rootReducer = combineReducers({

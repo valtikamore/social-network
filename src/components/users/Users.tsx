@@ -13,6 +13,8 @@ type usersPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     pageSize: number
+    toggleFollowingProgress:(isFetching:boolean)=>void
+    followingInProgress:boolean
 }
 export const Users: FC<usersPropsType> = props => {
     const {
@@ -22,7 +24,9 @@ export const Users: FC<usersPropsType> = props => {
         totalUsersCount,
         unFollow,
         follow,
-        onPageChanged
+        onPageChanged,
+        toggleFollowingProgress,
+        followingInProgress
     } = props
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
@@ -59,7 +63,7 @@ export const Users: FC<usersPropsType> = props => {
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                         withCredentials: true,
                                         headers: {
-                                            'API_KEY': '40bf29b6-1c3a-44f1-a9ef-ade0adc8e58e'
+                                            'API-KEY': '40bf29b6-1c3a-44f1-a9ef-ade0adc8e58e'
                                         }
                                     })
                                         .then(response => {
@@ -72,7 +76,7 @@ export const Users: FC<usersPropsType> = props => {
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
-                                            'API_KEY': '40bf29b6-1c3a-44f1-a9ef-ade0adc8e58e'
+                                            'API-KEY': '40bf29b6-1c3a-44f1-a9ef-ade0adc8e58e'
                                         }
                                     })
                                         .then(response => {

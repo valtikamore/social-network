@@ -6,7 +6,8 @@ export enum USERS_ACTIONS_TYPE {
     SET_USERS='SET_USERS',
     SET_CURRENT_PAGE='SET_CURRENT_PAGE',
     SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT',
-    TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING'
+    TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING',
+    TOGGLE_IS_FETCHING_PROGRESS='TOGGLE_IS_FETCHING_PROGRESS'
 }
 
 export type userType = { id: number, name: string, status: string, photos: { small?: string, large?: string }, followed: boolean }
@@ -16,7 +17,8 @@ let initialState = {
     pageSize: 20,
     totalUsersCount: 0,
     currentPage: 2,
-    isFetching: false
+    isFetching: true,
+    followingInProgress:false
 }
 const usersReducer = (state: InitialStateType = initialState, action: AllActionTypes): InitialStateType => {
     switch (action.type) {
@@ -52,6 +54,9 @@ const usersReducer = (state: InitialStateType = initialState, action: AllActionT
         case USERS_ACTIONS_TYPE.TOGGLE_IS_FETCHING : {
             return {...state, isFetching: action.isFetching}
         }
+        case USERS_ACTIONS_TYPE.TOGGLE_IS_FETCHING_PROGRESS: {
+            return {...state,followingInProgress: action.isFetching}
+        }
         default :
             return state
     }
@@ -62,5 +67,6 @@ export const setUsers = (users: userType[]) => ({type: 'SET_USERS', users}) as c
 export const setCurrentPage = (currentPage:number) => ({type: 'SET_CURRENT_PAGE',currentPage}) as const
 export const setTotalUsersCount = (totalUsersCount:number) =>  ({type: 'SET_TOTAL_USERS_COUNT', count:totalUsersCount}) as const
 export const toggleIsFetching = (isFetching:boolean) =>  ({type: 'TOGGLE_IS_FETCHING', isFetching:isFetching}) as const
+export const toggleFollowingProgress = (isFetching:boolean) => ({type:'TOGGLE_IS_FETCHING_PROGRESS',isFetching}) as const
 
 export default usersReducer
