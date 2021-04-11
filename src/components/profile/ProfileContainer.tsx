@@ -22,8 +22,8 @@ type propsType = ProfileContainerPropsType & RouteComponentProps<PathParamsType>
 export class ProfileContainer extends React.Component<propsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(resp => {
-            this.props.setUsersProfile(resp.data)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+            this.props.setUsersProfile(response.data)
         })
     }
 
