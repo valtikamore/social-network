@@ -13,8 +13,8 @@ type usersPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     pageSize: number
-    toggleFollowingProgress:(isFetching:boolean)=>void
-    followingInProgress:boolean
+    toggleFollowingProgress:(isFetching:boolean,userId:number)=>void
+    followingInProgress:number[]
 }
 export const Users: FC<usersPropsType> = props => {
     const {
@@ -59,8 +59,8 @@ export const Users: FC<usersPropsType> = props => {
 
                         <div className={s.follow}>
                             {user.followed
-                                ? <button disabled={followingInProgress} onClick={() => {
-                                    toggleFollowingProgress(true)
+                                ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                                    toggleFollowingProgress(true,user.id)
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                         withCredentials: true,
                                         headers: {
@@ -71,11 +71,11 @@ export const Users: FC<usersPropsType> = props => {
                                             if (response.data.resultCode === 0) {
                                                 unFollow(user.id)
                                             }
-                                            toggleFollowingProgress(false)
+                                            toggleFollowingProgress(false,user.id)
                                         })
                                 }}>Unfollow</button>
-                                : <button disabled={followingInProgress} onClick={() => {
-                                    toggleFollowingProgress(true)
+                                : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
+                                    toggleFollowingProgress(true,user.id)
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
@@ -86,7 +86,7 @@ export const Users: FC<usersPropsType> = props => {
                                             if (response.data.resultCode === 0) {
                                                 follow(user.id)
                                             }
-                                            toggleFollowingProgress(false)
+                                            toggleFollowingProgress(false,user.id)
                                         })
                                 }}>follow</button>}
                         </div>
