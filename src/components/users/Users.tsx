@@ -46,7 +46,7 @@ export const Users: FC<usersPropsType> = props => {
                     >{page}</span>
                 })}
             </div>
-            {users.map(user => {
+            {users.map((user) => {
                 return (
                     <div key={user.id} className={s.grid}>
                         <NavLink to={`/profile/${user.id} `}>
@@ -59,7 +59,8 @@ export const Users: FC<usersPropsType> = props => {
 
                         <div className={s.follow}>
                             {user.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={followingInProgress} onClick={() => {
+                                    toggleFollowingProgress(true)
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                         withCredentials: true,
                                         headers: {
@@ -70,9 +71,11 @@ export const Users: FC<usersPropsType> = props => {
                                             if (response.data.resultCode === 0) {
                                                 unFollow(user.id)
                                             }
+                                            toggleFollowingProgress(false)
                                         })
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
+                                : <button disabled={followingInProgress} onClick={() => {
+                                    toggleFollowingProgress(true)
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
@@ -83,6 +86,7 @@ export const Users: FC<usersPropsType> = props => {
                                             if (response.data.resultCode === 0) {
                                                 follow(user.id)
                                             }
+                                            toggleFollowingProgress(false)
                                         })
                                 }}>follow</button>}
                         </div>
