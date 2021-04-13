@@ -1,4 +1,6 @@
 import {AllActionTypes} from "./redux-store"
+import {Dispatch} from "redux";
+import {usersAPI} from "../dal/api";
 
 export enum USERS_ACTIONS_TYPE {
     FOLLOW='FOLLOW',
@@ -27,7 +29,7 @@ const usersReducer = (state: InitialStateType = initialState, action: AllActionT
                 ...state,
                 users: state.users.map(user => {
                     if (user.id === action.userId) {
-                        return {...user, follow: true}
+                        return {...user, followed: true}
                     }
                     return user
                 })
@@ -37,7 +39,7 @@ const usersReducer = (state: InitialStateType = initialState, action: AllActionT
                 ...state,
                 users: state.users.map(user => {
                     if (user.id === action.userId) {
-                        return {...user, follow: false}
+                        return {...user, followed: false}
                     }
                     return user
                 })
@@ -73,5 +75,17 @@ export const setCurrentPage = (currentPage:number) => ({type: 'SET_CURRENT_PAGE'
 export const setTotalUsersCount = (totalUsersCount:number) =>  ({type: 'SET_TOTAL_USERS_COUNT', count:totalUsersCount}) as const
 export const toggleIsFetching = (isFetching:boolean) =>  ({type: 'TOGGLE_IS_FETCHING', isFetching:isFetching}) as const
 export const toggleFollowingProgress = (isFetching:boolean,userId:number) => ({type:'TOGGLE_IS_FETCHING_PROGRESS',isFetching,userId}) as const
+
+export const getUsersThunkCreator = () => {
+    return  (dispatch:Dispatch) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+
+        })
+}
+}
 
 export default usersReducer
