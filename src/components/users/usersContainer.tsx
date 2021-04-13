@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    follow,
+    follow, getUsersThunkCreator,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress,
@@ -15,6 +15,7 @@ import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../Preloader/Preloader";
 import {usersAPI} from "../../dal/api";
+import {Dispatch} from "redux";
 
 type MapStatePropsType = {
     users: userType[]
@@ -32,17 +33,19 @@ type MapDispatchToProps = {
     setTotalUsersCount: (totalUsersCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress:(isFetching: boolean,userId:number) => void
+    getUsersThunkCreator:(currentPage:number,pageSize:number) => void
 }
 export type UsersApiComponentPropsType = MapStatePropsType & MapDispatchToProps
 
 export class UsersContainer extends React.Component<UsersApiComponentPropsType> {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(data.totalCount)
-            this.props.toggleIsFetching(false)
-        })
+        this.props.getUsersThunkCreator()
+        // this.props.toggleIsFetching(true)
+        // usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
+        //     this.props.setUsers(data.items)
+        //     this.props.setTotalUsersCount(data.totalCount)
+        //     this.props.toggleIsFetching(false)
+        // })
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -86,5 +89,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export default connect(mapStateToProps,
     {
         follow, unFollow, setUsers,
-        setCurrentPage, setTotalUsersCount, toggleIsFetching,toggleFollowingProgress
+        setCurrentPage, setTotalUsersCount, toggleIsFetching,
+        toggleFollowingProgress , getUsersThunkCreator
     })(UsersContainer)
