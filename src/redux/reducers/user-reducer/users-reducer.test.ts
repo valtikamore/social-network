@@ -1,10 +1,10 @@
 import {
-    followAc,
-    setCurrentPageAc,
-    setTotalUsersCountAc,
-    setUsersAc,
-    toggleIsFetchingAc,
-    unFollowAc,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unFollow,
     usersReducer
 } from "./users-reducer";
 
@@ -38,7 +38,7 @@ describe('usersReducer  should be', () => {
             currentPage: 2,
             isFetching: false
         }
-        const action = followAc(1)
+        const action = follow(1)
         const endValue = usersReducer(startValue, action)
         expect(endValue.users[0]).toBeTruthy()
     })
@@ -71,7 +71,7 @@ describe('usersReducer  should be', () => {
             currentPage: 2,
             isFetching: false
         }
-        const action = unFollowAc(2)
+        const action = unFollow(2)
         const endValue = usersReducer(startValue, action)
         expect(endValue.users[1].followed).toBeFalsy()
     })
@@ -107,7 +107,7 @@ describe('usersReducer  should be', () => {
         ]
 
 
-        const action = setUsersAc(startUsers)
+        const action = setUsers(startUsers)
         const endValue = usersReducer(startValue, action)
         expect(endValue.users).toBeDefined()
         expect(endValue.users[0]).toBeDefined()
@@ -142,7 +142,7 @@ describe('usersReducer  should be', () => {
             currentPage: 2,
             isFetching: false
         }
-        const action = setCurrentPageAc(3)
+        const action = setCurrentPage(3)
         const endValue = usersReducer(startValue, action)
         expect(endValue.currentPage).toBe(3)
     })
@@ -175,7 +175,7 @@ describe('usersReducer  should be', () => {
             currentPage: 2,
             isFetching: false
         }
-        const action = setTotalUsersCountAc(100)
+        const action = setTotalUsersCount(100)
         const endValue = usersReducer(startValue, action)
         expect(endValue.totalUsersCount).toBe(100)
     })
@@ -208,7 +208,7 @@ describe('usersReducer  should be', () => {
             currentPage: 2,
             isFetching: false
         }
-        const action = toggleIsFetchingAc(true)
+        const action = toggleIsFetching(true)
         const endValue = usersReducer(startValue, action)
         expect(endValue.isFetching).toBeTruthy()
     })

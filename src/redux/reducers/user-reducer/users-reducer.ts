@@ -30,12 +30,12 @@ let initialState = {
     currentPage: 2,
     isFetching:true
 }
-export const followAc = (userId:number) => ({type:'FOLLOW',userId}as const )
-export const unFollowAc = (userId:number) => ({type:'UN_FOLLOW',userId}as const )
-export const setUsersAc = (users:userFromServer[]) => ({type:'SET_USERS',users}as const )
-export const setCurrentPageAc = (page:number) => ({type:'SET_CURRENT_PAGE',page}as const )
-export const setTotalUsersCountAc = (totalCount:number) => ({type:'SET_TOTAL_USERS_COUNT',totalCount}as const )
-export const toggleIsFetchingAc = (isFetching:boolean) => ({type:'TOGGLE_IS_FETCHING',isFetching}as const )
+export const follow = (userId:number) => ({type:'FOLLOW',userId}as const )
+export const unFollow = (userId:number) => ({type:'UN_FOLLOW',userId}as const )
+export const setUsers = (users:userFromServer[]) => ({type:'SET_USERS',users}as const )
+export const setCurrentPage = (page:number) => ({type:'SET_CURRENT_PAGE',page}as const )
+export const setTotalUsersCount = (totalCount:number) => ({type:'SET_TOTAL_USERS_COUNT',totalCount}as const )
+export const toggleIsFetching = (isFetching:boolean) => ({type:'TOGGLE_IS_FETCHING',isFetching}as const )
 
 export const usersReducer = (state:initialStateType = initialState,action:AllActionTypes):initialStateType => {
     switch (action.type) {
