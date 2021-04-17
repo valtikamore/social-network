@@ -4,7 +4,7 @@ import classes from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsCountainer from "./MyPosts/MyPostsCountainer";
 
-import {profilePropsType} from "./ProfileContainer";
+import {profileContainerPropsType} from "./ProfileContainer";
 
 
 
@@ -12,7 +12,7 @@ import {profilePropsType} from "./ProfileContainer";
 
 
 
-const Profile = (props:profilePropsType) => {
+const Profile = (props:profileContainerPropsType) => {
     const {profile,setUsersProfile} = props
     return (
         <div className={classes.profile}>

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css"
 import {profileUserFromServer} from "../../../redux/reducers/profile-reducer/profile-reducer";
-import {profilePropsType} from "../ProfileContainer";
+import {profileContainerPropsType} from "../ProfileContainer";
 import {Preloader} from "../../preloader/preloader";
 
 type ProfileInfoPropsType = {

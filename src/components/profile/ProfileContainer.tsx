@@ -5,22 +5,29 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 
 import {profileUserFromServer, setUsersProfile} from "../../redux/reducers/profile-reducer/profile-reducer";
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 type MapStateToPropsType = {
-    profile:null | profileUserFromServer
+    profile: null | profileUserFromServer
 }
 type MapDispatchToProps = {
-    setUsersProfile:(profile: profileUserFromServer) => void
+    setUsersProfile: (profile: profileUserFromServer) => void
 }
-export type profilePropsType = MapStateToPropsType & MapDispatchToProps
+export type profileContainerPropsType = MapStateToPropsType & MapDispatchToProps
+type PathParamsType = {
+    userId: string
+}
+type propsType = profileContainerPropsType & RouteComponentProps<PathParamsType>
 
- class ProfileContainer extends React.Component<profilePropsType>{
-        componentDidMount() {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-                .then(response => {
-                    this.props.setUsersProfile(response.data)
-                })
-        }
+class ProfileContainer extends React.Component<propsType> {
+
+    componentDidMount() {
+        let userId = this.props.match.params.userId
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            .then(response => {
+                this.props.setUsersProfile(response.data)
+            })
+    }
 
     render() {
         return (
@@ -30,9 +37,12 @@ export type profilePropsType = MapStateToPropsType & MapDispatchToProps
         )
     }
 }
+
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-       profile : state.profilePage.profile
+        profile: state.profilePage.profile
     }
 }
-export default connect(mapStateToProps, {setUsersProfile})(ProfileContainer)
+let withUrlDataContainerComponent = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps, {setUsersProfile})(withUrlDataContainerComponent)
