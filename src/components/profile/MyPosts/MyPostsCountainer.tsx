@@ -1,12 +1,15 @@
 import React from "react";
-import {postType} from "../../../redux/store";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/reducers/profile-reducer/profile-reducer";
+import {addPost, updateNewPostText} from "../../../redux/reducers/profile-reducer/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AllActionTypes, AppStateType} from "../../../redux/redux-store";
 import { Dispatch } from "redux";
 
-
+type postType = {
+    id:number
+    message:string
+    likeCount: number
+}
 
 type MapStatePropsType = {
     posts:postType[]
@@ -28,11 +31,11 @@ const mapStateToProps = (state:AppStateType):MapStatePropsType => {
 const mapDispatchProps = (dispatch:Dispatch<AllActionTypes>):MapDispatchToProps => {
     return {
         updateNewPostText : (text:string) => {
-            let action = updateNewPostTextActionCreator(text)
+            let action = updateNewPostText(text)
             dispatch(action)
     },
         addPost : () => {
-            dispatch(addPostActionCreator())
+            dispatch(addPost())
         }
     }
 }

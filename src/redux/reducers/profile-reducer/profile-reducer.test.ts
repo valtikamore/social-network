@@ -1,4 +1,5 @@
-import profileReducer, { addPostActionCreator, updateNewPostTextActionCreator } from "./profile-reducer"
+import profileReducer, {addPost, setUsersProfile, updateNewPostText} from "./profile-reducer"
+import {usersReducer} from "../user-reducer/users-reducer";
 
 describe('profile reducer add-post should be ',()=> {
     test('add post be defined',()=> {
@@ -8,9 +9,10 @@ describe('profile reducer add-post should be ',()=> {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
+            profile: null
         }
-        const action = addPostActionCreator()
-        const endValue = profileReducer(startValue,action)
+        const action = addPost()
+        const endValue = profileReducer(startValue, action)
         expect(endValue.posts[1]).toBeDefined()
         expect(endValue.posts[1].id).toBe(5)
 
@@ -23,9 +25,10 @@ describe('profile reducer add-post should be ',()=> {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
+            profile: null
         }
-        const action = addPostActionCreator()
-        const endValue = profileReducer(startValue,action)
+        const action = addPost()
+        const endValue = profileReducer(startValue, action)
 
         expect(endValue.posts[1]).toBeUndefined()
     })
@@ -37,9 +40,10 @@ describe('profile reducer update new post should be',()=> {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
+            profile: null
         }
-        const action = updateNewPostTextActionCreator('newNewPostText')
-        const endValue = profileReducer(startValue,action)
+        const action = updateNewPostText('newNewPostText')
+        const endValue = profileReducer(startValue, action)
         expect(endValue).toBeDefined()
         expect(endValue.newPostText).toBeDefined()
         expect(endValue.posts).toBeDefined()
@@ -48,5 +52,41 @@ describe('profile reducer update new post should be',()=> {
         expect(endValue.posts[0].likeCount).toBe(0)
         expect(endValue.newPostText).toBe('newNewPostText')
 
+    })
+})
+describe('profile reducer set users', () => {
+    test('set users', () => {
+        const startValue = {
+            newPostText: '',
+            posts: [
+                {id: 1, message: 'Hello bro', likeCount: 0},
+            ],
+            profile: null
+        }
+        const userProfile = {
+            "aboutMe": "я круто чувак 1001%",
+            "contacts": {
+                "facebook": "facebook.com",
+                "website": null,
+                "vk": "vk.com/dimych",
+                "twitter": "https://twitter.com/@sdf",
+                "instagram": "instagra.com/sds",
+                "youtube": null,
+                "github": "github.com",
+                "mainLink": null
+            },
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "не ищу, а дурачусь",
+            "fullName": "samurai dimych",
+            "userId": 2,
+            "photos": {
+                "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+                "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+            }
+        }
+        const action = setUsersProfile(userProfile)
+        const endValue = profileReducer(startValue,action)
+        expect(endValue.profile).toBeDefined()
+        expect(endValue.profile?.aboutMe).toBe("я круто чувак 1001%")
     })
 })

@@ -1,49 +1,5 @@
-import dialogsReducer, {dialogType, messageType} from "./reducers/dialog-reducer/dialogs-reducer";
-import { AllActionTypes } from "./redux-store";
-import profileReducer from "./reducers/profile-reducer/profile-reducer";
 
-
-
-export type postType = {
-    id: number
-    message: string
-    likeCount: number
-}
-
-export type friendsType = {
-    id: number
-    name: string
-    img: string
-}
-export type profilePageType = {
-    newPostText: string
-    posts: postType[]
-}
-export type dialogsPage = {
-    dialogs: dialogType[]
-    messages: messageType[]
-    newMessageBody:string
-}
-export type navbarPage = {
-    friends: friendsType[]
-}
-export type stateType = {
-    profilePage: profilePageType
-    dialogsPage: dialogsPage
-    navbarPage: navbarPage
-}
-
-
-
-export type storeType = {
-    _state:stateType
-    _callSubscriber:(_state:stateType)=>void
-    getState:() => stateType
-    subscribe:(observer: () => void) => void
-    dispatch:(action:AllActionTypes) => void
-}
-
-export let store :storeType= {
+ let store = {
     _state: {
         profilePage: {
             newPostText: '',
@@ -74,7 +30,7 @@ export let store :storeType= {
                 {id: 2, message: 'How is your s ds'},
                 {id: 3, message: 'Hihihihih'},
             ],
-            newMessageBody:''
+            newMessageBody: ''
         },
         navbarPage: {
             friends: [
@@ -96,23 +52,21 @@ export let store :storeType= {
             ]
         },
     },
-     _callSubscriber : () => {
+    _callSubscriber: () => {
         console.log('state was changed')
     },
     getState() {
         return this._state
     },
-    subscribe(observer)  {
+    subscribe(observer: any) {
         this._callSubscriber = observer
     },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage , action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage , action)
-        this._callSubscriber(this._state)
+    dispatch(action: any) {
+        // this._state.profilePage = profileReducer(this._state.profilePage , action)
+        // this._state.dialogsPage = dialogsReducer(this._state.dialogsPage , action)
+        // this._callSubscriber(this._state)
     }
 }
-
-
 
 
 export default store

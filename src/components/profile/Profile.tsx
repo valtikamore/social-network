@@ -4,18 +4,19 @@ import classes from "./Profile.module.css"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsCountainer from "./MyPosts/MyPostsCountainer";
 
-
-type profileType = {
-
-}
+import {profilePropsType} from "./ProfileContainer";
 
 
 
-const Profile: React.FC<profileType> = () => {
 
+
+
+
+const Profile = (props:profilePropsType) => {
+    const {profile,setUsersProfile} = props
     return (
         <div className={classes.profile}>
-            <ProfileInfo/>
+            <ProfileInfo profile={profile}/>
             <MyPostsCountainer />
         </div>
     )
