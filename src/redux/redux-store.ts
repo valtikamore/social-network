@@ -6,6 +6,7 @@ import {
     followAc,
     setCurrentPageAc, setTotalUsersCountAc,
     setUsersAc,
+    toggleIsFetchingAc,
     unFollowAc,
     usersReducer
 } from "./reducers/user-reducer/users-reducer";
@@ -20,7 +21,7 @@ export type AllActionTypes =
     |ReturnType<typeof setUsersAc>
     |ReturnType<typeof setCurrentPageAc>
     |ReturnType<typeof setTotalUsersCountAc>
-
+    |ReturnType<typeof toggleIsFetchingAc>
 
 let rootReducer = combineReducers({
     profilePage:profileReducer,
