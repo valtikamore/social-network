@@ -5,10 +5,13 @@
     grid-area:header;
     padding: 10px;
     align-self: center;
+    &_image {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+    &_loginBlock {
+
+    }
 }
 
-.header img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-}
