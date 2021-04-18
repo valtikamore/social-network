@@ -13,7 +13,7 @@ import {
     unFollow,
     usersReducer
 } from "./reducers/user-reducer/users-reducer";
-import {authReducer, setUserData} from "./reducers/authReducer/authReducer";
+import {authReducer, setAuthUserData} from "./reducers/authReducer/authReducer";
 
 export type AllActionTypes =
     ReturnType<typeof addPost>
@@ -27,7 +27,7 @@ export type AllActionTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUsersProfile>
-    |ReturnType<typeof setUserData>
+    |ReturnType<typeof setAuthUserData>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

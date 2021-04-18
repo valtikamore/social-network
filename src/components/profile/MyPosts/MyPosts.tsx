@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import classes from "./MyPosts.module.css"
+import classes from "./MyPosts.module.scss"
 import { MyPostPropsType } from "./MyPostsCountainer";
 import Post from "./Post/Post";
 

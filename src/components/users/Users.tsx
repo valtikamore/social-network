@@ -1,4 +1,4 @@
-import classes from "./Users.module.css";
+import classes from "./Users.module.scss";
 import userWithoutPhoto from "../../assets/designer.svg";
 import React from "react";
 import {userFromServer} from "../../redux/reducers/user-reducer/users-reducer";

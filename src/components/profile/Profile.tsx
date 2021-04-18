@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Profile.module.css"
+import classes from "./Profile.module.scss"
 
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsCountainer from "./MyPosts/MyPostsCountainer";

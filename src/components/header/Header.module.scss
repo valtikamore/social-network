@@ -1,17 +1,22 @@
 
-.header{
-    background:linear-gradient(-334deg, pink, #a5c0bd);
-    box-shadow: -206px 14px 155px 32px #ec91e7;
-    grid-area:header;
-    padding: 10px;
-    align-self: center;
-    &_image {
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-    }
-    &_loginBlock {
+.header {
+  box-shadow: -206px 14px 155px 32px #baa7a7;
+  grid-area: header;
+  padding: 10px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  &_image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  &_loginBlock {
+    & a {
+      color: wheat;
     }
+  }
 }
-

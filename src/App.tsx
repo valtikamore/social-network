@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -13,6 +13,7 @@ import DialogsContainer from "./components/dialogs/DialogsContainer";
 
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 
 
 
@@ -20,7 +21,7 @@ import ProfileContainer from "./components/profile/ProfileContainer";
 const App: React.FC = () => {
     return (
         <div className="App">
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className="App-wrapper-content">
                 <Route path='/profile/:userId?'
