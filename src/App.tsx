@@ -23,7 +23,7 @@ const App: React.FC = () => {
             <Header/>
             <Navbar/>
             <div className="App-wrapper-content">
-                <Route path='/profile/:userId'
+                <Route path='/profile/:userId?'
                        render={() => <ProfileContainer/>}/>
                 <Route path='/dialogs'
                        render={() => <DialogsContainer/>}/>

@@ -16,7 +16,7 @@ const ProfileInfo = (props:ProfileInfoPropsType)=> {
         <div >
             <div className={classes.content}>
                 <img src={profile.photos.large!} alt=""/>
-                description
+                <div>{profile.fullName}</div>
             </div>
         </div>
     )
