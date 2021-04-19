@@ -13,7 +13,8 @@ enum ACTION_USER_REDUCER {
     SET_USERS='SET_USERS',
     SET_CURRENT_PAGE='SET_CURRENT_PAGE',
     SET_TOTAL_USERS_COUNT='SET_TOTAL_USERS_COUNT',
-    TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING'
+    TOGGLE_IS_FETCHING='TOGGLE_IS_FETCHING',
+    FOLLOWING_IN_PROGRESS='FOLLOWING_IN_PROGRESS'
 }
 
 export type serverUsers = {
@@ -28,7 +29,8 @@ let initialState = {
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress:[] as number[]
 }
 export const follow = (userId:number) => ({type:'FOLLOW',userId}as const )
 export const unFollow = (userId:number) => ({type:'UN_FOLLOW',userId}as const )
@@ -36,6 +38,7 @@ export const setUsers = (users:userFromServer[]) => ({type:'SET_USERS',users}as 
 export const setCurrentPage = (page:number) => ({type:'SET_CURRENT_PAGE',page}as const )
 export const setTotalUsersCount = (totalCount:number) => ({type:'SET_TOTAL_USERS_COUNT',totalCount}as const )
 export const toggleIsFetching = (isFetching:boolean) => ({type:'TOGGLE_IS_FETCHING',isFetching}as const )
+export const toggleFollowing = (userId:number,isFetching:boolean) => ({type:'FOLLOWING_IN_PROGRESS',userId,isFetching}as const )
 
 export const usersReducer = (state:initialStateType = initialState,action:AllActionTypes):initialStateType => {
     switch (action.type) {
@@ -80,6 +83,14 @@ export const usersReducer = (state:initialStateType = initialState,action:AllAct
             return {
                 ...state,
                 isFetching: action.isFetching
+            }
+        }
+        case ACTION_USER_REDUCER.FOLLOWING_IN_PROGRESS:{
+            return {
+                ...state,
+                followingInProgress:action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
             }
         }
         default: return state

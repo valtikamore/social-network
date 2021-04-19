@@ -6,7 +6,7 @@ import dialogsReducer, {
     updateNewMessageBodyCreator
 } from "./reducers/dialog-reducer/dialogs-reducer";
 import {
-    follow,
+    follow, toggleFollowing,
     setCurrentPage, setTotalUsersCount,
     setUsers,
     toggleIsFetching,
@@ -28,6 +28,7 @@ export type AllActionTypes =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUsersProfile>
     |ReturnType<typeof setAuthUserData>
+    |ReturnType<typeof toggleFollowing>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

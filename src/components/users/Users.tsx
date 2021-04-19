@@ -1,7 +1,7 @@
 import classes from "./Users.module.scss";
 import userWithoutPhoto from "../../assets/designer.svg";
 import React from "react";
-import {userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
+import {toggleFollowing, userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import {usersAPI} from "../../api/api";
@@ -14,7 +14,8 @@ type propsType = {
     users: userFromServer[]
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-
+    toggleFollowing: (userId:number , isFetching: boolean) => void
+    followingInProgress: number[]
 }
 
 export const Users = (props: propsType) => {
@@ -48,21 +49,25 @@ export const Users = (props: propsType) => {
             </NavLink>
 
             {u.followed
-                ? <button onClick={() => {
+                ? <button disabled={rest.followingInProgress.some(id => id === u.id)} onClick={() => {
+                    rest.toggleFollowing(u.id,true)
                     usersAPI.userUnfollow(u.id)
                         .then(data => {
                             if (data.resultCode === 0) {
                                 unFollow(u.id)
                             }
+                            rest.toggleFollowing(u.id,false)
                         })
 
                 }}>unFollow </button>
-                : <button onClick={() => {
+                : <button disabled={rest.followingInProgress.some(id => id === u.id)} onClick={() => {
+                    rest.toggleFollowing(u.id,true)
                     usersAPI.userFollow(u.id)
                         .then(data => {
                             if (data.resultCode === 0) {
                                 follow(u.id)
                             }
+                            rest.toggleFollowing(u.id,false)
                         })
 
                 }}> follow</button>}

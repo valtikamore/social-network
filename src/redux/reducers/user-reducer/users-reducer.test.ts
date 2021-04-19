@@ -1,5 +1,5 @@
 import {
-    follow,
+    follow, toggleFollowing,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
@@ -36,7 +36,8 @@ describe('usersReducer  should be', () => {
             pageSize: 10,
             totalUsersCount: 100,
             currentPage: 2,
-            isFetching: false
+            isFetching: false,
+            followingInProgress:[]
         }
         const action = follow(1)
         const endValue = usersReducer(startValue, action)
@@ -69,7 +70,8 @@ describe('usersReducer  should be', () => {
             pageSize: 10,
             totalUsersCount: 100,
             currentPage: 2,
-            isFetching: false
+            isFetching: false,
+            followingInProgress:[]
         }
         const action = unFollow(2)
         const endValue = usersReducer(startValue, action)
@@ -81,7 +83,8 @@ describe('usersReducer  should be', () => {
             pageSize: 10,
             totalUsersCount: 100,
             currentPage: 2,
-            isFetching: false
+            isFetching: false,
+            followingInProgress:[]
         }
         const startUsers = [
             {
@@ -140,7 +143,8 @@ describe('usersReducer  should be', () => {
             pageSize: 10,
             totalUsersCount: 100,
             currentPage: 2,
-            isFetching: false
+            isFetching: false,
+            followingInProgress:[]
         }
         const action = setCurrentPage(3)
         const endValue = usersReducer(startValue, action)
@@ -173,7 +177,8 @@ describe('usersReducer  should be', () => {
             pageSize: 10,
             totalUsersCount: 100,
             currentPage: 2,
-            isFetching: false
+            isFetching: false,
+            followingInProgress:[]
         }
         const action = setTotalUsersCount(100)
         const endValue = usersReducer(startValue, action)
@@ -206,10 +211,48 @@ describe('usersReducer  should be', () => {
             pageSize: 10,
             totalUsersCount: 100,
             currentPage: 2,
-            isFetching: false
+            isFetching: false,
+            followingInProgress:[]
         }
         const action = toggleIsFetching(true)
         const endValue = usersReducer(startValue, action)
         expect(endValue.isFetching).toBeTruthy()
+    })
+    test('following in progres', () => {
+        const startValue = {
+            users: [
+                {
+                    "name": "Shubert",
+                    "id": 1,
+                    "photos": {
+                        "small": null,
+                        "large": null
+                    },
+                    "status": null,
+                    "followed": false
+                },
+                {
+                    "name": "Hacker",
+                    "id": 2,
+                    "photos": {
+                        "small": null,
+                        "large": null
+                    },
+                    "status": null,
+                    "followed": true
+                }
+            ],
+            pageSize: 10,
+            totalUsersCount: 100,
+            currentPage: 2,
+            isFetching: false,
+            followingInProgress:[]
+        }
+        const action1 = toggleFollowing(1,true)
+        const action2 = toggleFollowing(2,false)
+        const endValue1 = usersReducer(startValue, action1)
+        const endValue2 = usersReducer(startValue, action1)
+        expect(endValue1.followingInProgress[0]).toBe(1)
+        expect(endValue2.followingInProgress[0]).toBe(1)
     })
 })
