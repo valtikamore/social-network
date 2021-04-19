@@ -3,6 +3,7 @@ import userWithoutPhoto from "../../assets/designer.svg";
 import React from "react";
 import {userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type propsType = {
     totalUsersCount: number
@@ -32,34 +33,59 @@ export const Users = (props: propsType) => {
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
     }
+    const pageNumbers = pages.map((p, i) => <span
+        onClick={() => onPageChanged(p)}
+        key={i} className={currentPage === p ? classes.selectPage : ''}
+    >{p}</span>)
+    const usersMap = users.map(u => {
+        return <div key={u.id} className={classes.users}>
+            <NavLink to={`/profile/${u.id}`}>
+                <img
+                     src={u.photos.small !== null
+                         ? u.photos.small
+                         : userWithoutPhoto} alt="user avatar"/>
+            </NavLink>
+
+            {u.followed
+                ? <button onClick={() => {
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
+                        withCredentials:true,
+                        headers:{
+                            'API-KEY':'e9066260-317f-4932-b695-7e08b77a40e9'
+                        }
+                    })
+                        .then(response => {
+                            if(response.data.resultCode === 0) {
+                                unFollow(u.id)
+                            }
+                        })
+
+                }}>unFollow </button>
+                : <button onClick={() => {
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
+                        withCredentials:true,
+                        headers:{
+                            'API-KEY':'e9066260-317f-4932-b695-7e08b77a40e9'
+                        }
+                    })
+                        .then(response => {
+                            if(response.data.resultCode === 0) {
+                                follow(u.id)
+                            }
+                        })
+
+                }}> follow</button>}
+            <div>{u.name}</div>
+            <div>{u.status}</div>
+        </div>
+    })
     return (
         <div>
-
-            <div>
-                {pages.map((p, i) => <span
-                    onClick={() => onPageChanged(p)}
-                    key={i} className={currentPage === p ? classes.selectPage : ''}
-                >{p}</span>)}
+            <div className={classes.pageNumbers}>
+                {pageNumbers}
             </div>
-            {users.map(u => {
-                return <div key={u.id}>
-                    <NavLink to={`/profile/${u.id}`}>
-                        <img className={classes.usersPhoto}
-                             src={u.photos.small !== null
-                                 ? u.photos.small
-                                 : userWithoutPhoto} alt="user avatar"/>
-                    </NavLink>
-
-                    {u.followed
-                        ? <button onClick={() => {
-                            unFollow(u.id)
-                        }}>unFollow </button>
-                        : <button onClick={() => {
-                            follow(u.id)
-                        }}> follow</button>}
-                    <div>{u.name}</div>
-                    <div>{u.status}</div>
-                </div>
-            })}
-                </div>)
+            <>
+                {usersMap}
+            </>
+        </div>)
             }

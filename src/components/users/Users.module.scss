@@ -1,8 +1,19 @@
 
-.usersPhoto {
+.users {
+  & img {
     width: 100px;
     height: 100px;
+  }
+
 }
-.selectPage {
+
+.pageNumbers {
+  display: flex;
+  flex-wrap: wrap;
+  .selectPage {
+    display: inline-block;
     font-weight: 600;
+    color: red;
+    margin-left: 1px;
+  }
 }

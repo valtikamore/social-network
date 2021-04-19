@@ -16,17 +16,17 @@ describe('auth reducer', ()=> {
         expect(endValue.isAuth).toBeTruthy()
     })
 
-    // test('set auth id', () => {
-    //     const startValue = {
-    //         id: null ,
-    //         email: null ,
-    //         login: null ,
-    //         isAuth: false
-    //     }
-    //     const action = setAuthUserData(2, 'tatata@mailcom', 'Valtikamore')
-    //     const endValue = authReducer(startValue, action)
-    //    expect(endValue.id).toEqual(2)
-    // })
+    test('set auth id', () => {
+        const startValue = {
+            id: null ,
+            email: null ,
+            login: null ,
+            isAuth: false
+        }
+        const action = setAuthUserData(2, 'tatata@mailcom', 'Valtikamore')
+        const endValue = authReducer(startValue, action)
+       expect(endValue.id).toEqual(2)
+    })
 })
 
 
