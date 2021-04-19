@@ -27,8 +27,8 @@ let initialState = {
     users: [] as userFromServer[],
     pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 2,
-    isFetching:true
+    currentPage: 1,
+    isFetching: true
 }
 export const follow = (userId:number) => ({type:'FOLLOW',userId}as const )
 export const unFollow = (userId:number) => ({type:'UN_FOLLOW',userId}as const )

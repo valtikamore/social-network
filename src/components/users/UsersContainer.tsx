@@ -8,9 +8,9 @@ import {
     userFromServer
 } from "../../redux/reducers/user-reducer/users-reducer";
 import { AppStateType} from "../../redux/redux-store";
-import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../preloader/preloader";
+import {usersAPI} from "../../api/api";
 
 type MapStatePropsType = {
     users: userFromServer[]
@@ -29,24 +29,25 @@ type MapDispatchPropsType = {
 }
 export type usersPropsType = MapStatePropsType & MapDispatchPropsType
 
-class UsersContainer extends React.Component<usersPropsType>{
+class UsersContainer extends React.Component<usersPropsType> {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials:true})
-            .then(response => {
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(data => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
             })
     }
-    onPageChanged = (page:number) =>  {
-        this.props.setCurrentPage(page)
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`,{withCredentials:true})
-            .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
 
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        this.props.toggleIsFetching(true)
+
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
+            .then(data => {
+                this.props.toggleIsFetching(false)
+                this.props.setUsers(data.items)
             })
     }
 
