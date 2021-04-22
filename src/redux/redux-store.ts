@@ -1,9 +1,9 @@
-import {combineReducers} from "redux";
+import {applyMiddleware, combineReducers} from "redux";
 import {createStore} from "redux";
 import profileReducer, {addPostActionCreator, setUsersProfile, updateNewPostTextActionCreator} from "./profile-reducer";
 import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 import usersReducer, {
-    follow, getUsersThunkCreator,
+    follow,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress,
@@ -11,10 +11,8 @@ import usersReducer, {
     unFollow,
 } from "./users-reducer";
 import {authReducer} from "./auth-reducer";
-type setUserData = {
-    type:'SET_USER_DATA'             /*support*/
-    data:{userId:number,email:string,login:string}
-}
+import thunkMiddleware from 'redux-thunk'
+
 export type AllActionTypes =
     ReturnType<typeof addPostActionCreator>
     |ReturnType<typeof updateNewPostTextActionCreator>
@@ -27,9 +25,8 @@ export type AllActionTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUsersProfile>
-    | setUserData
+    | ReturnType<typeof setUsers>
     | ReturnType<typeof toggleFollowingProgress>
- |ReturnType<typeof getUsersThunkCreator>
 
 
 let rootReducer = combineReducers({
@@ -42,8 +39,8 @@ let rootReducer = combineReducers({
 export type AppStateType = ReturnType<typeof rootReducer>
 let store = createStore(
     rootReducer,
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunkMiddleware)
 )
 
-
+// (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 export default store
