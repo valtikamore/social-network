@@ -1,4 +1,6 @@
 import {AllActionTypes} from "../../redux-store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../../../api/api";
 
 enum ACTION_PROFILE_REDUCER {
     ADD_POST = 'ADD_POST',
@@ -8,7 +10,16 @@ enum ACTION_PROFILE_REDUCER {
 
 export const addPost = () => ({type: 'ADD_POST'} as const)
 export const updateNewPostText = (text: string) => ({type: 'UPDATE_NEW_POST_TEXT', newText: text} as const)
-export const setUsersProfile = (profile: profileUserFromServer) => ({type: 'SET_USERS_PROFILE', profile} as const)
+export const setUsersProfileSuccess = (profile: profileUserFromServer) => ({type: 'SET_USERS_PROFILE', profile} as const)
+
+export const setUsersProfile = (userId:string) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfileUser(userId)
+            .then(data => {
+                dispatch(setUsersProfileSuccess(data))
+            })
+    }
+}
 
 type postType = {
     id: number

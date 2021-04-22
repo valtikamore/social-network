@@ -1,10 +1,8 @@
 import classes from "./Users.module.scss";
 import userWithoutPhoto from "../../assets/designer.svg";
 import React from "react";
-import {toggleFollowing, userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
+import {userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
 
 type propsType = {
     totalUsersCount: number
@@ -12,20 +10,17 @@ type propsType = {
     onPageChanged: (p: number) => void
     currentPage: number
     users: userFromServer[]
+    followingInProgress: number[]
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-    toggleFollowing: (userId:number , isFetching: boolean) => void
-    followingInProgress: number[]
 }
 
 export const Users = (props: propsType) => {
     const {
         currentPage,
-        follow,
         onPageChanged,
         pageSize,
         totalUsersCount,
-        unFollow,
         users,
         ...rest
     } = props
@@ -49,28 +44,14 @@ export const Users = (props: propsType) => {
             </NavLink>
 
             {u.followed
-                ? <button disabled={rest.followingInProgress.some(id => id === u.id)} onClick={() => {
-                    rest.toggleFollowing(u.id,true)
-                    usersAPI.userUnfollow(u.id)
-                        .then(data => {
-                            if (data.resultCode === 0) {
-                                unFollow(u.id)
-                            }
-                            rest.toggleFollowing(u.id,false)
-                        })
-
-                }}>unFollow </button>
-                : <button disabled={rest.followingInProgress.some(id => id === u.id)} onClick={() => {
-                    rest.toggleFollowing(u.id,true)
-                    usersAPI.userFollow(u.id)
-                        .then(data => {
-                            if (data.resultCode === 0) {
-                                follow(u.id)
-                            }
-                            rest.toggleFollowing(u.id,false)
-                        })
-
-                }}> follow</button>}
+                ? <button disabled={rest.followingInProgress.some(id => id === u.id)}
+                          onClick={() => {
+                              rest.unFollow(u.id)
+                          }}>unFollow </button>
+                : <button disabled={rest.followingInProgress.some(id => id === u.id)}
+                          onClick={() => {
+                              rest.follow(u.id)
+                          }}> follow</button>}
             <div>{u.name}</div>
             <div>{u.status}</div>
         </div>

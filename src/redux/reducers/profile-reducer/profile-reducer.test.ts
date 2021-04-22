@@ -1,4 +1,4 @@
-import profileReducer, {addPost, setUsersProfile, updateNewPostText} from "./profile-reducer"
+import profileReducer, {addPost, setUsersProfileSuccess, updateNewPostText} from "./profile-reducer"
 import {usersReducer} from "../user-reducer/users-reducer";
 
 describe('profile reducer add-post should be ',()=> {
@@ -84,7 +84,7 @@ describe('profile reducer set users', () => {
                 "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
             }
         }
-        const action = setUsersProfile(userProfile)
+        const action = setUsersProfileSuccess(userProfile)
         const endValue = profileReducer(startValue,action)
         expect(endValue.profile).toBeDefined()
         expect(endValue.profile?.aboutMe).toBe("я круто чувак 1001%")

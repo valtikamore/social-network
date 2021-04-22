@@ -47,8 +47,8 @@ let initialState = {
     isFetching: true,
     followingInProgress: [] as number[]
 }
-export const follow = (userId: number) => ({type: 'FOLLOW', userId} as const)
-export const unFollow = (userId: number) => ({type: 'UN_FOLLOW', userId} as const)
+export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId} as const)
+export const unFollowSuccess = (userId: number) => ({type: 'UN_FOLLOW', userId} as const)
 export const setUsers = (users: userFromServer[]) => ({type: 'SET_USERS', users} as const)
 export const setCurrentPage = (page: number) => ({type: 'SET_CURRENT_PAGE', page} as const)
 export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const)
@@ -59,7 +59,7 @@ export const toggleFollowing = (userId: number, isFetching: boolean) => ({
     isFetching
 } as const)
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
         usersAPI.getUsers(currentPage, pageSize)
@@ -70,6 +70,31 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
             })
     }
 }
+export const follow = (userId:number) => {
+    return (dispatch: Dispatch) => {
+       dispatch(toggleFollowing(userId,true))
+        usersAPI.userFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(toggleFollowing(userId,false))
+            })
+    }
+}
+export const unfollow = (userId:number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowing(userId,true))
+        usersAPI.userUnfollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unFollowSuccess(userId))
+                }
+                dispatch(toggleFollowing(userId,false))
+            })
+    }
+}
+
 
 export const usersReducer = (state: initialStateType = initialState, action: AllActionTypes): initialStateType => {
     switch (action.type) {

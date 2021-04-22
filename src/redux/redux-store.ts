@@ -1,15 +1,15 @@
 
-import profileReducer, {addPost, setUsersProfile, updateNewPostText} from "./reducers/profile-reducer/profile-reducer";
+import profileReducer, {addPost, setUsersProfileSuccess, updateNewPostText} from "./reducers/profile-reducer/profile-reducer";
 import dialogsReducer, {
     sendMessageCreator,
     updateNewMessageBodyCreator
 } from "./reducers/dialog-reducer/dialogs-reducer";
 import {
-    follow, toggleFollowing,
+    followSuccess, toggleFollowing,
     setCurrentPage, setTotalUsersCount,
     setUsers,
     toggleIsFetching,
-    unFollow,
+    unFollowSuccess,
     usersReducer
 } from "./reducers/user-reducer/users-reducer";
 import {authReducer, setAuthUserData} from "./reducers/authReducer/authReducer";
@@ -21,13 +21,13 @@ export type AllActionTypes =
     | ReturnType<typeof updateNewPostText>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unFollow>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unFollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
-    | ReturnType<typeof setUsersProfile>
+    | ReturnType<typeof setUsersProfileSuccess>
     |ReturnType<typeof setAuthUserData>
     |ReturnType<typeof toggleFollowing>
 

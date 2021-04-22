@@ -1,10 +1,10 @@
 import {
-    follow, toggleFollowing,
+    followSuccess, toggleFollowing,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
     toggleIsFetching,
-    unFollow,
+    unFollowSuccess,
     usersReducer
 } from "./users-reducer";
 
@@ -39,7 +39,7 @@ describe('usersReducer  should be', () => {
             isFetching: false,
             followingInProgress:[]
         }
-        const action = follow(1)
+        const action = followSuccess(1)
         const endValue = usersReducer(startValue, action)
         expect(endValue.users[0]).toBeTruthy()
     })
@@ -73,7 +73,7 @@ describe('usersReducer  should be', () => {
             isFetching: false,
             followingInProgress:[]
         }
-        const action = unFollow(2)
+        const action = unFollowSuccess(2)
         const endValue = usersReducer(startValue, action)
         expect(endValue.users[1].followed).toBeFalsy()
     })
