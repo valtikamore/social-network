@@ -5,15 +5,12 @@ import {
     getUsers,
     setCurrentPage,
     toggleFollowingProgress,
-    unFollow,
+    unfollow,
     userType
 } from "../../redux/users-reducer";
-
 import React from "react";
-
 import {Users} from "./Users";
 import {Preloader} from "../Preloader/Preloader";
-import {usersAPI} from "../../dal/api";
 
 type MapStatePropsType = {
     users: userType[]
@@ -25,9 +22,8 @@ type MapStatePropsType = {
 }
 type MapDispatchToProps = {
     follow: (userId: number) => void
-    unFollow: (userId: number) => void
+    unfollow: (userId: number) => void
     setCurrentPage: (pageNumber: number) => void
-    toggleFollowingProgress:(isFetching: boolean,userId:number) => void
     getUsers:(currentPage:number,pageSize:number) => void
 }
 export type UsersApiComponentPropsType = MapStatePropsType & MapDispatchToProps
@@ -52,8 +48,7 @@ export class UsersContainer extends React.Component<UsersApiComponentPropsType> 
                 onPageChanged={this.onPageChanged}
                 users={this.props.users}
                 follow={this.props.follow}
-                unFollow={this.props.unFollow}
-                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                unFollow={this.props.unfollow}
                 followingInProgress={this.props.followingInProgress}
             />
         </>
@@ -72,7 +67,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 export default connect(mapStateToProps,
     {
-        follow, unFollow,
         setCurrentPage,
-        toggleFollowingProgress,getUsers
+        toggleFollowingProgress,getUsers,follow,unfollow
     })(UsersContainer)
