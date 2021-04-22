@@ -15,15 +15,15 @@ let initialState = {
     login: null as null | string,
     isAuth: false
 }
-export const setUserData = (userId:number,email:string,login:string) => ({
-    type:'SET_USER_DATA',data:{userId,email,login}} as const )
+export const setUserData = (id:number,email:string,login:string) => ({
+    type:'SET_USER_DATA',data:{id,email,login}} as const )
 
 export const authMe = () => {
     return (dispatch:Dispatch) => {
        usersAPI.authMe()
-            .then(resp => {
-                if(resp.data.resultCode === 0) {
-                    let {id, email, login} = resp.data.data
+            .then(data => {
+                if(data.resultCode === 0) {
+                    let {id, email, login} = data.data
                    dispatch(setUserData(id, email, login))
                 }
             })
