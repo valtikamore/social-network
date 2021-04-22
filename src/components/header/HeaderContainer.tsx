@@ -4,13 +4,13 @@ import {NavLink} from 'react-router-dom'
 import Header from "./Header";
 import axios from "axios";
 import { connect } from "react-redux";
-import {setUserData} from "../../redux/auth-reducer";
+import {authMe, setUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {ProfileServerType} from "../../redux/profile-reducer";
 
 export type HeaderContainerPropsType = MapStatePropsType & MapDispatchToProps
 type MapDispatchToProps = {
-    setUserData: (userId:number,login:string,email:string) => void
+    authMe:()=>void
 }
 type MapStatePropsType = {
     isAuth: boolean
@@ -19,15 +19,7 @@ type MapStatePropsType = {
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
-            withCredentials:true
-        })
-            .then(resp => {
-                if(resp.data.resultCode === 0) {
-                    let {id, email, login} = resp.data.data
-                    this.props.setUserData(id, email, login)
-                }
-        })
+       this.props.authMe()
     }
 
     render() {
@@ -41,4 +33,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login
 })
-export default connect(mapStateToProps,{setUserData}) (HeaderContainer)
+export default connect(mapStateToProps,{authMe}) (HeaderContainer)

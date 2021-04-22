@@ -10,7 +10,7 @@ import usersReducer, {
     toggleIsFetching,
     unFollowSuccess,
 } from "./users-reducer";
-import {authReducer} from "./auth-reducer";
+import {authReducer, setUserData} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
 
 export type AllActionTypes =
@@ -25,8 +25,8 @@ export type AllActionTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUsersProfile>
-    | ReturnType<typeof setUsers>
     | ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof setUserData>
 
 
 let rootReducer = combineReducers({
