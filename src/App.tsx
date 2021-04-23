@@ -11,6 +11,7 @@ import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from './components/users/usersContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
+import {Login} from "./components/login/login";
 const App: React.FC = ()  => {
     return (
             <div className="App">
@@ -23,6 +24,8 @@ const App: React.FC = ()  => {
                            render={() => <DialogsContainer/>}/>
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
+                    <Route path='/login'
+                           render={() => <Login/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
