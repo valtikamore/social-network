@@ -1,5 +1,7 @@
 import {postType} from "./store";
 import {AllActionTypes} from './redux-store'
+import {Dispatch} from "redux";
+import {usersAPI} from "../dal/api";
 
 export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'ADD_POST' ,
@@ -30,7 +32,16 @@ export type ProfileServerType = {
 
 export const addPostActionCreator = () =>  ({type: 'ADD_POST'}as const)
 export const updateNewPostTextActionCreator = (text: string) => ({type: 'UPDATE_NEW_POST_TEXT', newText: text} as const)
-export const setUsersProfile = (profile: null | ProfileServerType ) =>  ({type: 'SET_USERS_PROFILE',profile} as const)
+export const setUsersProfileSuccess = (profile:ProfileServerType ) =>  ({type: 'SET_USERS_PROFILE',profile} as const)
+
+export const setUserProfile = (userId:string) => {
+    return (dispatch:Dispatch) => {
+        usersAPI.getProfileUser(userId)
+            .then(data => {
+                dispatch(setUsersProfileSuccess(data.data))
+            })
+    }
+}
 
 type InitialStateType = typeof initialState
 let initialState = {

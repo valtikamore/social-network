@@ -30,6 +30,12 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    getProfileUser(userId:string) {
+        return instance.get(`profile/${userId}`)
+            .then(data => {
+                return data
+            })
     }
 
 }

@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers} from "redux";
 import {createStore} from "redux";
-import profileReducer, {addPostActionCreator, setUsersProfile, updateNewPostTextActionCreator} from "./profile-reducer";
+import profileReducer, {addPostActionCreator, setUsersProfileSuccess, updateNewPostTextActionCreator} from "./profile-reducer";
 import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 import usersReducer, {
     followSuccess,
@@ -24,7 +24,7 @@ export type AllActionTypes =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
-    | ReturnType<typeof setUsersProfile>
+    | ReturnType<typeof setUsersProfileSuccess>
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setUserData>
 
