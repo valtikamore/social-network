@@ -18,7 +18,7 @@ let initialState = {
 export const setUserData = (id:number,email:string,login:string) => ({
     type:'SET_USER_DATA',data:{id,email,login}} as const )
 
-export const authMe = () => {
+export const getAuthUserData = () => {
     return (dispatch:Dispatch) => {
        authAPI.authMe()
             .then(data => {

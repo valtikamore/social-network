@@ -1,5 +1,5 @@
 import s from "./users.module.css";
-import userWithoutPhoto from "../../assets/imagies/userWithoutPhoto.png";
+import userWithoutPhoto from "../../assets/imagies/icons8-user-male.svg";
 import React, {FC} from "react";
 import {userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
@@ -40,15 +40,6 @@ export const Users: FC<usersPropsType> = props => {
     return (
         <div>
             <div style={{marginBottom: '20px'}}>
-                {/*{pages.map(page => {*/}
-                {/*    return <span*/}
-                {/*        onClick={() => {*/}
-                {/*            onPageChanged(page)*/}
-                {/*        }}*/}
-                {/*        className={currentPage === page ? s.selected : ''}*/}
-
-                {/*    >{page}</span>*/}
-                {/*})}*/}
                 {pageNumbers}
             </div>
             {users.map((user) => {
