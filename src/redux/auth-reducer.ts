@@ -1,7 +1,7 @@
 import {AllActionTypes} from "./redux-store";
 import {Dispatch} from "redux";
 import axios from "axios";
-import {usersAPI} from "../dal/api";
+import {authAPI, usersAPI} from "../dal/api";
 
 export enum AUTH_ACTIONS_TYPE {
     SET_USER_DATA = 'SET_USER_DATA' ,
@@ -20,7 +20,7 @@ export const setUserData = (id:number,email:string,login:string) => ({
 
 export const authMe = () => {
     return (dispatch:Dispatch) => {
-       usersAPI.authMe()
+       authAPI.authMe()
             .then(data => {
                 if(data.resultCode === 0) {
                     let {id, email, login} = data.data

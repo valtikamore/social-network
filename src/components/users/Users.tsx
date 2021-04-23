@@ -3,19 +3,19 @@ import userWithoutPhoto from "../../assets/imagies/userWithoutPhoto.png";
 import React, {FC} from "react";
 import {userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 type usersPropsType = {
     totalUsersCount: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
     users: userType[]
-    follow: (userId: number) => void
-    unFollow: (userId: number) => void
     pageSize: number
     followingInProgress: number[]
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 export const Users: FC<usersPropsType> = props => {
+    debugger
     const {
         users,
         currentPage,
@@ -24,7 +24,7 @@ export const Users: FC<usersPropsType> = props => {
         onPageChanged,
         followingInProgress,
         follow,
-        unFollow,
+        unfollow,
         ...rest
     } = props
 
@@ -33,17 +33,23 @@ export const Users: FC<usersPropsType> = props => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+    const pageNumbers = pages.map((p, i) => <span
+        onClick={() => onPageChanged(p)}
+        key={i} className={currentPage === p ? s.selected : ''}
+    >{p}</span>)
     return (
         <div>
             <div style={{marginBottom: '20px'}}>
-                {pages.map(page => {
-                    return <span
-                        className={currentPage === page ? s.selected : ''}
-                        onClick={() => {
-                            onPageChanged(page)
-                        }}
-                    >{page}</span>
-                })}
+                {/*{pages.map(page => {*/}
+                {/*    return <span*/}
+                {/*        onClick={() => {*/}
+                {/*            onPageChanged(page)*/}
+                {/*        }}*/}
+                {/*        className={currentPage === page ? s.selected : ''}*/}
+
+                {/*    >{page}</span>*/}
+                {/*})}*/}
+                {pageNumbers}
             </div>
             {users.map((user) => {
                 return (
@@ -60,7 +66,7 @@ export const Users: FC<usersPropsType> = props => {
                             {user.followed
                                 ? <button disabled={followingInProgress.some(id => id === user.id)}
                                           onClick={() => {
-                                              unFollow(user.id)
+                                              unfollow(user.id)
                                           }}>
                                     Unfollow</button>
                                 : <button disabled={followingInProgress.some(id => id === user.id)}

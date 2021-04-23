@@ -47,7 +47,7 @@ export class UsersContainer extends React.Component<UsersApiComponentPropsType> 
                 onPageChanged={this.onPageChanged}
                 users={this.props.users}
                 follow={this.props.follow}
-                unFollow={this.props.unfollow}
+                unfollow={this.props.unfollow}
                 followingInProgress={this.props.followingInProgress}
             />
         </>
