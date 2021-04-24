@@ -10,23 +10,23 @@ export enum PROFILE_ACTIONS_TYPE {
 }
 
 export type ProfileServerType = {
-    aboutMe: string
+    aboutMe: string  |null
     contacts: {
-        facebook: string
-        website: string
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: string
-        github: string
-        mainLink: string     }
+        facebook: string |null
+        website: string |null
+        vk: string |null
+        twitter: string |null
+        instagram: string |null
+        youtube: string |null
+        github: string |null
+        mainLink: string   |null       }
     lookingForAJob: boolean,
-    lookingForAJobDescription: string
+    lookingForAJobDescription: string | null
     fullName: string
     userId: number
     photos: {
-        small: string,
-        large: string
+        small: string | null,
+        large: string | null
     }
 }
 
