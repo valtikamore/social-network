@@ -4,7 +4,6 @@ import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 
 import {DialogsPropsType} from "./DialogsContainer";
-import { Redirect } from 'react-router-dom';
 
 const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNewMessageBody,isAuth}) => {
     let dialogsElements = dialogsPage.dialogs
@@ -21,7 +20,6 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNe
        let body =  e.currentTarget.value
         sendMessage(body)
     }
-    if(!isAuth) return <Redirect to={'/login'}/>
     return (
         <div className={classes.dialogs}>
             <h2 className={classes.dialogsHeader}> Dialogs</h2>
