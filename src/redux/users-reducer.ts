@@ -91,6 +91,7 @@ export const unfollow = (userId: number) => {
 }
 
 
+
 export const usersReducer = (state: InitialStateType = initialState, action: AllActionTypes): InitialStateType => {
     switch (action.type) {
         case USERS_ACTIONS_TYPE.FOLLOW :

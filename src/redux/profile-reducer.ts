@@ -50,7 +50,7 @@ export const getUserStatus = (userId: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.getUserStatus(userId)
             .then(response => {
-                dispatch(setUserStatus(response.data.status))
+                dispatch(setUserStatus(response.data))
             })
     }
 }
@@ -59,7 +59,7 @@ export const updateUserStatus = (status: string) => {
         profileAPI.updateUserStatus(status)
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setUserStatus(response.data.status))
+                    dispatch(setUserStatus(status))
                 }
             })
     }
@@ -72,7 +72,7 @@ let initialState = {
         {id: 1, message: 'Hello bro', likeCount: 0},
     ] as Array<postType>,
     profile: null as null | ProfileServerType,
-    status: 'Yo'
+    status: ''
 }
 const profileReducer = (state: ProfileInitialStateType = initialState, action: AllActionTypes): ProfileInitialStateType => {
     switch (action.type) {
