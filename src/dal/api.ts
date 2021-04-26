@@ -21,13 +21,22 @@ export const usersAPI = {
 
     getProfileUser(userId: string) {
         console.log('Please use profileAPI ti get users.')
-        return profileAPI.getProfileUser(userId)
+        return profileAPI.getUserProfile(userId)
     }
 
 }
 export const profileAPI = {
-    getProfileUser(userId: string) {
+    getUserProfile(userId: string) {
         return instance.get(`profile/${userId}`)
+    },
+    getUserStatus(userId: string) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateUserStatus(status: string) {
+        debugger
+        return instance.put(`profile/status`, {
+            status: status
+        })
     }
 
 }

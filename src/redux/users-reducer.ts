@@ -1,7 +1,6 @@
 import {AllActionTypes} from "./redux-store"
 import {Dispatch} from "redux";
 import {usersAPI} from "../dal/api";
-import axios from "axios";
 
 export enum USERS_ACTIONS_TYPE {
     FOLLOW = 'FOLLOW',
@@ -59,10 +58,10 @@ export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
         usersAPI.getUsers(currentPage, pageSize)
-            .then(data => {
+            .then(response => {
                 dispatch(toggleIsFetching(false))
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
+                dispatch(setUsers(response.data.items))
+                dispatch(setTotalUsersCount(response.data.totalCount))
         })
     }
 }
@@ -70,8 +69,8 @@ export const follow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.follow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
+            .then(response => {
+                if (response.data.resultCode === 0) {
                     dispatch(followSuccess(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId))
@@ -82,8 +81,8 @@ export const unfollow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))
         usersAPI.unfollow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
+            .then(response => {
+                if (response.data.resultCode === 0) {
                     dispatch(unFollowSuccess(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId))

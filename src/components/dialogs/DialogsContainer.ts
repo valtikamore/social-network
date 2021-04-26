@@ -1,5 +1,4 @@
-import {dialogsPage} from "../../redux/store";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {DialogsPageStateType, sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
@@ -7,7 +6,7 @@ import {compose, Dispatch} from 'redux';
 import {WithAuthRedirect} from "../../Hoc/withAuthRedirect";
 
 type MapStatePropsType = {
-    dialogsPage: dialogsPage
+    dialogsPage: DialogsPageStateType
 }
 type MapDispatchToProps = {
     updateNewMessageBody: () => void

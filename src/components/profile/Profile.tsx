@@ -8,12 +8,16 @@ import {ProfileServerType} from "../../redux/profile-reducer";
 
 export type ProfilePropsType = {
     profile: null | ProfileServerType
+    status:string
+    updateStatus:(status:string) => void
 }
 
-const Profile: React.FC<ProfilePropsType> = ({profile}) => {
+const Profile: React.FC<ProfilePropsType> =( { profile, status, updateStatus})=> {
+    debugger
+
     return (
         <div className={classes.profile}>
-            <ProfileInfo profile={profile} />
+            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
             <MyPostsCountainer  />
         </div>
     )

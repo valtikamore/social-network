@@ -2,28 +2,31 @@ import React from "react";
 
 export type EditableSpanPropsType = {
     status: string
+    updateStatus: (status: string) => void
 }
 
 
 export class ProfileStatus extends React.Component<EditableSpanPropsType> {
     state = {
-        value: 'Yo',
+        status: this.props.status,
         editMode: true
     }
 
     onDoubleClick = () => {
         this.setState({...this.state, editMode: false})
     }
-    onBlur = () => {
+    onBlur = (e: any) => {
         this.setState({...this.state, editMode: true})
+        this.props.updateStatus(e.currentTarget.value)
     }
     onChange = (e: any) => {
-        this.setState({...this.state, value: e.currentTarget.value})
+        this.setState({...this.state, status: e.currentTarget.value})
 
     }
     onEnter = (e: any) => {
         if (e.key === 'Enter') {
             this.setState({...this.state, editMode: true, value: e.currentTarget.value})
+            this.props.updateStatus(e.currentTarget.value)
         }
     }
 
@@ -32,14 +35,17 @@ export class ProfileStatus extends React.Component<EditableSpanPropsType> {
         return (
             <div>
                 {this.state.editMode
-                    ? <span onDoubleClick={this.onDoubleClick}>{this.state.value}</span>
+                    ? <span
+                        onDoubleClick={this.onDoubleClick}
+                        onTouchStart={this.onDoubleClick}>{!this.props.status ? 'hey' : this.props.status}</span>
                     : <input
                         type="text"
                         onBlur={this.onBlur}
-                        value={this.state.value}
+                        value={this.state.status}
                         autoFocus
                         onChange={this.onChange}
-                        onKeyPress={this.onEnter}/>
+                        onKeyPress={this.onEnter}
+                    />
                 }
 
 
@@ -47,6 +53,7 @@ export class ProfileStatus extends React.Component<EditableSpanPropsType> {
 
         )
     }
+
 }
 
 export default ProfileStatus

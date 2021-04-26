@@ -5,6 +5,7 @@ import {HeaderContainerPropsType} from "./HeaderContainer";
 
 
 const Header: FC<HeaderContainerPropsType> = props => {
+    debugger
     const {
         login,
         isAuth,
@@ -19,7 +20,7 @@ const Header: FC<HeaderContainerPropsType> = props => {
                     : <MemoryRouter>
                         <NavLink to='/login'>Login</NavLink>
                     </MemoryRouter>
-                    }
+                }
             </div>
         </header>
     )

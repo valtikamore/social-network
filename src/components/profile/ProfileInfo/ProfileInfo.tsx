@@ -6,8 +6,7 @@ import userWithoutPhoto from '../../../assets/imagies/icons8-user-male.svg'
 import ProfileStatus from "./profileStatus";
 
 
-const ProfileInfo: FC<ProfilePropsType> = ({profile}) => {
-    debugger
+const ProfileInfo: FC<ProfilePropsType> = ({profile ,status ,updateStatus}) => {
     if (!profile) {
         return <Preloader/>
     } else {
@@ -15,7 +14,9 @@ const ProfileInfo: FC<ProfilePropsType> = ({profile}) => {
             <div>
                 <div className={classes.content}>
                     <img src={profile.photos.small ? profile.photos.small : userWithoutPhoto} alt=""/>
-                    <ProfileStatus status={'ssss'} />
+
+                    <ProfileStatus status={status} updateStatus={updateStatus}/>
+
                     <div> {profile.fullName} </div>
                     <div> {profile.aboutMe} </div>
                     <ul>

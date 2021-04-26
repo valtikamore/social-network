@@ -1,25 +1,27 @@
 import {postType} from "./store";
 import {AllActionTypes} from './redux-store'
 import {Dispatch} from "redux";
-import {usersAPI} from "../dal/api";
+import {profileAPI, usersAPI} from "../dal/api";
 
 export enum PROFILE_ACTIONS_TYPE {
-    ADD_POST = 'ADD_POST' ,
+    ADD_POST = 'ADD_POST',
     UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT',
-    SET_USERS_PROFILE = 'SET_USERS_PROFILE'
+    SET_USERS_PROFILE = 'SET_USERS_PROFILE',
+    SET_STATUS = 'SET_STATUS'
 }
 
 export type ProfileServerType = {
-    aboutMe: string  |null
+    aboutMe: string | null
     contacts: {
-        facebook: string |null
-        website: string |null
-        vk: string |null
-        twitter: string |null
-        instagram: string |null
-        youtube: string |null
-        github: string |null
-        mainLink: string   |null       }
+        facebook: string | null
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
+    }
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null
     fullName: string
@@ -30,28 +32,49 @@ export type ProfileServerType = {
     }
 }
 
-export const addPostActionCreator = () =>  ({type: 'ADD_POST'}as const)
+export const addPostActionCreator = () => ({type: 'ADD_POST'} as const)
 export const updateNewPostTextActionCreator = (text: string) => ({type: 'UPDATE_NEW_POST_TEXT', newText: text} as const)
-export const setUsersProfileSuccess = (profile:ProfileServerType ) =>  ({type: 'SET_USERS_PROFILE',profile} as const)
+export const setUsersProfileSuccess = (profile: ProfileServerType) => ({type: 'SET_USERS_PROFILE', profile} as const)
+export const setUserStatus = (status: string) => ({type: 'SET_STATUS', status} as const)
 
-export const setUserProfile = (userId:string) => {
-    return (dispatch:Dispatch) => {
+export const setUserProfile = (userId: string) => {
+    return (dispatch: Dispatch) => {
         usersAPI.getProfileUser(userId)
-            .then(data => {
-                dispatch(setUsersProfileSuccess(data.data))
+            .then(response => {
+                dispatch(setUsersProfileSuccess(response.data))
             })
     }
 }
 
-type InitialStateType = typeof initialState
+export const getUserStatus = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getUserStatus(userId)
+            .then(response => {
+                dispatch(setUserStatus(response.data.status))
+            })
+    }
+}
+export const updateUserStatus = (status: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.updateUserStatus(status)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUserStatus(response.data.status))
+                }
+            })
+    }
+}
+
+export type ProfileInitialStateType = typeof initialState
 let initialState = {
     newPostText: '',
     posts: [
         {id: 1, message: 'Hello bro', likeCount: 0},
-    ]  as Array<postType> ,
-    profile: null as null | ProfileServerType
+    ] as Array<postType>,
+    profile: null as null | ProfileServerType,
+    status: 'Yo'
 }
-const profileReducer = (state: InitialStateType = initialState, action: AllActionTypes):InitialStateType => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: AllActionTypes): ProfileInitialStateType => {
     switch (action.type) {
         case PROFILE_ACTIONS_TYPE.ADD_POST : {
             let newPost: postType = {
@@ -78,6 +101,11 @@ const profileReducer = (state: InitialStateType = initialState, action: AllActio
             return {
                 ...state,
                 profile: action.profile
+            }
+        }
+        case PROFILE_ACTIONS_TYPE.SET_STATUS : {
+            return {
+                ...state, status: action.status
             }
         }
         default :
