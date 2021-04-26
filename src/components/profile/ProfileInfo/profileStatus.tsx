@@ -1,4 +1,5 @@
 import React from "react";
+import { ProfileInitialStateType } from "../../../redux/profile-reducer";
 
 export type EditableSpanPropsType = {
     status: string
@@ -10,6 +11,13 @@ export class ProfileStatus extends React.Component<EditableSpanPropsType> {
     state = {
         status: this.props.status,
         editMode: true
+    }
+    componentDidUpdate(prevProps:EditableSpanPropsType,prevState:ProfileInitialStateType) {
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                status:this.props.status
+            })
+        }
     }
 
     onDoubleClick = () => {

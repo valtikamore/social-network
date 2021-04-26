@@ -4,10 +4,10 @@ type PreloaderPropsType = {
 
 }
 
-export const Preloader:FC<PreloaderPropsType> =  ({}) => {
+export const Preloader:FC<PreloaderPropsType> = () => {
     return (
         <img style={{position: 'absolute', top: '40%', left: '50%'}}
-             src={preloader} alt="Photo"
+             src={preloader} alt="Packman"
         />
     )
 }

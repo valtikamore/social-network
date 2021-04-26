@@ -25,7 +25,6 @@ export const Users: FC<usersPropsType> = props => {
         followingInProgress,
         follow,
         unfollow,
-        ...rest
     } = props
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
@@ -50,7 +49,7 @@ export const Users: FC<usersPropsType> = props => {
                                  src={user.photos.small !== null
                                      ? user.photos.small
                                      : userWithoutPhoto}
-                                 alt='photo'/>
+                                 alt='animated-user'/>
                         </NavLink>
 
                         <div className={s.follow}>

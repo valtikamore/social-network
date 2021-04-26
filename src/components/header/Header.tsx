@@ -5,15 +5,13 @@ import {HeaderContainerPropsType} from "./HeaderContainer";
 
 
 const Header: FC<HeaderContainerPropsType> = props => {
-    debugger
     const {
         login,
         isAuth,
-        ...rest
     } = props
     return (
         <header className={classes.header}>
-            <img src="https://i.pinimg.com/originals/40/a9/fd/40a9fd835e04c97b9329a48cec0a236e.png" alt=""/>
+            <img src="https://i.pinimg.com/originals/40/a9/fd/40a9fd835e04c97b9329a48cec0a236e.png" alt="animated-boy"/>
             <div className={classes.loginBlock}>
                 {isAuth
                     ? login

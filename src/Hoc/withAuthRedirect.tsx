@@ -7,7 +7,7 @@ type mapStateToProps = {
     isAuth:boolean
 }
 
-const mapStateToProps = (state:AppStateType) : mapStateToProps => {
+const mstp = (state:AppStateType) : mapStateToProps => {
     return {
         isAuth:state.auth.isAuth
     }
@@ -21,7 +21,7 @@ export function WithAuthRedirect <T>(Component:ComponentType<T>)  {
         }
         return <Component {...rest as T}/>
     }
-    let ConnectedRedirectComponent = connect(mapStateToProps)(RedirectComponent)
+    let ConnectedRedirectComponent = connect(mstp)(RedirectComponent)
 
     return ConnectedRedirectComponent
 }

@@ -1,15 +1,7 @@
 import React, {ChangeEvent} from "react";
-import { postType} from "../../../redux/store";
 import classes from "./MyPosts.module.css"
 import { MyPostPropsType } from "./MyPostsCountainer";
 import Post from "./Post/Post";
-
-
-
-
-
-
-
 
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
 

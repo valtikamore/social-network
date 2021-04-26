@@ -22,7 +22,6 @@ export const getAuthUserData = () => {
         authAPI.authMe()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    debugger
                      let {userId, email, login} = response.data.data
                     dispatch(setUserData(userId, email, login))
                 }
@@ -34,7 +33,6 @@ export const getAuthUserData = () => {
 export const authReducer = (state:initialStateType = initialState,action:AllActionTypes):initialStateType => {
      switch (action.type) {
          case AUTH_ACTIONS_TYPE.SET_USER_DATA: {
-             debugger
              return {
                  ...state,
                  ...action.data,
