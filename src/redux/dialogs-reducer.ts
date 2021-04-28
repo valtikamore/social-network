@@ -30,24 +30,15 @@ let initialState = {
         {id: 2, message: 'How is your s ds'},
         {id: 3, message: 'Hihihihih'},
     ] as messageType[],
-    newMessageBody: ''
 }
 const dialogsReducer = (state: DialogsPageStateType = initialState, action: AllActionTypes): DialogsPageStateType => {
 
     switch (action.type) {
-        case DIALOGS_ACTIONS_TYPE.UPDATE_NEW_MESSAGE_BODY :
-            return  {
-                ...state,
-                newMessageBody: action.body
-            }
-
         case DIALOGS_ACTIONS_TYPE.SEND_MESSAGE:
-            let body = state.newMessageBody
-            let newMessage: messageType = {id: 6, message: body,}
-            if (body !== '') {
+            let newMessage: messageType = {id: 6, message: action.messageText}
+            if (action.messageText !== '') {
                 return {
                     ...state,
-                    newMessageBody: '',
                     messages: [...state.messages, newMessage]
                 }
             }
@@ -57,6 +48,6 @@ const dialogsReducer = (state: DialogsPageStateType = initialState, action: AllA
             return state
     }
 }
-export const sendMessageCreator = () => ({type: 'SEND_MESSAGE'}as const )
-export const updateNewMessageBodyCreator = (body: string) => ({type: 'UPDATE_NEW_MESSAGE_BODY', body}as const)
+export const sendMessageCreator = (messageText:string) => ({type: 'SEND_MESSAGE',messageText}as const )
+
 export default dialogsReducer

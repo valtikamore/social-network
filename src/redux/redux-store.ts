@@ -4,9 +4,8 @@ import profileReducer, {
     addPostActionCreator,
     setUsersProfileSuccess,
     setUserStatus,
-    updateNewPostTextActionCreator
 } from "./profile-reducer";
-import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import dialogsReducer, {sendMessageCreator} from "./dialogs-reducer";
 import usersReducer, {
     followSuccess,
     setCurrentPage,
@@ -22,9 +21,9 @@ import { reducer as formReducer } from 'redux-form'
 
 export type AllActionTypes =
     ReturnType<typeof addPostActionCreator>
-    |ReturnType<typeof updateNewPostTextActionCreator>
+    // |ReturnType<typeof updateNewPostTextActionCreator>
     |ReturnType<typeof sendMessageCreator>
-    |ReturnType<typeof updateNewMessageBodyCreator>
+    // |ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unFollowSuccess>
     | ReturnType<typeof setUsers>

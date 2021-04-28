@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Profile.module.css"
 
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsCountainer from "./MyPosts/MyPostsCountainer";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileServerType} from "../../redux/profile-reducer";
 
 
@@ -16,7 +16,7 @@ const Profile: React.FC<ProfilePropsType> =( { profile, status, updateStatus})=>
     return (
         <div className={classes.profile}>
             <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
-            <MyPostsCountainer  />
+            <MyPostsContainer  />
         </div>
     )
 }

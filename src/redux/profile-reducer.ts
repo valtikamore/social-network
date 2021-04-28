@@ -5,7 +5,7 @@ import {profileAPI, usersAPI} from "../dal/api";
 
 export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'ADD_POST',
-    UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT',
+    // UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT',
     SET_USERS_PROFILE = 'SET_USERS_PROFILE',
     SET_STATUS = 'SET_STATUS'
 }
@@ -32,8 +32,8 @@ export type ProfileServerType = {
     }
 }
 
-export const addPostActionCreator = () => ({type: 'ADD_POST'} as const)
-export const updateNewPostTextActionCreator = (text: string) => ({type: 'UPDATE_NEW_POST_TEXT', newText: text} as const)
+export const addPostActionCreator = (newPostText:string) => ({type: 'ADD_POST',newPostText} as const)
+
 export const setUsersProfileSuccess = (profile: ProfileServerType) => ({type: 'SET_USERS_PROFILE', profile} as const)
 export const setUserStatus = (status: string) => ({type: 'SET_STATUS', status} as const)
 
@@ -67,7 +67,6 @@ export const updateUserStatus = (status: string) => {
 
 export type ProfileInitialStateType = typeof initialState
 let initialState = {
-    newPostText: '',
     posts: [
         {id: 1, message: 'Hello bro', likeCount: 0},
     ] as Array<postType>,
@@ -79,23 +78,16 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: A
         case PROFILE_ACTIONS_TYPE.ADD_POST : {
             let newPost: postType = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likeCount: 0
             }
-            if (state.newPostText !== '') {
+            if (action.newPostText !== '') {
                 return {
                     ...state,
                     posts: [...state.posts, newPost],
-                    newPostText: ''
                 }
             }
             return state
-        }
-        case PROFILE_ACTIONS_TYPE.UPDATE_NEW_POST_TEXT : {
-            return {
-                ...state,
-                newPostText: action.newText
-            }
         }
         case PROFILE_ACTIONS_TYPE.SET_USERS_PROFILE : {
             return {

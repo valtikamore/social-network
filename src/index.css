@@ -4,9 +4,10 @@
     box-sizing: border-box;
 }
 
-a {
+a,input {
     text-decoration: none;
     color: inherit;
+    display: block;
 }
 
 

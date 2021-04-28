@@ -3,14 +3,14 @@ import './App.css';
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import { Route} from 'react-router-dom';
-import News from "./components/News/News";
-import Music from './components/Music/Music';
-import Settings from "./components/Settings/Settings";
+import News from "./pages/News/News";
+import Music from './pages/Music/Music';
+import Settings from "./pages/Settings/Settings";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
-import UsersContainer from './components/users/usersContainer';
+import UsersContainer from './pages/users/usersContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
-import {LoginPage} from "./components/login/loginPage";
+import {LoginPage} from "./pages/login/loginPage";
 const App: React.FC = ()  => {
     return (
             <div className="App">

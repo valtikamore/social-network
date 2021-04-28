@@ -11,8 +11,11 @@ export const LoginForm:FC<InjectedFormProps<formDataType>> = (props) => {
         <form onSubmit={props.handleSubmit}>
             <Field  placeholder={'Login'} component={'input'} name={'login'}/>
             <Field  placeholder={'password'} component={'input'} name={'password'}/>
-            <Field type="checkbox" component={'input'} name={'rememberMe'}/>
-            <label>remember me</label>
+            <div style={{display:"flex",alignItems:"center"}}>
+                <Field type="checkbox" component={'input'} name={'rememberMe'} />
+                <label htmlFor="{'rememberMe'}">remember me</label>
+            </div>
+
             <button>Login</button>
         </form>
     )
