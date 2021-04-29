@@ -6,9 +6,9 @@ import { Route} from 'react-router-dom';
 import News from "./pages/News/News";
 import Music from './pages/Music/Music';
 import Settings from "./pages/Settings/Settings";
-import DialogsContainer from "./components/dialogs/DialogsContainer";
+import DialogsContainer from "./pages/dialogs/DialogsContainer";
 import UsersContainer from './pages/users/usersContainer';
-import ProfileContainer from './components/profile/ProfileContainer';
+import ProfileContainer from './pages/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
 import {LoginPage} from "./pages/login/loginPage";
 const App: React.FC = ()  => {

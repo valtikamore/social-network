@@ -9,7 +9,7 @@ import {
 } from "../../redux/users-reducer";
 import React from "react";
 import {Users} from "./Users";
-import {Preloader} from "../../components/Preloader/Preloader";
+import {Preloader} from "../../components/common/Preloader/Preloader";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../Hoc/withAuthRedirect";
 

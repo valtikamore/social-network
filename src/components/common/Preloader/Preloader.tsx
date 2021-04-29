@@ -1,4 +1,4 @@
-import preloader from "../../assets/imagies/Bean Eater-1.2s-197px.svg";
+import preloader from "../../../assets/imagies/Bean Eater-1.2s-197px.svg";
 import React, {FC} from "react";
 type PreloaderPropsType = {
 

@@ -1,0 +1,22 @@
+.fromControl{
+    padding: 5px;
+    font-size: 22px;
+    border-width: 3px;
+    border-color: #ebd3d3;
+    background-color: #f2d1d1;
+    color: #000000;
+    border-style: solid;
+    border-radius: 6px;
+    box-shadow: -1px 0 7px rgba(66,66,66,.58);
+    text-shadow: 0 0 2px rgba(66,66,66,.75);
+    resize: none;
+}
+.fromControl:focus {
+    outline:none;
+}
+.error{
+    border: 2px solid red;
+}
+.invalidText {
+    color: red;
+}
