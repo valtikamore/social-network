@@ -20,6 +20,11 @@ export type userType = {
     }
     followed: boolean
 }
+export type authDataType = {
+    id: number
+    email: string
+    login: string
+}
 export type userProfileType = {
     aboutMe: string
     contacts: {
@@ -58,7 +63,7 @@ export const usersAPI = {
     },
     // maybe refactor
     unfollow(userId: number) {
-        return instance.delete<ResponseType<userType>>(`follow/${userId}`)
+        return instance.delete<ResponseType>(`follow/${userId}`)
     },
 
     getProfileUser(userId: string) {
@@ -83,7 +88,18 @@ export const profileAPI = {
 }
 export const authAPI = {
     authMe() {
-        return instance.get(`auth/me`)
+        return instance.get<ResponseType<authDataType>>(`auth/me`)
     },
+    login(email:string,password:string,rememberMe:boolean=false,captcha:boolean) {
+        return instance.post<ResponseType<{userId:number}>>(`auth/login` , {
+            email,
+            password,
+            rememberMe,
+            captcha
+        })
+    },
+    logout() {
+        return instance.delete<ResponseType>(`auth/login`)
+    }
 }
 

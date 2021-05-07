@@ -22,8 +22,8 @@ export const getAuthUserData = () => {
         authAPI.authMe()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                     let {userId, email, login} = response.data.data
-                    dispatch(setUserData(userId, email, login))
+                    let {id, email, login} = response.data.data
+                    dispatch(setUserData(id, email, login))
                 }
             })
     }
