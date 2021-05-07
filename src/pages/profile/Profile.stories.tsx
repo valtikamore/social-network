@@ -1,5 +1,3 @@
-
-
 import {Meta, Story} from "@storybook/react";
 import Profile, {ProfilePropsType} from "./Profile";
 import {ReduxStoreProviderDecorator} from "../../AppProviderFecorator";
@@ -14,10 +12,10 @@ export default {
 const Template: Story<ProfilePropsType> = (args) => <Profile {...args}/>
 
 const baseArgs = {
-    profile:  {
+    profile: {
         aboutMe: 'Iam super serious engineer',
         contacts: {
-            facebook: null,
+            facebook: 'ssss',
             website: 'ssss',
             vk: 'ssss',
             twitter: 'ssss',
@@ -43,5 +41,5 @@ ProfilePageWithUser.args = {
 export const ProfilePageWithoutUserExample = Template.bind({})
 ProfilePageWithoutUserExample.args = {
     ...baseArgs,
-    profile:null
+    profile: null
 }

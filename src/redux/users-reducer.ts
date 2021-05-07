@@ -1,6 +1,6 @@
 import {AllActionTypes} from "./redux-store"
 import {Dispatch} from "redux";
-import {usersAPI} from "../dal/api";
+import {usersAPI, userType} from "../dal/api";
 
 export enum USERS_ACTIONS_TYPE {
     FOLLOW = 'FOLLOW',
@@ -10,17 +10,6 @@ export enum USERS_ACTIONS_TYPE {
     SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
     TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
     TOGGLE_IS_FETCHING_PROGRESS = 'TOGGLE_IS_FETCHING_PROGRESS'
-}
-
-export type userType = {
-    id: number
-    name: string
-    status: string
-    photos: {
-        small?: string
-        large?: string
-    }
-    followed: boolean
 }
 
 export type serverUsers = {

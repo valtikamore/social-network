@@ -3,11 +3,11 @@ import classes from "./Profile.module.css"
 
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfileServerType} from "../../redux/profile-reducer";
+import {userProfileType} from "../../dal/api";
 
 
 export type ProfilePropsType = {
-    profile: null | ProfileServerType
+    profile: null | userProfileType
     status:string
     updateStatus:(status:string) => void
 }

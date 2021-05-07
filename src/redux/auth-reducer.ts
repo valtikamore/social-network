@@ -28,6 +28,18 @@ export const getAuthUserData = () => {
             })
     }
 }
+// export const login = (email,password,rememberMe) => {
+//     return (dispatch:Dispatch) => {
+//         authAPI.authMe()
+//             .then(response => {
+//                 if (response.data.resultCode === 0) {
+//                     let {userId, email, login} = response.data.data
+//                     dispatch(setUserData(userId, email, login))
+//                 }
+//             })
+//     }
+// }
+
 
 
 export const authReducer = (state:initialStateType = initialState,action:AllActionTypes):initialStateType => {

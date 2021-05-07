@@ -1,7 +1,7 @@
 
 import {AllActionTypes} from './redux-store'
 import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../dal/api";
+import {profileAPI, userProfileType, usersAPI} from "../dal/api";
 
 export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'ADD_POST',
@@ -14,31 +14,11 @@ export type postType ={
     likeCount: number
 }
 
-export type ProfileServerType = {
-    aboutMe: string | null
-    contacts: {
-        facebook: string | null
-        website: string | null
-        vk: string | null
-        twitter: string | null
-        instagram: string | null
-        youtube: string | null
-        github: string | null
-        mainLink: string | null
-    }
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string | null
-    fullName: string
-    userId: number
-    photos: {
-        small: string | null,
-        large: string | null
-    }
-}
+
 
 export const addPostActionCreator = (newPostText:string) => ({type: 'ADD_POST',newPostText} as const)
 
-export const setUsersProfileSuccess = (profile: ProfileServerType) => ({type: 'SET_USERS_PROFILE', profile} as const)
+export const setUsersProfileSuccess = (profile: userProfileType) => ({type: 'SET_USERS_PROFILE', profile} as const)
 export const setUserStatus = (status: string) => ({type: 'SET_STATUS', status} as const)
 
 export const setUserProfile = (userId: string) => {
@@ -75,7 +55,7 @@ let initialState = {
     posts: [
         {id: 1, message: 'Hello bro', likeCount: 0},
     ] as Array<postType>,
-    profile: null as null | ProfileServerType,
+    profile: null as null | userProfileType,
     status: ''
 }
 const profileReducer = (state: ProfileInitialStateType = initialState, action: AllActionTypes): ProfileInitialStateType => {

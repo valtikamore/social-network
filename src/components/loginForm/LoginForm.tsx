@@ -18,7 +18,6 @@ export const LoginForm:FC<InjectedFormProps<formDataType>> = (props) => {
                 <Field type="checkbox" component={'input'} name={'rememberMe'} />
                 <label htmlFor="{'rememberMe'}">remember me</label>
             </div>
-
             <button>Login</button>
         </form>
     )

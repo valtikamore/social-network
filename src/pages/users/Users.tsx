@@ -1,8 +1,8 @@
 import s from "./users.module.css";
 import userWithoutPhoto from "../../assets/imagies/icons8-user-male.svg";
 import React, {FC} from "react";
-import {userType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import {userType} from "../../dal/api";
 
 type usersPropsType = {
     totalUsersCount: number

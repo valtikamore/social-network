@@ -4,14 +4,14 @@ import {
     follow,
     getUsers,
     setCurrentPage,
-    unfollow,
-    userType
+    unfollow
 } from "../../redux/users-reducer";
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../../components/common/Preloader/Preloader";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../Hoc/withAuthRedirect";
+import {userType} from "../../dal/api";
 
 type MapStatePropsType = {
     users: userType[]

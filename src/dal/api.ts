@@ -1,5 +1,46 @@
 import axios from "axios";
 
+export type userResponseType = {
+    items : userType[]
+    totalCount: number
+    error: string
+}
+export interface ResponseType<T = {}> {
+    resultCode: number
+    messages: string[],
+    data: T
+}
+export type userType = {
+    id: number
+    name: string
+    status: string
+    photos: {
+        small: string
+        large: string
+    }
+    followed: boolean
+}
+export type userProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string
+        github: string
+        mainLink: string
+    }
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
 
 const instance = axios.create({
     withCredentials: true,
@@ -10,13 +51,14 @@ const instance = axios.create({
 })
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<userResponseType>(`users?page=${currentPage}&count=${pageSize}`)
     },
     follow(userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post<ResponseType<userType>>(`follow/${userId}`)
     },
+    // maybe refactor
     unfollow(userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete<ResponseType<userType>>(`follow/${userId}`)
     },
 
     getProfileUser(userId: string) {
@@ -27,14 +69,13 @@ export const usersAPI = {
 }
 export const profileAPI = {
     getUserProfile(userId: string) {
-        return instance.get(`profile/${userId}`)
+        return instance.get<userProfileType>(`profile/${userId}`)
     },
     getUserStatus(userId: string) {
         return instance.get(`profile/status/${userId}`)
     },
     updateUserStatus(status: string) {
-        debugger
-        return instance.put(`profile/status`, {
+        return instance.put<ResponseType<userType>>(`profile/status`, {
             status: status
         })
     }

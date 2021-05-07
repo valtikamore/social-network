@@ -1,10 +1,11 @@
 import React from 'react';
 import Profile from "./Profile";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserStatus, ProfileServerType, setUserProfile, updateUserStatus} from "../../redux/profile-reducer";
+import {getUserStatus, setUserProfile, updateUserStatus} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {compose} from 'redux';
+import {userProfileType} from "../../dal/api";
 
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToProps
@@ -14,7 +15,7 @@ type MapDispatchToProps = {
     updateUserStatus: (status: string) => void
 }
 type MapStatePropsType = {
-    profile: null | ProfileServerType
+    profile: null | userProfileType
     status: string
 }
 type PathParamsType = {
@@ -44,7 +45,6 @@ class ProfileContainer extends React.Component<propsType> {
         );
     }
 }
-
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status
