@@ -64,7 +64,6 @@ describe('profile reducer set users', () => {
             profile: null
         }
         const userProfile = {
-            "aboutMe": "я круто чувак 1001%",
             "contacts": {
                 "facebook": "facebook.com",
                 "website": null,
@@ -87,6 +86,6 @@ describe('profile reducer set users', () => {
         const action = setUsersProfileSuccess(userProfile)
         const endValue = profileReducer(startValue,action)
         expect(endValue.profile).toBeDefined()
-        expect(endValue.profile?.aboutMe).toBe("я круто чувак 1001%")
+        expect(endValue.profile?.lookingForAJobDescription).toBe("не ищу, а дурачусь")
     })
 })

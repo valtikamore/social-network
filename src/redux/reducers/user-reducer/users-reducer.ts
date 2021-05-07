@@ -1,17 +1,11 @@
 import {ThunkAction} from "redux-thunk";
 import {AllActionTypes, AppStateType} from "../../redux-store";
-import {usersAPI} from "../../../api/api";
+import {usersAPI, userType} from "../../../api/api";
 import {Dispatch} from "redux";
 
-export type userFromServer = {
-    name: string
-    id: number
-    photos: { small: null | string, large: string | null }
-    status: string | null
-    followed: boolean
-}
+
 export type serverUsers = {
-    users: userFromServer[]
+    users: userType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -40,7 +34,7 @@ enum ACTION_USER_REDUCER {
 // }
 
 let initialState = {
-    users: [] as userFromServer[],
+    users: [] as userType[],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
@@ -49,7 +43,7 @@ let initialState = {
 }
 export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId} as const)
 export const unFollowSuccess = (userId: number) => ({type: 'UN_FOLLOW', userId} as const)
-export const setUsers = (users: userFromServer[]) => ({type: 'SET_USERS', users} as const)
+export const setUsers = (users: userType[]) => ({type: 'SET_USERS', users} as const)
 export const setCurrentPage = (page: number) => ({type: 'SET_CURRENT_PAGE', page} as const)
 export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const)

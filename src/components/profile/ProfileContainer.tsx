@@ -4,13 +4,13 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 
 import {
-    profileUserFromServer,
     setUsersProfile,
 } from "../../redux/reducers/profile-reducer/profile-reducer";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {profileUser} from "../../api/api";
 
 type MapStateToPropsType = {
-    profile: null | profileUserFromServer
+    profile: null | profileUser
 }
 type MapDispatchToProps = {
     setUsersProfile: (userId:string) => void

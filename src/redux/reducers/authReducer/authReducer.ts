@@ -1,7 +1,6 @@
 import {AllActionTypes} from "../../redux-store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../../../api/api";
-import {setTotalUsersCount, setUsers, toggleIsFetching} from "../user-reducer/users-reducer";
+import {authAPI} from "../../../api/api";
 
 enum ACTION_AUTH_REDUCER {
     SET_USER_DATA = 'SET_USER_DATA'
@@ -19,7 +18,7 @@ export const setAuthUserData = (id:number, email:string, login:string) => ({type
 
 export const authMe = () => {
     return (dispatch: Dispatch) => {
-        usersAPI.authMe()
+        authAPI.authMe()
             .then(data => {
                 if(data.resultCode === 0 ) {
                     let {id,login,email} = data.data

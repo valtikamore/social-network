@@ -1,16 +1,15 @@
 import {connect} from "react-redux";
 import {
-    toggleFollowing,
-    setCurrentPage,
-    userFromServer, getUsers, follow, unfollow
+    setCurrentPage, getUsers, follow, unfollow
 } from "../../redux/reducers/user-reducer/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Preloader} from "../preloader/preloader";
 import React from "react";
+import {userType} from "../../api/api";
 
 type MapStatePropsType = {
-    users: userFromServer[]
+    users: userType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number

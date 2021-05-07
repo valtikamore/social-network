@@ -1,15 +1,16 @@
 import classes from "./Users.module.scss";
 import userWithoutPhoto from "../../assets/designer.svg";
 import React from "react";
-import {userFromServer} from "../../redux/reducers/user-reducer/users-reducer";
+
 import {NavLink} from "react-router-dom";
+import { userType } from "../../api/api";
 
 type propsType = {
     totalUsersCount: number
     pageSize: number
     onPageChanged: (p: number) => void
     currentPage: number
-    users: userFromServer[]
+    users: userType[]
     followingInProgress: number[]
     follow: (userId: number) => void
     unFollow: (userId: number) => void
