@@ -1,13 +1,17 @@
-import {postType} from "./store";
+
 import {AllActionTypes} from './redux-store'
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../dal/api";
 
 export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'ADD_POST',
-    // UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT',
     SET_USERS_PROFILE = 'SET_USERS_PROFILE',
     SET_STATUS = 'SET_STATUS'
+}
+export type postType ={
+    id: number
+    message: string
+    likeCount: number
 }
 
 export type ProfileServerType = {
@@ -55,6 +59,7 @@ export const getUserStatus = (userId: string) => {
     }
 }
 export const updateUserStatus = (status: string) => {
+    debugger
     return (dispatch: Dispatch) => {
         profileAPI.updateUserStatus(status)
             .then(response => {
