@@ -5,10 +5,16 @@ import {login} from "../../redux/auth-reducer";
 import { required } from "../../utils/validate/validators";
 import  {reduxForm,Field, InjectedFormProps } from 'redux-form';
 import { Input } from '../../components/common/formsControl/FormsControl';
+import {AppRootStateType} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 interface mapDspatchToProps  {
     login:(email:string,password:string,rememberMe:boolean,captcha:boolean) => void
 }
+interface MapStateToPropsType {
+    isAuth:boolean
+}
+type propsType = mapDspatchToProps & MapStateToPropsType
 interface formDataType {
     email:string
     password:string
@@ -28,11 +34,13 @@ interface formDataType {
     )
 }
 
-  const Login:FC<mapDspatchToProps> = (props) => {
+  const Login:FC<propsType> = (props) => {
     const onSubmit= (formData:formDataType) => {
         props.login(formData.email,formData.password,formData.rememberMe,false)
      }
-
+    if(props.isAuth) {
+        return <Redirect to={`/profile`}/>
+    }
     return (
         <div className={classes.loginPage}>
             <h1>Login</h1>
@@ -46,5 +54,11 @@ interface formDataType {
     form:'login'
 })(LoginForm)
 
+const MapStateToProps = (state:AppRootStateType ):MapStateToPropsType => {
+    return {
+        isAuth:state.auth.isAuth
+    }
+}
 
-export default connect(null ,{login})(Login)
+
+export default connect(MapStateToProps ,{login})(Login)
