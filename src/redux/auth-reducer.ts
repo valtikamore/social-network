@@ -16,22 +16,28 @@ let initialState = {
 }
 export type authActionTypes =   ReturnType<typeof setUserData>
 
-export const setUserData = (userId:number,email:string,login:string) => ({
-    type:'SET_USER_DATA',data:{userId,email,login}} as const )
+export const setUserData = (userId:number| null,email:string | null,login:string |null,isAuth:boolean) => ({
+    type:'SET_USER_DATA',payload:{userId,email,login,isAuth}} as const )
 
 
 export const getAuthUserData = ():AppThunk => async (dispatch) => {
        const res = await authAPI.authMe()
         if (res.data.resultCode === 0) {
             let {id, email, login} = res.data.data
-            dispatch(setUserData(id, email, login))
+            dispatch(setUserData(id, email, login,true))
         }
 }
 export const login = (email:string,password:string,rememberMe:boolean,captcha:boolean):AppThunk =>  async (dispatch) => {
         let res = await authAPI.login(email,password,rememberMe,captcha)
-                if (res.data.resultCode === 0) {
-                    dispatch(getAuthUserData())
-                }
+            if (res.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+}
+export const logout = ():AppThunk =>  async (dispatch) => {
+    let res = await authAPI.logout()
+    if (res.data.resultCode === 0) {
+        dispatch(setUserData(null, null, null,false))
+    }
 }
 
 
@@ -41,7 +47,7 @@ export const authReducer = (state:AuthStateType = initialState, action:AllAction
          case AUTH_ACTIONS_TYPE.SET_USER_DATA: {
              return {
                  ...state,
-                 ...action.data,
+                 ...action.payload,
                  isAuth: true
              }
          }

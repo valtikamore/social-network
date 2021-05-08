@@ -10,7 +10,9 @@ import DialogsContainer from "./pages/dialogs/DialogsContainer";
 import UsersContainer from './pages/users/usersContainer';
 import ProfileContainer from './pages/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
-import {LoginPage} from "./pages/login/loginPage";
+import Login from "./pages/login/loginPage";
+
+
 const App: React.FC = ()  => {
     return (
             <div className="App">
@@ -24,7 +26,7 @@ const App: React.FC = ()  => {
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
                     <Route path='/login'
-                           render={() => <LoginPage/>}/>
+                           render={() => <Login/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
