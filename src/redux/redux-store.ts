@@ -1,39 +1,12 @@
 import {applyMiddleware, combineReducers} from "redux";
 import {createStore} from "redux";
-import profileReducer, {
-    addPostActionCreator,
-    setUsersProfileSuccess,
-    setUserStatus,
-} from "./profile-reducer";
-import dialogsReducer, {sendMessageCreator} from "./dialogs-reducer";
-import usersReducer, {
-    followSuccess,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers, toggleFollowingProgress,
-    toggleIsFetching,
-    unFollowSuccess,
-} from "./users-reducer";
-import {authReducer, setUserData} from "./auth-reducer";
-import thunkMiddleware from 'redux-thunk'
+import profileReducer, {profileActionsType} from "./profile-reducer";
+import dialogsReducer, { dialogsActionsType } from "./dialogs-reducer";
+import usersReducer, {userActionsType} from "./users-reducer";
+import {authActionTypes, authReducer} from "./auth-reducer";
+import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { composeWithDevTools } from "redux-devtools-extension";
 import { reducer as formReducer } from 'redux-form'
-
-export type AllActionTypes =
-    ReturnType<typeof addPostActionCreator>
-    // |ReturnType<typeof updateNewPostTextActionCreator>
-    |ReturnType<typeof sendMessageCreator>
-    // |ReturnType<typeof updateNewMessageBodyCreator>
-    | ReturnType<typeof followSuccess>
-    | ReturnType<typeof unFollowSuccess>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof toggleIsFetching>
-    | ReturnType<typeof setUsersProfileSuccess>
-    | ReturnType<typeof toggleFollowingProgress>
-    | ReturnType<typeof setUserData>
-    | ReturnType<typeof setUserStatus>
 
 
 let rootReducer = combineReducers({
@@ -43,8 +16,11 @@ let rootReducer = combineReducers({
     auth:authReducer,
     form: formReducer
 })
+export type AllActionsType = authActionTypes | userActionsType | dialogsActionsType | profileActionsType
+//thunk type
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown,AllActionsType>
 
-export type AppStateType = ReturnType<typeof rootReducer>
+export type AppRootStateType = ReturnType<typeof rootReducer>
 let store = createStore(
     rootReducer, composeWithDevTools(
         applyMiddleware(thunkMiddleware)

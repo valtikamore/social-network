@@ -5,7 +5,7 @@ import profileReducer from "./redux/profile-reducer";
 import dialogsReducer from "./redux/dialogs-reducer";
 import usersReducer from "./redux/users-reducer";
 import {authReducer} from "./redux/auth-reducer";
-import {AppStateType} from "./redux/redux-store";
+import {AppRootStateType} from "./redux/redux-store";
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -18,7 +18,7 @@ const initialGlobalState = {
 
 };
 
-export const storyBookStore = createStore(rootReducer, initialGlobalState as AppStateType);
+export const storyBookStore = createStore(rootReducer, initialGlobalState as AppRootStateType);
 
 export const ReduxStoreProviderDecorator = (storyFn: any) => (
     <Provider

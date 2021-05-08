@@ -1,6 +1,6 @@
-import {AllActionTypes} from "./redux-store"
 import {Dispatch} from "redux";
 import {usersAPI, userType} from "../dal/api";
+import {AllActionsType, AppThunk} from "./redux-store";
 
 export enum USERS_ACTIONS_TYPE {
     FOLLOW = 'FOLLOW',
@@ -19,7 +19,8 @@ export type serverUsers = {
     currentPage: number
 }
 
-type InitialStateType = typeof initialState
+type UsersStateType = typeof initialState
+
 let initialState = {
     users: [] as userType[],
     pageSize: 20,
@@ -28,6 +29,16 @@ let initialState = {
     isFetching: true,
     followingInProgress: [] as number[]
 }
+
+export type userActionsType =
+    ReturnType<typeof followSuccess>
+    | ReturnType<typeof unFollowSuccess>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleFollowingProgress>
+
 export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId}) as const
 export const unFollowSuccess = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
 export const setUsers = (users: userType[]) => ({type: 'SET_USERS', users}) as const
@@ -43,45 +54,32 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     userId
 }) as const
 
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleIsFetching(true))
-        usersAPI.getUsers(currentPage, pageSize)
-            .then(response => {
-                dispatch(toggleIsFetching(false))
-                dispatch(setUsers(response.data.items))
-                dispatch(setTotalUsersCount(response.data.totalCount))
-        })
-    }
+export const getUsers = (currentPage: number, pageSize: number): AppThunk => async (dispatch) => {
+    dispatch(toggleIsFetching(true))
+    let res = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(res.data.items))
+        dispatch(setTotalUsersCount(res.data.totalCount))
 }
-export const follow = (userId: number) => {
-    return (dispatch: Dispatch) => {
+export const follow = (userId: number): AppThunk => async (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    let res = await usersAPI.follow(userId)
+        if (res.data.resultCode === 0) {
+            dispatch(followSuccess(userId))
+        }
+     dispatch(toggleFollowingProgress(false, userId))
+}
+export const unfollow = (userId: number):AppThunk => async (dispatch: Dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))
-        usersAPI.follow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(followSuccess(userId))
-                }
-                dispatch(toggleFollowingProgress(false, userId))
-            })
-    }
-}
-export const unfollow = (userId: number) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleFollowingProgress(true, userId))
-        usersAPI.unfollow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(unFollowSuccess(userId))
-                }
-                dispatch(toggleFollowingProgress(false, userId))
-            })
-    }
+        let res = await usersAPI.unfollow(userId)
+            if (res.data.resultCode === 0) {
+                dispatch(unFollowSuccess(userId))
+            }
+            dispatch(toggleFollowingProgress(false, userId))
 }
 
 
-
-export const usersReducer = (state: InitialStateType = initialState, action: AllActionTypes): InitialStateType => {
+export const usersReducer = (state: UsersStateType = initialState, action: AllActionsType): UsersStateType => {
     switch (action.type) {
         case USERS_ACTIONS_TYPE.FOLLOW :
             return {
@@ -127,16 +125,4 @@ export const usersReducer = (state: InitialStateType = initialState, action: All
             return state
     }
 }
-
-// export const getUsersThunkCreator = (currentPage:number,pageSize:number) => {
-//     return  (dispatch:Dispatch) => {
-//         dispatch(toggleIsFetching(true))
-//         usersAPI.getUsers(currentPage,pageSize).then(data => {
-//             dispatch(toggleIsFetching(false))
-//             dispatch(setUsers(data.items))
-//             dispatch(setTotalUsersCount(data.totalCount))
-//         })
-// }
-// }
-
 export default usersReducer
