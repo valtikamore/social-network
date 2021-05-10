@@ -66,17 +66,17 @@ export const usersAPI = {
         return instance.delete<ResponseType>(`follow/${userId}`)
     },
 
-    getProfileUser(userId: string) {
+    getProfileUser(userId: number) {
         console.log('Please use profileAPI ti get users.')
         return profileAPI.getUserProfile(userId)
     }
 
 }
 export const profileAPI = {
-    getUserProfile(userId: string) {
+    getUserProfile(userId: number) {
         return instance.get<userProfileType>(`profile/${userId}`)
     },
-    getUserStatus(userId: string) {
+    getUserStatus(userId: number) {
         return instance.get(`profile/status/${userId}`)
     },
     updateUserStatus(status: string) {

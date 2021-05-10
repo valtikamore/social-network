@@ -10,13 +10,15 @@ import {userProfileType} from "../../dal/api";
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToProps
 type MapDispatchToProps = {
-    setUserProfile: (userId: string) => void
-    getUserStatus: (userid: string) => void
+    setUserProfile: (userId: number) => void
+    getUserStatus: (userid: number) => void
     updateUserStatus: (status: string) => void
 }
 type MapStatePropsType = {
     profile: null | userProfileType
     status: string
+    authorizedUserId:number | null
+    isAuth:boolean
 }
 type PathParamsType = {
     userId: string
@@ -25,9 +27,9 @@ type propsType = ProfileContainerPropsType & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<propsType> {
     componentDidMount() {
-        let userId = this.props.match.params.userId
+        let userId = Number(this.props.match.params.userId)
         if (!userId) {
-            userId = '15876'
+            userId = 15876
         }
         this.props.setUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -47,7 +49,9 @@ class ProfileContainer extends React.Component<propsType> {
 }
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId:state.auth.userId,
+    isAuth:state.auth.isAuth
 })
 // 1st wrap - redirect hoc ( custom hoc)
 // 2nd wrap - with router hoc

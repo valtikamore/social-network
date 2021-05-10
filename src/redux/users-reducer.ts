@@ -79,7 +79,7 @@ export const unfollow = (userId: number):AppThunk => async (dispatch: Dispatch) 
 }
 
 
-export const usersReducer = (state: UsersStateType = initialState, action: AllActionsType): UsersStateType => {
+export const usersReducer = (state: UsersStateType = initialState, action: userActionsType): UsersStateType => {
     switch (action.type) {
         case USERS_ACTIONS_TYPE.FOLLOW :
             return {

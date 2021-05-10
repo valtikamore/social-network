@@ -21,7 +21,7 @@ export function WithAuthRedirect <T>(Component:ComponentType<T>)  {
         }
         return <Component {...rest as T}/>
     }
-    let ConnectedRedirectComponent = connect(mstp)(RedirectComponent)
 
-    return ConnectedRedirectComponent
+
+    return connect(mstp)(RedirectComponent)
 }

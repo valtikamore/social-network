@@ -1,4 +1,3 @@
-import {AllActionsType} from "./redux-store";
 
 export enum DIALOGS_ACTIONS_TYPE{
     SEND_MESSAGE = 'SEND_MESSAGE',
@@ -36,7 +35,7 @@ export type dialogsActionsType = ReturnType<typeof sendMessageCreator>
 
 export const sendMessageCreator = (messageText:string) => ({type: 'SEND_MESSAGE',messageText}as const )
 
-const dialogsReducer = (state: DialogsPageStateType = initialState, action: AllActionsType): DialogsPageStateType => {
+const dialogsReducer = (state: DialogsPageStateType = initialState, action: dialogsActionsType): DialogsPageStateType => {
 
     switch (action.type) {
         case DIALOGS_ACTIONS_TYPE.SEND_MESSAGE: {

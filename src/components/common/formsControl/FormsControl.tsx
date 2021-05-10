@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import { WrappedFieldProps } from 'redux-form'
+import { WrappedFieldProps} from 'redux-form'
 import classes from './FormsControl.module.css'
 import classNames from "classnames";
 
@@ -8,33 +8,20 @@ interface CustomFieldProps {
 }
 
 
-export const Textarea:FC<WrappedFieldProps & CustomFieldProps > = ({input,meta,...props}) => {
-    const hasError = meta.touched && meta.error
-    const inputError = classNames(classes.fromControl, {
-        [classes.error]: hasError
-    })
+export const FormControl:FC<WrappedFieldProps & CustomFieldProps > = ({input,meta,...props}) => {
     return (
         <>
-            <textarea{...input} {...props}
-                     className={inputError}/>
-            {hasError && <span>invalid field</span>}
+            {props.children}
         </>
-
     )
 }
-export const Input:FC<WrappedFieldProps & CustomFieldProps > = ({input,meta,...props}) => {
-    const hasError = meta.touched && meta.error
-    const textError = classNames('',{
-        [classes.invalidText]:hasError
-    })
-    return (
-        <>
-            <input{...input} {...props}
-                     className={classNames(classes.fromControl, {
-                         [classes.error]: hasError
-                     })}/>
-            {hasError && <span className={textError}>invalid field</span>}
-        </>
-
-    )
+export const Textarea:FC<WrappedFieldProps & CustomFieldProps> = props => {
+    const {children,input,meta,...restProps} = props
+    return <FormControl {...props}> <textarea {...input} {...restProps} className={classNames(classes.fromControl)}/> </FormControl>
 }
+
+export const Input:FC<WrappedFieldProps & CustomFieldProps> = props => {
+    const {children,input,meta,...restProps} = props
+    return <FormControl {...props}> <input {...input} {...restProps} className={classNames(classes.fromControl)}/></FormControl>
+}
+

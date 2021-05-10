@@ -12,3 +12,7 @@
     width: 250px;
     height: 150px;
 }
+.error {
+    border: 2px solid red ;
+    color: red;
+}

@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {profileAPI, userProfileType, usersAPI} from "../dal/api";
-import {AllActionsType} from "./redux-store";
+
 
 export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'ADD_POST',
@@ -23,7 +23,7 @@ export const addPostActionCreator = (newPostText:string) => ({type: 'ADD_POST',n
 export const setUsersProfileSuccess = (profile: userProfileType) => ({type: 'SET_USERS_PROFILE', profile} as const)
 export const setUserStatus = (status: string) => ({type: 'SET_STATUS', status} as const)
 
-export const setUserProfile = (userId: string) => {
+export const setUserProfile = (userId: number) => {
     return (dispatch: Dispatch) => {
         usersAPI.getProfileUser(userId)
             .then(response => {
@@ -32,7 +32,7 @@ export const setUserProfile = (userId: string) => {
     }
 }
 
-export const getUserStatus = (userId: string) => {
+export const getUserStatus = (userId: number) => {
     return (dispatch: Dispatch) => {
         profileAPI.getUserStatus(userId)
             .then(response => {
@@ -60,7 +60,7 @@ let initialState = {
     profile: null as null | userProfileType,
     status: ''
 }
-const profileReducer = (state: ProfileInitialStateType = initialState, action: AllActionsType): ProfileInitialStateType => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: profileActionsType): ProfileInitialStateType => {
     switch (action.type) {
         case PROFILE_ACTIONS_TYPE.ADD_POST : {
             let newPost: postType = {

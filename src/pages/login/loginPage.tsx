@@ -29,6 +29,7 @@ interface formDataType {
                 <Field type="checkbox" component={'input'} name={'rememberMe'} />
                 <label htmlFor="{'rememberMe'}">remember me</label>
             </div>
+            {props.error && <div className={classes.error}>{props.error}</div>}
             <button>Login</button>
         </form>
     )

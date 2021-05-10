@@ -1,9 +1,9 @@
-import {Dispatch} from "redux";
 import {authAPI} from "../dal/api";
-import { AllActionsType, AppThunk } from "./redux-store";
+import {AppThunk} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 export enum AUTH_ACTIONS_TYPE {
-    SET_USER_DATA = 'SET_USER_DATA' ,
+    SET_USER_DATA = 'SET_USER_DATA',
 }
 
 
@@ -19,7 +19,6 @@ export type authActionTypes =   ReturnType<typeof setUserData>
 export const setUserData = (userId:number| null,email:string | null,login:string |null,isAuth:boolean) => ({
     type:'SET_USER_DATA',payload:{userId,email,login,isAuth}} as const )
 
-
 export const getAuthUserData = ():AppThunk => async (dispatch) => {
        const res = await authAPI.authMe()
         if (res.data.resultCode === 0) {
@@ -28,10 +27,14 @@ export const getAuthUserData = ():AppThunk => async (dispatch) => {
         }
 }
 export const login = (email:string,password:string,rememberMe:boolean,captcha:boolean):AppThunk =>  async (dispatch) => {
-        let res = await authAPI.login(email,password,rememberMe,captcha)
-            if (res.data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            }
+
+    let res = await authAPI.login(email, password, rememberMe, captcha)
+    if (res.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else  {
+        let message = res.data.messages.length > 0 ? res.data.messages[0] : 'some error'
+        dispatch(stopSubmit('login', {_error: message}))
+    }
 }
 export const logout = ():AppThunk =>  async (dispatch) => {
     let res = await authAPI.logout()
@@ -41,16 +44,16 @@ export const logout = ():AppThunk =>  async (dispatch) => {
 }
 
 
-
-export const authReducer = (state:AuthStateType = initialState, action:AllActionsType):AuthStateType => {
-     switch (action.type) {
-         case AUTH_ACTIONS_TYPE.SET_USER_DATA: {
-             return {
-                 ...state,
-                 ...action.payload,
-             }
-         }
-         default: return state
-     }
+export const authReducer = (state: AuthStateType = initialState, action: authActionTypes): AuthStateType => {
+    switch (action.type) {
+        case AUTH_ACTIONS_TYPE.SET_USER_DATA: {
+            return {
+                ...state,
+                ...action.payload
+            }
+        }
+        default:
+            return state
+    }
 }
 

@@ -6,7 +6,7 @@ import usersReducer, {userActionsType} from "./users-reducer";
 import {authActionTypes, authReducer} from "./auth-reducer";
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { composeWithDevTools } from "redux-devtools-extension";
-import { reducer as formReducer } from 'redux-form'
+import {FormAction, reducer as formReducer} from 'redux-form'
 
 
 let rootReducer = combineReducers({
@@ -16,7 +16,7 @@ let rootReducer = combineReducers({
     auth:authReducer,
     form: formReducer
 })
-export type AllActionsType = authActionTypes | userActionsType | dialogsActionsType | profileActionsType
+export type AllActionsType = authActionTypes | userActionsType | dialogsActionsType | profileActionsType | FormAction
 //thunk type
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown,AllActionsType>
 
