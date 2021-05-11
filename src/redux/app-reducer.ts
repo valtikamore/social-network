@@ -8,7 +8,7 @@ export enum AUTH_ACTIONS_TYPE {
 }
 
 
-export type AuthStateType = typeof initialState
+export type AppStateType = typeof initialState
 
 let initialState = {
     initialized:false
@@ -19,7 +19,6 @@ export const initializedSuccess = () => ({
     type:'SET_INITIALIZED_SUCCESS'} as const )
 
 export const initializeApp = ():AppThunk => async (dispatch) => {
-    debugger
     let promise = dispatch(getAuthUserData())
     await Promise.all([promise])
     dispatch(initializedSuccess())
@@ -27,7 +26,7 @@ export const initializeApp = ():AppThunk => async (dispatch) => {
 
 
 
-export const appReducer = (state: AuthStateType = initialState, action: appActionTypes): AuthStateType => {
+export const appReducer = (state: AppStateType = initialState, action: appActionTypes): AppStateType => {
     switch (action.type) {
         case AUTH_ACTIONS_TYPE.SET_INITIALIZED_SUCCESS: {
             return {

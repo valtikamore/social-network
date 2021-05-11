@@ -19,6 +19,7 @@ type MapStatePropsType = {
     status: string
     authorizedUserId:number | null
     isAuth:boolean
+    userId:number | null
 }
 type PathParamsType = {
     userId: string
@@ -27,12 +28,18 @@ type propsType = ProfileContainerPropsType & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<propsType> {
     componentDidMount() {
-        let userId = Number(this.props.match.params.userId)
+        debugger
+        let userId:number|null = Number(this.props.match.params.userId)
         if (!userId) {
-            userId = 15876
+            userId = this.props.userId
+            if(!userId) {
+                this.props.history.push('/login')
+            }
         }
-        this.props.setUserProfile(userId)
-        this.props.getUserStatus(userId)
+        if(userId) {
+            this.props.setUserProfile(userId)
+            this.props.getUserStatus(userId)
+        }
     }
 
     render() {
@@ -51,7 +58,8 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId:state.auth.userId,
-    isAuth:state.auth.isAuth
+    isAuth:state.auth.isAuth,
+    userId:state.auth.userId
 })
 // 1st wrap - redirect hoc ( custom hoc)
 // 2nd wrap - with router hoc

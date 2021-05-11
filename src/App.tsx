@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-import {Route, withRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import News from "./pages/News/News";
 import Music from './pages/Music/Music';
 import Settings from "./pages/Settings/Settings";
@@ -11,15 +11,15 @@ import UsersContainer from './pages/users/usersContainer';
 import ProfileContainer from './pages/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./pages/login/loginPage";
-import {connect, useDispatch, useSelector} from "react-redux";
-import {AppRootStateType, AppThunk} from "./redux/redux-store";
-import {initializeApp} from "./redux/app-reducer";
+import { useDispatch, useSelector} from "react-redux";
+import {AppRootStateType, useTypedSelector} from "./redux/redux-store";
+import {AppStateType, initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
 
  const App = () =>  {
         const dispatch = useDispatch()
-        const appState = useSelector((state:AppRootStateType) => state.app)
+        const appState = useTypedSelector<AppStateType>((state) => state.app)
         useEffect(() => {
             dispatch(initializeApp())
         })

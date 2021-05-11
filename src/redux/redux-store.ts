@@ -8,6 +8,7 @@ import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { composeWithDevTools } from "redux-devtools-extension";
 import {FormAction, reducer as formReducer} from 'redux-form'
 import {appActionTypes, appReducer } from "./app-reducer";
+import {TypedUseSelectorHook, useSelector} from "react-redux";
 
 
 let rootReducer = combineReducers({
@@ -29,6 +30,6 @@ let store = createStore(
     )
 
 )
-
+export const useTypedSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 // (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 export default store
