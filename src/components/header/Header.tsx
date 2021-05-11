@@ -20,7 +20,8 @@ const Header = (props:headerContainerPropsType) => {
                 <h4 className={classes.logo}>Valtika Social</h4>
             </div>
             <div className={classes.header_loginBlock}>
-                {isAuth ? login :  <MemoryRouter> <NavLink to={'/login'}>login</NavLink></MemoryRouter>}
+                {isAuth ? login :  <MemoryRouter> <NavLink to={'/login'}>Login</NavLink></MemoryRouter>}
+                <NavLink to={'/login'}>Register</NavLink>
             </div>
 
         </header>

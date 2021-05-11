@@ -1,0 +1,12 @@
+@import "variables";
+@mixin flex($align,$justify,$direction) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin BlockSize($height,$width:null) {
+  height:$height ;
+  width:$width;
+}

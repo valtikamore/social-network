@@ -1,0 +1,10 @@
+@import '../../style/variables';
+@import '../../style/mix';
+.footer{
+    grid-area:footer;
+    .footerList{
+        @include flex (center,space-evenly,row);
+        color: $primary-link-color;
+        padding-top: 10px;
+    }
+}
