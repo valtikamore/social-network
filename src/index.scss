@@ -1,15 +1,27 @@
+@import './style/variables';
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+a {
+  display: block;
+  text-decoration: none;
+  color: $primary-link-color;
+}
+ul {
+  list-style: none;
+}
+
 body {
-  background-color: #c5b7b7;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: $primary-font-color;
+  background: $profile-secondary;
+  font-family: 'Inter', sans-serif;
 }
 
 code {

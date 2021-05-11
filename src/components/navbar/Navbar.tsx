@@ -8,33 +8,37 @@ type navbarType = {
 const Navbar:FC<navbarType> = () => {
     return (
         <nav className={classes.nav}>
-            <div className={classes.item}>
-                <NavLink to='/profile'
-                         activeClassName={classes.active}>Profile</NavLink>
-            </div>
-            <div className={`${classes.item} ${classes.active}`}>
-                <NavLink to='/dialogs'
-                         activeClassName={classes.active}> Dialogs</NavLink>
-            </div>
-            <div className={classes.item}>
-                <NavLink to='/users' activeClassName={classes.active}>Users</NavLink>
-            </div>
-            <div className={classes.item}>
-                <NavLink to='/news'
-                         activeClassName={classes.active}>News</NavLink>
-            </div>
-            <div className={classes.item}>
-                <NavLink to='/music'
-                         activeClassName={classes.active}>Music</NavLink>
-            </div>
-            <div className={classes.item}>
-                <NavLink to='/settings'
-                         activeClassName={classes.active}>Settings</NavLink>
-            </div>
-            <div >
-                <NavLink to='/friends' className={classes.friendName}>Friends</NavLink>
-                <div className={classes.grid}>{/*{sidebarMap}*/} </div>
-            </div>
+            <ul className={classes.sidebar}>
+                <li className={classes.item}>
+                    <NavLink to='/profile'
+                            activeClassName={classes.active}>Profile</NavLink>
+                </li>
+                <li className={`${classes.item} ${classes.active}`}>
+                    <NavLink to='/dialogs'
+                             activeClassName={classes.active}> Dialogs</NavLink>
+                </li>
+                <li className={classes.item}>
+                        <NavLink to='/users' activeClassName={classes.active}>Users</NavLink>
+                </li>
+                <li className={classes.item}>
+                    <NavLink to='/news'
+                             activeClassName={classes.active}>News</NavLink>
+                </li>
+                <li className={classes.item}>
+                    <NavLink to='/music'
+                             activeClassName={classes.active}>Music</NavLink>
+                </li>
+                <li className={classes.item}>
+                    <NavLink to='/settings'
+                             activeClassName={classes.active}>Settings</NavLink>
+                </li>
+            </ul>
+            <ul className={classes.sidebarFriends}>
+                <h3>Friends</h3>
+                <li>Lorem ipsum.</li>
+                <li>Itaque, neque?</li>
+                <li>Ipsa, repellat!</li>
+            </ul>
         </nav>
     )
 }

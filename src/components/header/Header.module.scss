@@ -1,17 +1,67 @@
-
+@import "../../style/variables";
+@import "../../style/mixins";
 .header {
-  box-shadow: -206px 14px 155px 32px #baa7a7;
+  background-color: $profile-primaty;
   grid-area: header;
-  padding: 10px;
   align-self: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .navBurger{
+    df
+    .burger {
+      position: relative;
+      input {
+        opacity: 0;
+      }
+      label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 18px;
+        width: 20px;
+        z-index: 5;
+      }
+      span {
+        position: absolute;
+        width: 100%;
+        height: 1.5px;
+        top: 50%;
+        margin-top: -1px;
+        left: 0;
+        display: block;
+        background: white;
+        transition: 0.5s;
+      }
+      span:first-child {
+        top: 3px;
+      }
+      span:last-child {
+        top: 16px;
+      }
+      label:hover {
+        cursor: pointer;
+      }
 
-  &_image {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
+      input:checked + label span {
+        opacity: 0;
+        top: 50%;
+      }
+      input:checked + label span:first-child {
+        opacity: 1;
+        transform: rotate(405deg);
+      }
+      input:checked + label span:last-child {
+        opacity: 1;
+        transform: rotate(-405deg);
+      }
+
+    }
+    .logo{
+      font-family: 'Pacifico', cursive;
+      font-size: 22px;
+      font-weight: 200;
+    }
   }
 
   &_loginBlock {

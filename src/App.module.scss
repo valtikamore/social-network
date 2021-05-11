@@ -1,18 +1,15 @@
 .App{
-    max-width: 1170px;
-    margin: 0 auto;
+  max-width: 1170px;
+  margin: 0 auto;
   display: grid;
-  padding: 15px;
   height: 100vh;
   /*grid-template-rows: 100px 400px 100px;*/
   /*grid-template-columns: 1fr 1fr 1fr 1fr ;*/
-  grid:0.5fr 4fr 0.5fr / 1.2fr 2fr 2fr 2fr ;
+  grid:0.5fr 4fr 0.5fr / 200px 2fr 2fr 2fr ;
   grid-template-areas:
           'header header header header'
           'nav profile profile profile'
           'footer footer footer footer';
-  align-items: stretch;
-  grid-gap: 10px;
 }
 .App-wrapper-content {
     grid-area:profile;

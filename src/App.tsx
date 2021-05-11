@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.scss';
-import Header from "./components/header/Header";
+import classes from './App.module.scss';
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import {Route} from 'react-router-dom';
@@ -20,10 +19,10 @@ import HeaderContainer from "./components/header/HeaderContainer";
 
 const App: React.FC = () => {
     return (
-        <div className="App">
+        <div className={classes.App}>
             <HeaderContainer/>
             <Navbar/>
-            <div className="App-wrapper-content">
+            <div className={classes.AppWrapperContent}>
                 <Route path='/profile/:userId?'
                        render={() => <ProfileContainer/>}/>
                 <Route path='/dialogs'

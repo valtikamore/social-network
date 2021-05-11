@@ -8,8 +8,17 @@ const Header = (props:headerContainerPropsType) => {
     const {login,isAuth} = props
     return (
         <header className={classes.header}>
-            <img className={classes.header_image}
-                 src="https://i.pinimg.com/originals/40/a9/fd/40a9fd835e04c97b9329a48cec0a236e.png" alt=""/>
+            <div className={classes.navBurger}>
+                <div className={classes.burger}>
+                    <input id="burger" type="checkbox" />
+                    <label htmlFor="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                </div>
+                <h4 className={classes.logo}>Valtika Social</h4>
+            </div>
             <div className={classes.header_loginBlock}>
                 {isAuth ? login :  <MemoryRouter> <NavLink to={'/login'}>login</NavLink></MemoryRouter>}
             </div>
