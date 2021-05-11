@@ -1,5 +1,6 @@
-import {authAPI} from "../dal/api";
+
 import {AppThunk} from "./redux-store";
+import {getAuthUserData} from "./auth-reducer";
 
 
 export enum AUTH_ACTIONS_TYPE {
@@ -7,26 +8,26 @@ export enum AUTH_ACTIONS_TYPE {
 }
 
 
-type AuthStateType = typeof initialState
+export type AuthStateType = typeof initialState
 
 let initialState = {
     initialized:false
 }
-export type appActionTypes =   ReturnType<typeof setUserData>
+export type appActionTypes =   ReturnType<typeof initializedSuccess>
 
-export const setUserData = () => ({
+export const initializedSuccess = () => ({
     type:'SET_INITIALIZED_SUCCESS'} as const )
 
-export const initialize = ():AppThunk => async (dispatch) => {
-    const res = await authAPI.authMe()
-    if (res.data.resultCode === 0) {
-        dispatch(setUserData())
-    }
+export const initializeApp = ():AppThunk => async (dispatch) => {
+    debugger
+    let promise = dispatch(getAuthUserData())
+    await Promise.all([promise])
+    dispatch(initializedSuccess())
 }
 
 
 
-export const authReducer = (state: AuthStateType = initialState, action: appActionTypes): AuthStateType => {
+export const appReducer = (state: AuthStateType = initialState, action: appActionTypes): AuthStateType => {
     switch (action.type) {
         case AUTH_ACTIONS_TYPE.SET_INITIALIZED_SUCCESS: {
             return {

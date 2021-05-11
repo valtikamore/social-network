@@ -25,6 +25,7 @@ export const getAuthUserData = ():AppThunk => async (dispatch) => {
             let {id, email, login} = res.data.data
             dispatch(setUserData(id, email, login,true))
         }
+        return res
 }
 export const login = (email:string,password:string,rememberMe:boolean,captcha:boolean):AppThunk =>  async (dispatch) => {
 
