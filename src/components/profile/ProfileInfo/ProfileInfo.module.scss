@@ -1,0 +1,16 @@
+@import "../../../style/mix";
+@import "../../../style/variables";
+.profileInfoBlock{
+  width: 100%;
+  height: 500px;
+  background: $profile-primaty;
+  border-radius: 20px;
+  .profileInfoBlock__img{
+    width: 100%;
+    & img {
+      @include BlockSize(300px,978px);
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+}

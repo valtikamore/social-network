@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./ProfileInfo.module.css"
-
+import classes from "./ProfileInfo.module.scss"
 import {Preloader} from "../../preloader/preloader";
 import {profileUser} from "../../../api/api";
+import mountains from '../../../assets/profile-cover.jpg'
 
 type ProfileInfoPropsType = {
     profile : null |  profileUser
@@ -12,13 +12,17 @@ const ProfileInfo = (props:ProfileInfoPropsType)=> {
     if(!profile) {
         return <Preloader/>
     }
+
     return (
-        <div >
-            <div className={classes.content}>
+        <>
+            <div className={classes.profileInfoBlock}>
+                <div className={classes.profileInfoBlock__img}>
+                    <img src={mountains} alt="miuntains"/>
+                </div>
                 <img src={profile.photos.large!} alt=""/>
                 <div>{profile.fullName}</div>
             </div>
-        </div>
+        </>
     )
 }
 export default ProfileInfo
