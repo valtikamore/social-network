@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -11,9 +11,17 @@ import UsersContainer from './pages/users/usersContainer';
 import ProfileContainer from './pages/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./pages/login/loginPage";
+import {useDispatch} from "react-redux";
+import {getAuthUserData} from "./redux/auth-reducer";
 
 
 const App: React.FC = ()  => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAuthUserData)
+    },[getAuthUserData])
+
     return (
             <div className="App">
                 <HeaderContainer/>
