@@ -15,7 +15,7 @@ const Navbar:FC<navbarType> = () => {
                 </li>
                 <li className={`${classes.item} ${classes.active}`}>
                     <NavLink to='/dialogs'
-                             activeClassName={classes.active}> Dialogs</NavLink>
+                             activeClassName={classes.active}> Messages</NavLink>
                 </li>
                 <li className={classes.item}>
                         <NavLink to='/users' activeClassName={classes.active}>Users</NavLink>

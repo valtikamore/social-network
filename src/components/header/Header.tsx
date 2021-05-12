@@ -21,9 +21,8 @@ const Header = (props:headerContainerPropsType) => {
             </div>
             <div className={classes.header_loginBlock}>
                 {isAuth ? login :  <MemoryRouter> <NavLink to={'/login'}>Login</NavLink></MemoryRouter>}
-                <NavLink to={'/login'}>Register</NavLink>
+                <a href={'https://social-network.samuraijs.com/signUp'} target={'_blank'}>Register</a>
             </div>
-
         </header>
     )
 
