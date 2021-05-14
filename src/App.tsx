@@ -20,9 +20,10 @@ import {Preloader} from "./components/common/Preloader/Preloader";
  const App = () =>  {
         const dispatch = useDispatch()
         const appState = useTypedSelector<AppStateType>((state) => state.app)
+
         useEffect(() => {
             dispatch(initializeApp())
-        })
+        },[])
         if (!appState.initialized) {
             return <Preloader/>
         }

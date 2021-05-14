@@ -5,7 +5,7 @@ import dialogsReducer, { dialogsActionsType } from "./dialogs-reducer";
 import usersReducer, {userActionsType} from "./users-reducer";
 import {authActionTypes, authReducer} from "./auth-reducer";
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
-import { composeWithDevTools } from "redux-devtools-extension";
+
 import {FormAction, reducer as formReducer} from 'redux-form'
 import {appActionTypes, appReducer } from "./app-reducer";
 import {TypedUseSelectorHook, useSelector} from "react-redux";
@@ -25,7 +25,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateTy
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 let store = createStore(
-    rootReducer, composeWithDevTools(
+    rootReducer,(
         applyMiddleware(thunkMiddleware)
     )
 
