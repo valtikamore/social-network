@@ -11,9 +11,9 @@ import {Users} from "./Users";
 import {Preloader} from "../../components/common/Preloader/Preloader";
 import {compose} from "redux";
 import {userType} from "../../dal/api";
-import {getCurentPagetSelector,
+import {getCurrentPageSelector,
     getFollowingInProgressSelector,
-    getIsFetchingtSelector,
+    getIsFetchingSelector,
     getPageSizeSelector, getTotalUsersCountSelector, getUsersSelector } from "../../redux/selectors/users-selector";
 
 type MapStatePropsType = {
@@ -64,8 +64,8 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
         users: getUsersSelector(state),
         pageSize: getPageSizeSelector(state),
         totalUsersCount: getTotalUsersCountSelector(state),
-        currentPage: getCurentPagetSelector(state),
-        isFetching: getIsFetchingtSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: getIsFetchingSelector(state),
         followingInProgress:getFollowingInProgressSelector(state)
     }
 }
