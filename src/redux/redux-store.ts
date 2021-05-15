@@ -3,7 +3,7 @@ import dialogsReducer, {dialogsActionsType,} from "./reducers/dialog-reducer/dia
 import {usersReducer, userActionsType} from "./reducers/user-reducer/users-reducer";
 import {authActionTypes, authReducer} from "./reducers/authReducer/authReducer";
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
-import {applyMiddleware, combineReducers, createStore } from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {FormAction, reducer as formReducer} from 'redux-form'
 import {profileActionsType, profileReducer} from "./reducers/profile-reducer/profile-reducer";
 
@@ -32,4 +32,3 @@ export const store = createStore(
     applyMiddleware(thunkMiddleware),
 
 )
-
