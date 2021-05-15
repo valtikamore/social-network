@@ -9,7 +9,7 @@ describe('auth reducer', ()=> {
             login: null ,
             isAuth: false
         }
-        const action = setAuthUserData(2, 'tatata@mailcom', 'Valtikamore')
+        const action = setAuthUserData(2, 'tatata@mailcom', 'Valtikamore',true)
         const endValue = authReducer(startValue, action)
         expect(endValue.email).toBe('tatata@mailcom')
         expect(endValue.login).toBe('Valtikamore')
@@ -23,9 +23,9 @@ describe('auth reducer', ()=> {
             login: null ,
             isAuth: false
         }
-        const action = setAuthUserData(2, 'tatata@mailcom', 'Valtikamore')
+        const action = setAuthUserData(2, 'tatata@mailcom', 'Valtikamore',true)
         const endValue = authReducer(startValue, action)
-       expect(endValue.id).toEqual(2)
+        expect(endValue.id).toEqual(2)
     })
 })
 

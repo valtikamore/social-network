@@ -16,7 +16,7 @@ let initialState = {
 }
 export type authActionTypes =   ReturnType<typeof setAuthUserData>
 
-export const setAuthUserData =(userId:number| null,email:string | null,login:string |null,isAuth:boolean) => ({type:'SET_USER_DATA',payload:{userId,email,login,isAuth} }as const )
+export const setAuthUserData =(id:number| null,email:string | null,login:string |null,isAuth:boolean) => ({type:'SET_USER_DATA',payload:{id,email,login,isAuth} }as const )
 
 
 export const getAuthUserData = ():AppThunk => async (dispatch) =>  {

@@ -1,7 +1,8 @@
-import profileReducer, {addPost, setUsersProfileSuccess, updateNewPostText} from "./profile-reducer"
-import {usersReducer} from "../user-reducer/users-reducer";
+import {addPost, profileReducer, setUsersProfileSuccess, setUserStatus, updateNewPostText} from "./profile-reducer"
+
 
 describe('profile reducer add-post should be ',()=> {
+
     test('add post be defined',()=> {
         const newPostText = 'blabla'
         const startValue = {
@@ -9,7 +10,8 @@ describe('profile reducer add-post should be ',()=> {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
-            profile: null
+            profile: null,
+            status:''
         }
         const action = addPost()
         const endValue = profileReducer(startValue, action)
@@ -25,7 +27,8 @@ describe('profile reducer add-post should be ',()=> {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
-            profile: null
+            profile: null,
+            status:''
         }
         const action = addPost()
         const endValue = profileReducer(startValue, action)
@@ -40,7 +43,8 @@ describe('profile reducer update new post should be',()=> {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
-            profile: null
+            profile: null,
+            status:''
         }
         const action = updateNewPostText('newNewPostText')
         const endValue = profileReducer(startValue, action)
@@ -54,6 +58,24 @@ describe('profile reducer update new post should be',()=> {
 
     })
 })
+describe('profile reducer update status',()=> {
+    test('updated',()=> {
+        const startValue = {
+            newPostText: '',
+            posts: [
+                {id: 1, message: 'Hello bro', likeCount: 0},
+            ],
+            profile: null,
+            status:''
+        }
+        const action = setUserStatus('newNewPostText')
+
+        const endValue = profileReducer(startValue, action)
+
+        expect(endValue.status).toBe('newNewPostText')
+
+    })
+})
 describe('profile reducer set users', () => {
     test('set users', () => {
         const startValue = {
@@ -61,7 +83,8 @@ describe('profile reducer set users', () => {
             posts: [
                 {id: 1, message: 'Hello bro', likeCount: 0},
             ],
-            profile: null
+            profile: null,
+            status:''
         }
         const userProfile = {
             "contacts": {
