@@ -1,5 +1,4 @@
-import {ThunkAction} from "redux-thunk";
-import {AllActionTypes, AppStateType} from "../../redux-store";
+import {AllActionTypes} from "../../redux-store";
 import {usersAPI, userType} from "../../../api/api";
 import {Dispatch} from "redux";
 
@@ -21,18 +20,6 @@ enum ACTION_USER_REDUCER {
     TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING',
     FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS'
 }
-
-// type ThunkType = ThunkAction<void,AppStateType,unknown,AllActionTypes>
-// export const getUsers = ():ThunkType => {
-//     return (dispatch ,getState:()=> AppStateType) => {
-//         usersAPI.getUsers()
-//             .then(res => {
-//                 dispatch(getUsers())
-//             })
-//     }
-//
-// }
-
 let initialState = {
     users: [] as userType[],
     pageSize: 10,
@@ -52,44 +39,6 @@ export const toggleFollowing = (userId: number, isFetching: boolean) => ({
     userId,
     isFetching
 } as const)
-
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleIsFetching(true))
-        usersAPI.getUsers(currentPage, pageSize)
-            .then(data => {
-                dispatch(toggleIsFetching(false))
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
-            })
-    }
-}
-export const follow = (userId:number) => {
-    return (dispatch: Dispatch) => {
-       dispatch(toggleFollowing(userId,true))
-        usersAPI.userFollow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(followSuccess(userId))
-                }
-                dispatch(toggleFollowing(userId,false))
-            })
-    }
-}
-export const unfollow = (userId:number) => {
-    return (dispatch: Dispatch) => {
-        dispatch(toggleFollowing(userId,true))
-        usersAPI.userUnfollow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unFollowSuccess(userId))
-                }
-                dispatch(toggleFollowing(userId,false))
-            })
-    }
-}
-
-
 export const usersReducer = (state: initialStateType = initialState, action: AllActionTypes): initialStateType => {
     switch (action.type) {
         case ACTION_USER_REDUCER.FOLLOW :
@@ -148,3 +97,39 @@ export const usersReducer = (state: initialStateType = initialState, action: All
     }
 }
 
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setCurrentPage(currentPage))
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
+export const follow = (userId:number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowing(userId,true))
+        usersAPI.userFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(toggleFollowing(userId,false))
+            })
+    }
+}
+export const unfollow = (userId:number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowing(userId,true))
+        usersAPI.userUnfollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unFollowSuccess(userId))
+                }
+                dispatch(toggleFollowing(userId,false))
+            })
+    }
+}

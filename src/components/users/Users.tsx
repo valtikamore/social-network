@@ -4,6 +4,7 @@ import React from "react";
 
 import {NavLink} from "react-router-dom";
 import { userType } from "../../api/api";
+import {Paginator} from "./paginator";
 
 type propsType = {
     totalUsersCount: number
@@ -26,15 +27,7 @@ export const Users = (props: propsType) => {
         ...rest
     } = props
 
-    let pageCount = Math.ceil(totalUsersCount / pageSize)
-    let pages = []
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i)
-    }
-    const pageNumbers = pages.map((p, i) => <span
-        onClick={() => onPageChanged(p)}
-        key={i} className={currentPage === p ? classes.selectPage : ''}
-    >{p}</span>)
+
     const usersMap = users.map(u => {
         return <div key={u.id} className={classes.users}>
             <NavLink to={`/profile/${u.id}`}>
@@ -60,7 +53,13 @@ export const Users = (props: propsType) => {
     return (
         <div>
             <div className={classes.pageNumbers}>
-                {pageNumbers}
+                <Paginator
+                    pageSize={props.pageSize}
+                    totalUsersCount={props.totalUsersCount}
+                    onPageChanged={props.onPageChanged}
+                    currentPage={props.currentPage}
+                    portionSize={10}
+                />
             </div>
             <>
                 {usersMap}
