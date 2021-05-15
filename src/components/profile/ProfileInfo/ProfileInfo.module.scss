@@ -5,6 +5,7 @@
   height: 500px;
   background: $profile-primaty;
   border-radius: 20px;
+  position: relative;
   .profileInfoBlock__img{
     width: 100%;
     & img {
@@ -12,5 +13,15 @@
       object-fit: cover;
       border-radius: 20px;
     }
+  }
+  .imageBock{
+    position: absolute;
+    left: 39%;
+    top: 35%;
+    width: 200px;
+    height: 200px;
+    @include flex (center,space-evenly,column);
+    background: $profile-secondary;
+    border-radius: 50%;
   }
 }

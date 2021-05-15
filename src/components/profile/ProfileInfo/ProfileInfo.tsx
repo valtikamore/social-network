@@ -21,9 +21,12 @@ export const ProfileInfo = (props:ProfileInfoPropsType)=> {
                 <div className={classes.profileInfoBlock__img}>
                     <img src={mountains} alt="miuntains"/>
                 </div>
-                <img src={profile.photos.large!} alt=""/>
-                <div>{profile.fullName}</div>
-                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+                <div className={classes.imageBock}>
+                    <img src={profile.photos.large!} alt=""/>
+                    <div>{profile.fullName}</div>
+                    <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+                </div>
+
             </div>
     )
 }

@@ -1,9 +1,12 @@
-import {AllActionTypes} from "../../redux-store";
+export enum DIALOGS_ACTIONS_TYPE{
+    SEND_MESSAGE = 'SEND_MESSAGE',
+    UPDATE_NEW_MESSAGE_BODY='UPDATE_NEW_MESSAGE_BODY'
+}
 export type dialogType = { id: number , name: string ,img: string }
 export type messageType = { id: number , message: string  }
-export type InitialStateDialogsType = typeof initialState
-export const sendMessageCreator = () => ({type: 'SEND_MESSAGE'}as const)
-export const updateNewMessageBodyCreator = (body:string) =>  ({type: 'UPDATE_NEW_MESSAGE_BODY', body:body}as const)
+
+export type DialogsPageStateType  = typeof initialState
+
 let initialState = {
     dialogs: [
         {
@@ -29,12 +32,18 @@ let initialState = {
     ] as messageType[],
     newMessageBody:''
 }
+export type dialogsActionsType =
+    | ReturnType<typeof sendMessageCreator>
+    | ReturnType<typeof updateNewMessageBodyCreator>
 
- export const dialogsReducer = (state:InitialStateDialogsType = initialState,action:AllActionTypes):InitialStateDialogsType => {
+export const sendMessageCreator = () => ({type: 'SEND_MESSAGE'}as const)
+export const updateNewMessageBodyCreator = (body:string) =>  ({type: 'UPDATE_NEW_MESSAGE_BODY', body:body}as const)
+
+ export const dialogsReducer = (state:DialogsPageStateType  = initialState,action:dialogsActionsType):DialogsPageStateType  => {
      switch (action.type) {
-         case 'UPDATE_NEW_MESSAGE_BODY' :
+         case DIALOGS_ACTIONS_TYPE.UPDATE_NEW_MESSAGE_BODY :
              return {...state , newMessageBody : action.body}
-         case 'SEND_MESSAGE':
+         case DIALOGS_ACTIONS_TYPE.SEND_MESSAGE:
              let body = state.newMessageBody
              let newMessage: messageType = {
              id: 6, message: body,

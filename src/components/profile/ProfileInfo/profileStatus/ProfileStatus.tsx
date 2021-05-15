@@ -28,7 +28,7 @@ export const ProfileStatus:FC<ProfileStatusPropsType> = (props) => {
         <div>
             {editMode
                 ? <input type="text" value={text}  onBlur={onBlurHandler} autoFocus onChange={onChangeStatus}/>
-                :  <span onDoubleClick={onClickHandler}>{props.status ? props.status : 'Enter your status'}</span>}
+                :  <span onDoubleClick={onClickHandler}>{props.status && props.status}</span>}
         </div>
     )
 }

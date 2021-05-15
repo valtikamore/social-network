@@ -45,29 +45,17 @@ const instance = axios.create({
 export const usersAPI = {
     getUsers(currentPage:number=1,pageSize:number=10){
         return  instance.get<commonUsers<userType>>(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                return  response.data
-            })
     },
     userFollow(userId:number){
         return instance.post<responseType<userType>>(`follow/${userId}`)
-            .then(response => {
-                return response.data
-            })
     },
     userUnfollow(userId:number){
         return instance.delete<responseType<userType>>(`follow/${userId}`)
-            .then(response => {
-                return response.data
-            })
     }
 }
 export const profileAPI = {
     getProfileUser(userId:number){
         return instance.get<profileUser>(`profile/${userId}`)
-            .then(response => {
-                return response.data
-            })
     },
     getStatus(userId:number) {
         return instance.get(`profile/status/${userId}`)
@@ -79,9 +67,6 @@ export const profileAPI = {
 export const authAPI = {
     authMe() {
         return instance.get<responseType<{id:number,email:string,login:string}>>(`auth/me`)
-            .then(response => {
-                return response.data
-            })
     },
 }
 

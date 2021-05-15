@@ -1,43 +1,30 @@
 
-import profileReducer, {addPost, setUsersProfileSuccess, setUserStatus, updateNewPostText} from "./reducers/profile-reducer/profile-reducer";
-import dialogsReducer, {
-    sendMessageCreator,
-    updateNewMessageBodyCreator
-} from "./reducers/dialog-reducer/dialogs-reducer";
-import {
-    followSuccess, toggleFollowing,
-    setCurrentPage, setTotalUsersCount,
-    setUsers,
-    toggleIsFetching,
-    unFollowSuccess,
-    usersReducer
-} from "./reducers/user-reducer/users-reducer";
-import {authReducer, setAuthUserData} from "./reducers/authReducer/authReducer";
-import thunkMiddleware from 'redux-thunk'
+import dialogsReducer, {dialogsActionsType,} from "./reducers/dialog-reducer/dialogs-reducer";
+import {usersReducer, userActionsType} from "./reducers/user-reducer/users-reducer";
+import {authActionTypes, authReducer} from "./reducers/authReducer/authReducer";
+import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import {applyMiddleware, combineReducers, createStore } from "redux";
+import {FormAction, reducer as formReducer} from 'redux-form'
+import {profileActionsType, profileReducer} from "./reducers/profile-reducer/profile-reducer";
 
-export type AllActionTypes =
-    ReturnType<typeof addPost>
-    | ReturnType<typeof updateNewPostText>
-    | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof updateNewMessageBodyCreator>
-    | ReturnType<typeof followSuccess>
-    | ReturnType<typeof unFollowSuccess>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof toggleIsFetching>
-    | ReturnType<typeof setUsersProfileSuccess>
-    |ReturnType<typeof setAuthUserData>
-    |ReturnType<typeof toggleFollowing>
-    |ReturnType<typeof setUserStatus>
+
+export type AllActionsType =
+    | authActionTypes
+    | userActionsType
+    | dialogsActionsType
+    | profileActionsType
+    | FormAction
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown,AllActionsType>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
-    auth:authReducer
+    auth:authReducer,
+    form:formReducer
 })
+
 export type AppStateType = ReturnType<typeof rootReducer>
 
 export const store = createStore(
@@ -45,5 +32,4 @@ export const store = createStore(
     applyMiddleware(thunkMiddleware),
 
 )
-// (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__();
-export default store
+
