@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 
 interface ProfileStatusPropsType {
     status:string
@@ -11,7 +11,6 @@ export const ProfileStatus:FC<ProfileStatusPropsType> = (props) => {
 
     const onClickHandler = () => {
         setEditMode(true)
-        setText(props.status ? props.status : '')
     }
     const onBlurHandler = (e:any) => {
         setEditMode(false)
@@ -20,6 +19,10 @@ export const ProfileStatus:FC<ProfileStatusPropsType> = (props) => {
     const onChangeStatus = (e:any) => {
         setText(e.currentTarget.value)
     }
+
+    useEffect(() => {
+        setText(props.status)
+    },[props.status])
 
     return (
         <div>
