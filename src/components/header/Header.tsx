@@ -19,9 +19,11 @@ const Header = (props:headerContainerPropsType) => {
                 </div>
                 <h4 className={classes.logo}>Valtika Social</h4>
             </div>
+
             <div className={classes.header_loginBlock}>
                 {isAuth ? login :  <MemoryRouter> <NavLink to={'/login'}>Login</NavLink></MemoryRouter>}
-                <a href={'https://social-network.samuraijs.com/signUp'} target={'_blank'}>Register</a>
+
+                <a className={classes.register} href={'https://social-network.samuraijs.com/signUp'} target={'_blank'}>Register</a>
             </div>
         </header>
     )
