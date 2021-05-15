@@ -1,5 +1,5 @@
 
-import profileReducer, {addPost, setUsersProfileSuccess, updateNewPostText} from "./reducers/profile-reducer/profile-reducer";
+import profileReducer, {addPost, setUsersProfileSuccess, setUserStatus, updateNewPostText} from "./reducers/profile-reducer/profile-reducer";
 import dialogsReducer, {
     sendMessageCreator,
     updateNewMessageBodyCreator
@@ -30,6 +30,7 @@ export type AllActionTypes =
     | ReturnType<typeof setUsersProfileSuccess>
     |ReturnType<typeof setAuthUserData>
     |ReturnType<typeof toggleFollowing>
+    |ReturnType<typeof setUserStatus>
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

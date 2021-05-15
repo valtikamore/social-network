@@ -3,7 +3,8 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
-    setUsersProfile,
+    getUserStatus,
+    setUsersProfile, updateUserStatus,
 } from "../../redux/reducers/profile-reducer/profile-reducer";
 import { RouteComponentProps, withRouter} from 'react-router-dom';
 import {profileUser} from "../../api/api";
@@ -13,10 +14,12 @@ import {compose} from "redux";
 
 type MapStateToPropsType = {
     profile: null | profileUser
-
+    status:string
 }
 type MapDispatchToProps = {
-    setUsersProfile: (userId:string) => void
+    setUsersProfile: (userId:number) => void
+    getUserStatus: (userId:number) => void
+    updateUserStatus: (status:string) => void
 }
 export type profileContainerPropsType = MapStateToPropsType & MapDispatchToProps
 
@@ -28,17 +31,21 @@ type propsType = profileContainerPropsType & RouteComponentProps<PathParamsType>
 class ProfileContainer extends React.Component<propsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
+        let userId = Number(this.props.match.params.userId)
         if(!userId) {
-            userId = '15876'
+            userId = 15876
         }
-       this.props.setUsersProfile(userId)
+        this.props.setUsersProfile(userId)
+        this.props.getUserStatus(userId)
     }
 
     render() {
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile {...this.props}
+                         profile={this.props.profile}
+                         updateUserStatus={this.props.updateUserStatus}
+                         status={this.props.status}/>
             </div>
         )
     }
@@ -47,12 +54,12 @@ class ProfileContainer extends React.Component<propsType> {
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-
+        status:state.profilePage.status
     }
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {setUsersProfile}),
+    connect(mapStateToProps, {setUsersProfile,getUserStatus,updateUserStatus}),
     WithAuthRedirect,
     withRouter,
     WithAuthRedirect

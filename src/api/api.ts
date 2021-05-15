@@ -3,8 +3,8 @@ import axios from "axios";
 export interface userType  {
     name: string
     id: number
-    photos: {small: null | string, large: null | string }
-    status: null | string
+    photos: {small:  string, large:  string }
+    status: string
     followed: boolean
 }
 interface commonUsers<T> {
@@ -30,7 +30,7 @@ export interface profileUser {
     photos: {small: null | string, large: null | string }
 
 }
-export interface userCommon<T = {}> {
+export interface responseType<T = {}> {
     resultCode: number
     messages:string[],
     data: T
@@ -39,7 +39,7 @@ const instance = axios.create({
     withCredentials:true,
     baseURL:'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': 'e9066260-317f-4932-b695-7e08b77a40e9'
+        'API-KEY': 'f1483392-45ca-4f41-b8a9-ec8e05304fe6'
     }
 })
 export const usersAPI = {
@@ -49,28 +49,36 @@ export const usersAPI = {
                 return  response.data
             })
     },
-    getProfileUser(userId:string){
-        return instance.get<profileUser>(`profile/${userId}`)
-            .then(response => {
-                return response.data
-            })
-    },
     userFollow(userId:number){
-        return instance.post<userCommon<userType>>(`follow/${userId}`)
+        return instance.post<responseType<userType>>(`follow/${userId}`)
             .then(response => {
                 return response.data
             })
     },
     userUnfollow(userId:number){
-        return instance.delete<userCommon<userType>>(`follow/${userId}`)
+        return instance.delete<responseType<userType>>(`follow/${userId}`)
             .then(response => {
                 return response.data
             })
     }
 }
+export const profileAPI = {
+    getProfileUser(userId:number){
+        return instance.get<profileUser>(`profile/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    },
+    getStatus(userId:number) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status:string) {
+        return instance.put<responseType<userType>>(`profile/status`, {status})
+    }
+}
 export const authAPI = {
     authMe() {
-        return instance.get<userCommon<{id:number,email:string,login:string}>>(`auth/me`)
+        return instance.get<responseType<{id:number,email:string,login:string}>>(`auth/me`)
             .then(response => {
                 return response.data
             })
