@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/social-network/static/css/main.eda3cc3f.chunk.css",
-    "main.js": "/social-network/static/js/main.8ef2d4e4.chunk.js",
-    "main.js.map": "/social-network/static/js/main.8ef2d4e4.chunk.js.map",
-    "runtime-main.js": "/social-network/static/js/runtime-main.b0e0f81d.js",
-    "runtime-main.js.map": "/social-network/static/js/runtime-main.b0e0f81d.js.map",
-    "static/js/2.e8714777.chunk.js": "/social-network/static/js/2.e8714777.chunk.js",
-    "static/js/2.e8714777.chunk.js.map": "/social-network/static/js/2.e8714777.chunk.js.map",
-    "static/js/3.642df8fa.chunk.js": "/social-network/static/js/3.642df8fa.chunk.js",
-    "static/js/3.642df8fa.chunk.js.map": "/social-network/static/js/3.642df8fa.chunk.js.map",
+    "main.css": "/social-network/static/css/main.5698cad5.chunk.css",
+    "main.js": "/social-network/static/js/main.b360d2b9.chunk.js",
+    "main.js.map": "/social-network/static/js/main.b360d2b9.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.32f2a6ad.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.32f2a6ad.js.map",
+    "static/js/2.0b152453.chunk.js": "/social-network/static/js/2.0b152453.chunk.js",
+    "static/js/2.0b152453.chunk.js.map": "/social-network/static/js/2.0b152453.chunk.js.map",
     "index.html": "/social-network/index.html",
-    "static/css/main.eda3cc3f.chunk.css.map": "/social-network/static/css/main.eda3cc3f.chunk.css.map",
-    "static/js/2.e8714777.chunk.js.LICENSE.txt": "/social-network/static/js/2.e8714777.chunk.js.LICENSE.txt"
+    "static/css/main.5698cad5.chunk.css.map": "/social-network/static/css/main.5698cad5.chunk.css.map",
+    "static/js/2.0b152453.chunk.js.LICENSE.txt": "/social-network/static/js/2.0b152453.chunk.js.LICENSE.txt",
+    "static/media/Gear-0.6s-201px.37e1c5ac.svg": "/social-network/static/media/Gear-0.6s-201px.37e1c5ac.svg",
+    "static/media/designer.d9d0f86f.svg": "/social-network/static/media/designer.d9d0f86f.svg",
+    "static/media/profile-cover.97a7b2bf.jpg": "/social-network/static/media/profile-cover.97a7b2bf.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b0e0f81d.js",
-    "static/js/2.e8714777.chunk.js",
-    "static/css/main.eda3cc3f.chunk.css",
-    "static/js/main.8ef2d4e4.chunk.js"
+    "static/js/runtime-main.32f2a6ad.js",
+    "static/js/2.0b152453.chunk.js",
+    "static/css/main.5698cad5.chunk.css",
+    "static/js/main.b360d2b9.chunk.js"
   ]
 }
