@@ -6,8 +6,10 @@
   background: $profile-primaty;
   border-radius: 20px;
   position: relative;
+
   .profileInfoBlock__img{
     width: 100%;
+    filter: blur(0.2rem);
     & img {
       @include BlockSize(300px,978px);
       object-fit: cover;
@@ -17,11 +19,17 @@
   .imageBock{
     position: absolute;
     left: 39%;
-    top: 35%;
+    top: 13%;
     width: 200px;
     height: 200px;
     @include flex (center,space-evenly,column);
     background: $profile-secondary;
     border-radius: 50%;
+
   }
+  .status{
+    @include flex (center,center,row);
+    margin-top: 50px;
+  }
+
 }
