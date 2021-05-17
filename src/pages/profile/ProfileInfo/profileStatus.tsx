@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from "react";
-import { ProfileInitialStateType } from "../../../redux/profile-reducer";
 
 export type EditableSpanPropsType = {
     status: string
