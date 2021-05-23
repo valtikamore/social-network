@@ -11,8 +11,8 @@ import UsersContainer from './pages/users/usersContainer';
 import ProfileContainer from './pages/profile/ProfileContainer';
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./pages/login/loginPage";
-import { useDispatch, useSelector} from "react-redux";
-import {AppRootStateType, useTypedSelector} from "./redux/redux-store";
+import { useDispatch} from "react-redux";
+import { useTypedSelector} from "./redux/redux-store";
 import {AppStateType, initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
 

@@ -3,18 +3,21 @@ import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
-import { reduxForm} from "redux-form";
-import { SendMessage } from './SendMessage';
+import {reduxForm} from "redux-form";
+import {SendMessage} from './SendMessage';
 
-const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage}) => {
+const Dialogs =React.memo( (props: DialogsPropsType)  => {
+    let {dialogsPage, sendMessage} = props;
+
     let dialogsElements = dialogsPage.dialogs
         .map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} img={dialog.img}/>)
     let messagesElements = dialogsPage.messages
         .map(message => <Message key={message.id} message={message.message} id={message.id}/>)
 
-    const addNewMessage = (values:sendMessageFormDataType) => {
+    const addNewMessage = (values: sendMessageFormDataType) => {
         sendMessage(values.sendNewMessage)
     }
+
 
     return (
         <div className={classes.dialogs}>
@@ -28,7 +31,8 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage}) => {
             </div>
         </div>
     )
-}
+})
+
 export type sendMessageFormDataType = {
     sendNewMessage: string
 }
