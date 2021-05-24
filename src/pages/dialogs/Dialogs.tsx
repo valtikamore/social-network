@@ -9,7 +9,7 @@ import {SendMessage} from './SendMessage';
 const Dialogs =React.memo( (props: DialogsPropsType)  => {
     let {dialogsPage, sendMessage} = props;
 
-    let dialogsElements = dialogsPage.dialogs
+    let dialogsElements = [...dialogsPage.dialogs].reverse()
         .map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} img={dialog.img}/>)
     let messagesElements = dialogsPage.messages
         .map(message => <Message key={message.id} message={message.message} id={message.id}/>)
