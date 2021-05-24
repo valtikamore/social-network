@@ -1,11 +1,12 @@
 import {Dispatch} from "redux";
-import {profileAPI, userProfileType, usersAPI} from "../dal/api";
+import {profileAPI, userProfileType, usersAPI} from "../../dal/api";
 
 
 export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'ADD_POST',
     SET_USERS_PROFILE = 'SET_USERS_PROFILE',
-    SET_STATUS = 'SET_STATUS'
+    SET_STATUS = 'SET_STATUS',
+    REMOVE_POST='REMOVE_POST'
 }
 export type postType ={
     id: number
@@ -13,12 +14,15 @@ export type postType ={
     likeCount: number
 }
 export type profileActionsType =
-        ReturnType<typeof addPostActionCreator>
+    |    ReturnType<typeof addPostActionCreator>
     |   ReturnType<typeof setUsersProfileSuccess>
     |   ReturnType<typeof setUserStatus>
+    |   ReturnType<typeof deletePostAC>
+
 
 
 export const addPostActionCreator = (newPostText:string) => ({type: 'ADD_POST',newPostText} as const)
+export const deletePostAC = (postId:number) => ({type: 'REMOVE_POST',postId} as const)
 
 export const setUsersProfileSuccess = (profile: userProfileType) => ({type: 'SET_USERS_PROFILE', profile} as const)
 export const setUserStatus = (status: string) => ({type: 'SET_STATUS', status} as const)
@@ -85,6 +89,11 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: p
         case PROFILE_ACTIONS_TYPE.SET_STATUS : {
             return {
                 ...state, status: action.status
+            }
+        }
+        case PROFILE_ACTIONS_TYPE.REMOVE_POST: {
+            return {
+                ...state,posts:state.posts.filter(p => p.id !== action.postId)
             }
         }
         default :
