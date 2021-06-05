@@ -9,7 +9,8 @@ import ProfileStatus from "./profileStatus";
 const ProfileInfo: FC<ProfilePropsType> = ({profile ,status ,updateStatus}) => {
     if (!profile) {
         return <Preloader/>
-    } else {
+    }
+
         return (
             <div>
                 <div className={classes.content}>
@@ -33,7 +34,7 @@ const ProfileInfo: FC<ProfilePropsType> = ({profile ,status ,updateStatus}) => {
                 </div>
             </div>
         )
-    }
+
 
 }
 export default ProfileInfo

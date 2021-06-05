@@ -1,11 +1,12 @@
 import React from 'react';
 import Profile from "./Profile";
 import {AppRootStateType} from "../../redux/redux-store";
-import {getUserStatus, setUserProfile, updateUserStatus} from "../../redux/profile-reducer";
+
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {compose} from 'redux';
 import {userProfileType} from "../../dal/api";
+import {getUserStatus, setUserProfile, updateUserStatus} from "../../redux/profile-reducer/profile-reducer";
 
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToProps
@@ -28,7 +29,6 @@ type propsType = ProfileContainerPropsType & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<propsType> {
     componentDidMount() {
-        debugger
         let userId:number|null = Number(this.props.match.params.userId)
         if (!userId) {
             userId = this.props.userId
@@ -41,7 +41,6 @@ class ProfileContainer extends React.Component<propsType> {
             this.props.getUserStatus(userId)
         }
     }
-
     render() {
         return (
             <div>

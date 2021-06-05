@@ -1,4 +1,4 @@
-import profileReducer, {addPostActionCreator, deletePostAC, ProfileInitialStateType} from "./profile-reducer"
+import profileReducer, {addPostAC, deletePostAC, ProfileInitialStateType} from "./profile-reducer"
 
 let startValue = {} as ProfileInitialStateType
 beforeEach(() => {
@@ -15,7 +15,7 @@ describe('profile reducer add post',()=> {
 
     test('add post be defined',()=> {
 
-        const action = addPostActionCreator('dddd')
+        const action = addPostAC('dddd')
         const endValue = profileReducer(startValue, action)
 
         expect(endValue.posts[1]).toBeDefined()
@@ -24,7 +24,7 @@ describe('profile reducer add post',()=> {
     })
     test('add post should be correct ',()=> {
 
-        const action = addPostActionCreator('dddd')
+        const action = addPostAC('dddd')
         const endValue = profileReducer(startValue, action)
 
         expect(endValue.posts[1].message).toBe('dddd')

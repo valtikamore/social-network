@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers} from "redux";
 import {createStore} from "redux";
-import profileReducer, {profileActionsType} from "./profile-reducer";
+
 import dialogsReducer, { dialogsActionsType } from "./dialogs-reducer";
 import usersReducer, {userActionsType} from "./users-reducer";
 import {authActionTypes, authReducer} from "./auth-reducer";
@@ -9,6 +9,8 @@ import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import {FormAction, reducer as formReducer} from 'redux-form'
 import {appActionTypes, appReducer } from "./app-reducer";
 import {TypedUseSelectorHook, useSelector} from "react-redux";
+import profileReducer, { profileActionsType } from "./profile-reducer/profile-reducer";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 
 let rootReducer = combineReducers({
@@ -25,10 +27,9 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootStateTy
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 let store = createStore(
-    rootReducer,(
+    rootReducer,composeWithDevTools(
         applyMiddleware(thunkMiddleware)
     )
-
 )
 export const useTypedSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 // (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()

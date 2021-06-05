@@ -3,7 +3,7 @@ import {AppThunk} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
 export enum AUTH_ACTIONS_TYPE {
-    SET_USER_DATA = 'SET_USER_DATA',
+    SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA',
 }
 
 
@@ -17,7 +17,7 @@ let initialState = {
 export type authActionTypes =   ReturnType<typeof setUserData>
 
 export const setUserData = (userId:number| null,email:string | null,login:string |null,isAuth:boolean) => ({
-    type:'SET_USER_DATA',payload:{userId,email,login,isAuth}} as const )
+    type:AUTH_ACTIONS_TYPE.SET_USER_DATA,payload:{userId,email,login,isAuth}} as const )
 
 export const getAuthUserData = ():AppThunk => async (dispatch) => {
        const res = await authAPI.authMe()

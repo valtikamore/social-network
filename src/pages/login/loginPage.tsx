@@ -20,21 +20,20 @@ interface formDataType {
     password:string
     rememberMe:boolean
 }
- const LoginForm:FC<InjectedFormProps<formDataType>> = (props) => {
+ const LoginForm:FC<InjectedFormProps<formDataType>> = ({error,handleSubmit,...props}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field  placeholder={'email'} component={Input} name={'email'} validate={[required]}/>
             <Field  placeholder={'password'} component={Input} name={'password'} validate={[required]}/>
             <div style={{display:"flex",alignItems:"center"}}>
                 <Field type="checkbox" component={'input'} name={'rememberMe'} />
                 <label htmlFor="{'rememberMe'}">remember me</label>
             </div>
-            {props.error && <div className={classes.error}>{props.error}</div>}
+            {error && <div className={classes.error}>{error}</div>}
             <button>Login</button>
         </form>
     )
 }
-
   const Login:FC<propsType> = (props) => {
     const onSubmit= (formData:formDataType) => {
         props.login(formData.email,formData.password,formData.rememberMe,false)
