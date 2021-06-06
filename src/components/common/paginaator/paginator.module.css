@@ -1,3 +1,37 @@
-.selected {
-    color: red;
+
+.paginator {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.paginator button {
+    color: white;
+    padding: 11px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    background: #18191A;
+}
+button:hover {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+
+.pageNumber {
+    color: white;
+    padding: 8px 16px;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+
+}
+
+.pageNumber.selectedPage {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
 }

@@ -23,7 +23,7 @@ export type serverUsers = {
 
 let initialState = {
     users: [] as userType[],
-    pageSize: 20,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
