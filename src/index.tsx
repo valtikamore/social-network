@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import AppSamurai from "./App";
