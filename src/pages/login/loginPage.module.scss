@@ -4,14 +4,15 @@
     align-items: center;
     justify-content: center;
     align-self: center;
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        height: 150px;
+    }
 }
 
-.loginForm {
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-    height: 150px;
-}
+
 .error {
     border: 2px solid red ;
     color: red;

@@ -1,0 +1,25 @@
+.nav {
+    background: linear-gradient(100deg, pink, #99e8da);
+    grid-area: nav;
+    .item {
+        padding: 15px 10px 10px 10px;
+        &:last-child {
+            padding: 15px 10px 10px 10px;
+        }
+        a {
+            text-decoration: none;
+            &:active {
+                color: black;
+            }
+        }
+    }
+    .grid {
+        display: grid;
+        justify-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            'ava ava ava'
+            'user user user';
+    }
+}
+

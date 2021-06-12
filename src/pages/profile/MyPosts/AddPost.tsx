@@ -1,5 +1,5 @@
 import React, { FC} from "react";
-import classes from "./MyPosts.module.css"
+import classes from "./MyPosts.module.scss"
 import {Field, InjectedFormProps} from "redux-form";
 import {addPostExtendsFormDataType, addPostFormDataType } from "./MyPosts";
 import {maxLengthCreator, required} from "../../../utils/validate/validators";

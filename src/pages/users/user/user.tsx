@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import s from "./user.module.css";
+import s from "./user.module.scss";
 import {NavLink} from "react-router-dom";
 import userWithoutPhoto from "../../../assets/imagies/icons8-user-male.svg";
 import {userType} from "../../../dal/api";

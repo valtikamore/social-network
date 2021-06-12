@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react'
 import cn from "classnames";
-import styles from './paginator.module.css'
+import styles from './paginator.module.scss'
 
 interface PaginatorPropsType {
     totalUsersCount: number

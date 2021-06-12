@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import classes from './loginPage.module.css'
+import classes from './loginPage.module.scss'
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import { required } from "../../utils/validate/validators";

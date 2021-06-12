@@ -1,0 +1,41 @@
+
+.grid {
+    display: grid;
+    grid-template-rows:  20px 1fr ;
+    grid-template-columns: 60px 200px;
+    grid-template-areas:
+            'avatar username'
+            'avatar usertext';
+    .dialogUsername{
+        z-index: 20;
+        text-decoration: none;
+        grid-area: username;
+        &:hover{
+            z-index: 20;
+            text-decoration: none;
+            color: #9f12fe;
+        }
+    }
+    .dialogText {
+        grid-area: usertext;
+    }
+    .dialogAvatar {
+        display: block;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        grid-area: avatar;
+    }
+}
+
+.dialog{
+    padding: 15px;
+    z-index: 20;
+}
+
+.dialogUsername.active{
+    z-index: 20;
+    color: #9f12fe;
+}
+
+

@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import classes from "./Header.module.css"
+import classes from "./Header.module.scss"
 import {MemoryRouter, NavLink} from 'react-router-dom'
 import {HeaderContainerPropsType} from "./HeaderContainer";
 

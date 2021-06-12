@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import classes from "./ProfileInfo.module.css"
+import classes from "./ProfileInfo.module.scss"
 import {Preloader} from "../../../components/common/Preloader/Preloader";
 import {ProfilePropsType} from "../Profile";
 import userWithoutPhoto from '../../../assets/imagies/icons8-user-male.svg'

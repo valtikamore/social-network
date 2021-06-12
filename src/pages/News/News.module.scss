@@ -1,8 +1,8 @@
 .news {
     font-size: 22px;
-
     color: green;
+    .newsTitle {
+        z-index: 22;
+    }
 }
-.newsTitle {
-    z-index: 22;
-}
+

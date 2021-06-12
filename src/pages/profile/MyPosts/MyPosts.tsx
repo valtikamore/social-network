@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./MyPosts.module.css"
+import classes from "./MyPosts.module.scss"
 import Post from "./Post/Post";
 import { reduxForm} from "redux-form";
 import {MyPostPropsType} from "./MyPostsContainer";

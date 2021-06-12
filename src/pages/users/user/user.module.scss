@@ -1,0 +1,42 @@
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: 50px 50px;
+    grid-template-areas:
+            'photo name '
+            'follow status ';
+    .photo {
+        grid-area: photo;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+    }
+    .follow {
+        grid-area: follow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #cdc6c6;
+        border-radius: 10px;
+        transition: all 0.9s ease;
+        &:hover {
+            background: white;
+            box-shadow: inset 0 0 0 2px #53ea93;
+        }
+    }
+    .name {
+        grid-area: name;
+    }
+
+    .status {
+        grid-area: status;
+    }
+
+
+}
+
+
+

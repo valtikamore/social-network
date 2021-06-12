@@ -7,16 +7,17 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 1px 2px 16px 10px rgba(34, 60, 80, 0.27);
+    img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+    .loginBlock {
+        width: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
-.header img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-}
 
-.loginBlock {
-    width: 100px;
-    display: flex;
-    justify-content: space-between;
-}
+

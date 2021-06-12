@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '../Dialogs.module.css';
+import classes from '../Dialogs.module.scss';
 
 
 type messageType = {

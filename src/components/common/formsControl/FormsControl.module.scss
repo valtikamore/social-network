@@ -10,10 +10,11 @@
     box-shadow: -1px 0 7px rgba(66,66,66,.58);
     text-shadow: 0 0 2px rgba(66,66,66,.75);
     resize: none;
+    &:focus {
+        outline:none;
+    }
 }
-.fromControl:focus {
-    outline:none;
-}
+
 .error{
     border: 2px solid red;
 }

@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import { WrappedFieldProps} from 'redux-form'
-import classes from './FormsControl.module.css'
+import classes from './FormsControl.module.scss'
 import classNames from "classnames";
 
 interface CustomFieldProps {
