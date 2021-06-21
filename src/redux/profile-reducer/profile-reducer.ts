@@ -6,7 +6,8 @@ export enum PROFILE_ACTIONS_TYPE {
     ADD_POST = 'profile-reducer/ADD_POST',
     SET_USERS_PROFILE = 'profile-reducer/SET_USERS_PROFILE',
     SET_STATUS = 'profile-reducer/SET_STATUS',
-    REMOVE_POST = 'profile-reducer/REMOVE_POST'
+    REMOVE_POST = 'profile-reducer/REMOVE_POST',
+    SET_PHOTO = 'profile-reducer/SET_PHOTO'
 }
 export type postType = {
     id: number
@@ -54,6 +55,13 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: p
                 ...state, posts: state.posts.filter(p => p.id !== action.postId)
             }
         }
+        case PROFILE_ACTIONS_TYPE.SET_PHOTO : {
+            return {
+                ...state,
+                //@ts-ignore
+                profile: {...state.profile,photos:action.file}
+            }
+        }
         default :
             return state
     }
@@ -63,6 +71,7 @@ export const addPostAC = (newPostText: string) => ({type:PROFILE_ACTIONS_TYPE.AD
 export const deletePostAC = (postId: number) => ({type: PROFILE_ACTIONS_TYPE.REMOVE_POST, postId} as const)
 export const setUsersProfileSuccessAC = (profile: userProfileType) => ({type: PROFILE_ACTIONS_TYPE.SET_USERS_PROFILE, profile} as const)
 export const setUserStatus = (status: string) => ({type: PROFILE_ACTIONS_TYPE.SET_STATUS, status} as const)
+export const setPhoto = (file:any) => ({type: PROFILE_ACTIONS_TYPE.SET_PHOTO, file} as const)
 
 export const setUserProfile = (userId: number) => async (dispatch: Dispatch) => {
     let res = await usersAPI.getProfileUser(userId)
@@ -80,11 +89,18 @@ export const updateUserStatus = (status: string) => async (dispatch: Dispatch) =
         dispatch(setUserStatus(status))
     }
 }
+export const savePhoto = (file:any) => async (dispatch: Dispatch) => {
+    let res = await profileAPI.savePhoto(file)
+    if (res.data.resultCode === 0) {
+        dispatch(setPhoto(res.data.data.photos))
+    }
+}
 
 export type profileActionsType =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof setUsersProfileSuccessAC>
     | ReturnType<typeof setUserStatus>
     | ReturnType<typeof deletePostAC>
+    | ReturnType<typeof setPhoto>
 export default profileReducer
 

@@ -10,12 +10,14 @@ export type ProfilePropsType = {
     profile: null | userProfileType
     status:string
     updateStatus:(status:string) => void
+    isOwner:boolean
+    savePhoto:(file:any) => void
 }
 
-const Profile: React.FC<ProfilePropsType> =( { profile, status, updateStatus})=> {
+const Profile: React.FC<ProfilePropsType> =( { profile, status, updateStatus,isOwner,savePhoto})=> {
     return (
         <div className={classes.profile}>
-            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} />
+            <ProfileInfo profile={profile} savePhoto={savePhoto} status={status} updateStatus={updateStatus} isOwner={isOwner} />
             <MyPostsContainer  />
         </div>
     )

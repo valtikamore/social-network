@@ -83,7 +83,17 @@ export const profileAPI = {
         return instance.put<ResponseType<userType>>(`profile/status`, {
             status: status
         })
-    }
+    },
+    savePhoto(file: any) {
+        let formData = new FormData()
+        formData.append('image', file)
+        return instance.put<ResponseType<userProfileType>>(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+
+    },
 
 }
 export const authAPI = {
