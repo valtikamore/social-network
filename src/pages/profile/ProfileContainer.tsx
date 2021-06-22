@@ -1,7 +1,6 @@
 import React from 'react';
 import Profile from "./Profile";
 import {AppRootStateType} from "../../redux/redux-store";
-
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {compose} from 'redux';
@@ -54,7 +53,7 @@ class ProfileContainer extends React.Component<propsType> {
 
     render() {
         return (
-            <div>
+            <>
                 <Profile  {...this.props}
                           profile={this.props.profile}
                           status={this.props.status}
@@ -62,7 +61,7 @@ class ProfileContainer extends React.Component<propsType> {
                           isOwner={!this.props.match.params.userId}
                           savePhoto={this.props.savePhoto}
                 />
-            </div>
+            </>
         );
     }
 }

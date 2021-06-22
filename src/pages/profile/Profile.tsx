@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./Profile.module.scss"
-
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {userProfileType} from "../../dal/api";

@@ -1,23 +1,36 @@
-
-.header {
-    grid-area: header;
-    padding: 10px;
-    align-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 1px 2px 16px 10px rgba(34, 60, 80, 0.27);
-    img {
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-    }
-    .loginBlock {
-        width: 100px;
+@import "src/styles/variables.module";
+.container {
+    background: $primary;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    .header {
+        width: 100.8rem;
+        margin: 0 auto;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        padding: 15px;
+        font-size: 1.5rem;
+
+        img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+        .loginBlock {
+            display: flex;
+            justify-content: space-between;
+            .login{
+                margin-right: 20px;
+            }
+
+        }
     }
 }
+
 
 
 

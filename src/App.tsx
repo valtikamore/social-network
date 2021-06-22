@@ -32,8 +32,8 @@ const ProfileContainer = React.lazy(() => import('./pages/profile/ProfileContain
         return (
             <div className={classes.App}>
                 <HeaderContainer/>
-                <Navbar/>
                 <div className={classes.AppWrapperContent}>
+                    <Navbar/>
                     <Route path='/profile/:userId?'
                            render={() =><React.Suspense fallback={<div>loading</div>}>
                                <ProfileContainer/>

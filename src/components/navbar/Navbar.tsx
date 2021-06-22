@@ -5,7 +5,6 @@ import classes from "./Navbar.module.scss"
 
 
 const Navbar = () => {
-    // let sidebarMap = props.store.getState().navbarPage.friends.map(f => <Friends id={f.id} name={f.name} img={f.img}/>)
     return (
         <nav className={classes.nav}>
             <div className={classes.item}>
@@ -32,8 +31,8 @@ const Navbar = () => {
                 <NavLink to='/settings'
                          activeClassName={classes.active}>Settings</NavLink>
             </div>
-            <div >
-                <NavLink to='/friends' className={classes.friendName}>Friends</NavLink>
+            <div className={classes.item}>
+                <NavLink to='/friends' activeClassName={classes.active}>Friends</NavLink>
                 <div className={classes.grid}>{/*{sidebarMap}*/} </div>
             </div>
         </nav>

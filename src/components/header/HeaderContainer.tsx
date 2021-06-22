@@ -12,6 +12,7 @@ type MapDispatchToProps = {
 type MapStatePropsType = {
     isAuth: boolean
     login: string | null
+    avatar:any
 }
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
@@ -24,6 +25,7 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
 }
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
-    login: state.auth.login
+    login: state.auth.login,
+    avatar:state.profilePage.profile?.photos.small
 })
 export default connect(mapStateToProps,{logout}) (HeaderContainer)
