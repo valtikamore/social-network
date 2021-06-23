@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import s from "./user.module.scss";
+import classes from "./user.module.scss";
 import {NavLink} from "react-router-dom";
 import userWithoutPhoto from "../../../assets/imagies/icons8-user-male.svg";
 import {userType} from "../../../dal/api";
@@ -13,30 +13,34 @@ interface userProps {
 
 export const User: FC<userProps> = ({user, follow, unfollow, followingInProgress}) => {
     return (
-        <div key={user.id} className={s.grid}>
-            <NavLink to={`/profile/${user.id} `}>
-                <img className={s.photo}
-                     src={user.photos.small !== null
-                         ? user.photos.small
-                         : userWithoutPhoto}
-                     alt='animated-user'/>
-            </NavLink>
+        <div key={user.id} className={classes.user}>
+            <div className={classes.photoBlock}>
+                <NavLink to={`/profile/${user.id} `}>
+                    <img className={classes.photo}
+                         src={user.photos.small !== null
+                             ? user.photos.small
+                             : userWithoutPhoto}
+                         alt='animated-user'/>
+                </NavLink>
 
-            <div className={s.follow}>
+            </div>
+            <div className={classes.aboutUser}>
+                <div className={classes.name}>{user.name}</div>
+                <div className={classes.status}>{user.status}</div>
+            </div>
+            <div className={classes.follow}>
                 {user.followed
                     ? <button disabled={followingInProgress.some(id => id === user.id)}
                               onClick={() => {
                                   unfollow(user.id)
                               }}>
-                        Unfollow</button>
+                        delete friend</button>
                     : <button disabled={followingInProgress.some(id => id === user.id)}
                               onClick={() => {
                                   follow(user.id)
                               }}>
-                        follow</button>}
+                        Add friend</button>}
             </div>
-            <div className={s.name}>{user.name}</div>
-            <div className={s.status}>{user.status}</div>
         </div>
     )
 }

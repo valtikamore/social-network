@@ -1,17 +1,27 @@
+@import "src/styles/variables.module";
 .nav {
     grid-column: 1/3;
     font-size: 1.6rem;
     .item {
-        padding: 15px 0 10px 0;
-        &:last-child {
-            padding: 15px 0 0 0;
-        }
         a {
+            padding: 15px 0 10px 0;
+            transition: ease 0.2s;
+            display: block;
+            width: 100%;
+            height: 100%;
             text-decoration: none;
             &:active {
-                color: black;
+                color: #fff;
+            }
+            &:hover {
+                background: $secondary;
             }
         }
+
     }
 }
 
+.active {
+    color: #fff;
+    background: $secondary;
+}

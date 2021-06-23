@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {userType} from "../../dal/api";
 import {Paginator} from "../../components/common/paginaator/Paginator";
 import {User} from "./user/user";
-
+import classes from './users.module.scss'
 
 type usersPropsType = {
     totalUsersCount: number
@@ -28,8 +28,8 @@ export const Users: FC<usersPropsType> = props => {
 
 
     return (
-        <div>
-            <div style={{marginBottom: '20px'}}>
+        <div className={classes.users}>
+            <div >
                 <Paginator
                     pageSize={pageSize}
                     totalUsersCount={totalUsersCount}

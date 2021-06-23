@@ -1,0 +1,5 @@
+@import 'src/styles/variables.module';
+.users {
+  grid-column: 3/12;
+  background: $primary;
+}

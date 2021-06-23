@@ -33,7 +33,7 @@ export const ProfileStatus:FC<EditableSpanPropsType> = (props) => {
         }
     }
         return (
-            <div>
+            <>
                 {!editMode
                     ? <span
                         onDoubleClick={onDoubleClick}
@@ -47,7 +47,7 @@ export const ProfileStatus:FC<EditableSpanPropsType> = (props) => {
                         onKeyPress={onEnter}
                     />
                 }
-            </div>
+            </>
 
         )
 }

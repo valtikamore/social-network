@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from "react";
+import React, { FC} from "react";
 import classes from "./ProfileInfo.module.scss"
 import {Preloader} from "../../../components/common/Preloader/Preloader";
 import {ProfilePropsType} from "../Profile";
@@ -16,27 +16,43 @@ const ProfileInfo: FC<ProfilePropsType> = ({profile ,status ,updateStatus,isOwne
         }
     }
         return (
-            <div>
-                <div className={classes.content}>
-                    <img src={profile.photos.large ? profile.photos.large : userWithoutPhoto} alt=""/>
-                    {isOwner && <input type="file" onChange={mainPhotoSelectedOn}/>}
-                    <ProfileStatus status={status} updateStatus={updateStatus}/>
+                <>
+                    <div className={classes.avatarBlock}>
+                        <img src={profile.photos.large ? profile.photos.large : userWithoutPhoto} alt=""/>
 
-                    <div> {profile.fullName} </div>
-                    <div> {profile.aboutMe} </div>
-                    <ul>
-                        <li>{profile.contacts.facebook ? `Facebook: ${profile.contacts.facebook}`:''}</li>
-                        <li>{profile.contacts.website}</li>
-                        <li>{profile.contacts.vk}</li>
-                        <li>{profile.contacts.twitter}</li>
-                        <li>{profile.contacts.instagram}</li>
-                        <li>{profile.contacts.youtube}</li>
-                        <li>{profile.contacts.github}</li>
-                        <li>{profile.contacts.mainLink}</li>
-                    </ul>
-                    <div>{profile.lookingForAJobDescription}</div>
-                </div>
-            </div>
+                        {isOwner && <div className={classes.inputWrapper}>
+                            <label className={classes.customFileUpload}>
+                                <input type="file" onChange={mainPhotoSelectedOn}/>
+                                Edit
+                            </label>
+
+                        </div>}
+
+                    </div>
+                    <div className={classes.aboutBlock}>
+                        <div className={classes.userName}> {profile.fullName} </div>
+                        <div className={classes.userStatus}>
+                            <ProfileStatus status={status} updateStatus={updateStatus}/>
+                        </div>
+
+                        <div className={classes.aboutMe}> About me: {profile.aboutMe?profile.aboutMe :'hard-working person' } </div>
+                        <ul>
+                            <li>Contact information:</li>
+                            <li>{profile.contacts.facebook ? `Facebook: ${profile.contacts.facebook}`:''}</li>
+                            <li>{profile.contacts.website ? profile.contacts.website : 'web'}</li>
+                            <li>{profile.contacts.vk ? profile.contacts.vk : 'vk'}</li>
+                            <li>{profile.contacts.twitter ? profile.contacts.twitter : 'twitter'}</li>
+                            <li>{profile.contacts.instagram ? profile.contacts.instagram : 'instagram'}</li>
+                            <li>{profile.contacts.youtube ? profile.contacts.youtube : 'youtube'}</li>
+                            <li>{profile.contacts.github ? profile.contacts.github : 'github'}</li>
+                            <li>{profile.contacts.mainLink ? profile.contacts.mainLink : 'mainLink'}</li>
+                            <div>{profile.lookingForAJobDescription}</div>
+                        </ul>
+                    </div>
+
+
+
+                </>
         )
 
 

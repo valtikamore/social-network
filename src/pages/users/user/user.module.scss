@@ -1,41 +1,45 @@
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    grid-template-rows: 50px 50px;
-    grid-template-areas:
-            'photo name '
-            'follow status ';
-    .photo {
-        grid-area: photo;
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-    }
-    .follow {
-        grid-area: follow;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #cdc6c6;
-        border-radius: 10px;
-        transition: all 0.9s ease;
-        &:hover {
-            background: white;
-            box-shadow: inset 0 0 0 2px #53ea93;
+@import "src/styles/mixins.module";
+@import "src/styles/variables.module";
+.user {
+    display: flex;
+    align-items: start;
+    font-size: 1.6rem;
+    border-bottom: 2px solid gray;
+    .photoBlock {
+        .photo {
+            height: 10rem;
+            width: 10rem;
+            border-radius: 50%;
         }
     }
-    .name {
-        grid-area: name;
+    .aboutUser{
+        padding-top: 2rem;
+        .name {
+            margin-bottom: 1rem;
+        }
+        .status {
+
+        }
     }
+    .follow {
+        text-align: end;
+        padding-right: 2rem;
+        width: 100%;
+        align-self: center;
+        justify-self: end;
+        button {
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            background: $secondary;
+            padding: 0.5rem 1rem;
+        }
 
-    .status {
-        grid-area: status;
+
+
+        &:hover {
+
+        }
     }
-
-
 }
 
 

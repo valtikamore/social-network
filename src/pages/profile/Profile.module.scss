@@ -1,5 +1,12 @@
 
 .profile{
  grid-column: 3/12;
+ display: grid;
+ grid-template-areas:
+    "avatar about"
+    "friends posts";
+ grid-template-rows:1fr 1fr;
+ grid-template-columns: 3fr 8fr;
+ grid-gap: 1rem;
 }
 

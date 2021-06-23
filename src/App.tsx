@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
-import {BrowserRouter, HashRouter, Route} from 'react-router-dom';
+import { HashRouter, Route} from 'react-router-dom';
 import News from "./pages/News/News";
 import Music from './pages/Music/Music';
 import Settings from "./pages/Settings/Settings";
@@ -49,7 +48,6 @@ const ProfileContainer = React.lazy(() => import('./pages/profile/ProfileContain
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
                 </div>
-                <Footer/>
             </div>
         );
     }
